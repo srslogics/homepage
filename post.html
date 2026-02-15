@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>SrS Logics — Case Study Carousel</title>
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --card: #141414;
+    --accent: #00ffcc;
+    --text: #e6e6e6;
+    --dim: #a0a0a0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+  }
+
+  /* Slide canvas */
+  .slide {
+    width: 1080px;
+    height: 1080px;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px; /* spacing between slides */
+  }
+
+  .card {
+    width: 900px;
+    background: var(--card);
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 56px;
+  }
+
+  .brand {
+    color: var(--accent);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 32px;
+    font-size: 22px;
+  }
+
+  .title {
+    font-size: 42px;
+    line-height: 1.2;
+    margin: 0 0 14px 0;
+    letter-spacing: -1px;
+    color: var(--text);
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+
+  .body {
+    font-size: 18px;
+    color: var(--dim);
+    line-height: 1.7;
+    max-width: 780px;
+  }
+
+  /* Bullet blocks */
+  .bullets {
+    margin-top: 28px;
+  }
+
+  .bullet {
+    margin-bottom: 14px;
+    color: var(--text);
+    font-size: 18px;
+  }
+
+  /* Metrics */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 36px;
+  }
+
+  .metric {
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
+  }
+
+  .metric strong {
+    display: block;
+    font-size: 28px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .metric span {
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  .footer {
+    margin-top: 36px;
+    font-size: 16px;
+    color: var(--dim);
+    max-width: 760px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- SLIDE 1: CONTEXT -->
+<div class="slide">
+  <div class="card">
+    <div class="brand">SrS Logics — Case Study</div>
+
+    <h1 class="title">Operational Data Rebuild</h1>
+    <div class="subtitle">Poultry Business · ₹1 Cr+ per Quarter</div>
+
+    <div class="body">
+      A high-volume poultry operation processing thousands of daily records across
+      finance, feed inventory, mortality, and production metrics.
+    </div>
+
+    <div class="bullets">
+      <div class="bullet">• Fragmented Excel & CSV workflows</div>
+      <div class="bullet">• Daily manual corrections every evening</div>
+      <div class="bullet">• Inconsistent finance vs operations reports</div>
+      <div class="bullet">• No reliable single source of truth</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: INTERVENTION -->
+<div class="slide">
+  <div class="card">
+    <div class="brand">SrS Logics — What Changed</div>
+
+    <h1 class="title">Fixing the System</h1>
+    <div class="subtitle">Before touching dashboards</div>
+
+    <div class="body">
+      The focus was not reporting or visualization.
+      The focus was rebuilding the underlying data system for correctness and scale.
+    </div>
+
+    <div class="bullets">
+      <div class="bullet">• Centralized ingestion across finance & operations</div>
+      <div class="bullet">• Validation and reconciliation at entry points</div>
+      <div class="bullet">• Automated daily, weekly, and monthly rollups</div>
+      <div class="bullet">• Unified operational + financial data layer</div>
+    </div>
+
+    <div class="footer">
+      The goal was simple: make the data reliable before making it visible.
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: OUTCOME -->
+<div class="slide">
+  <div class="card">
+    <div class="brand">SrS Logics — Outcome</div>
+
+    <h1 class="title">Measurable Impact</h1>
+    <div class="subtitle">From system-level fixes</div>
+
+    <div class="metrics">
+      <div class="metric">
+        <strong>+24%</strong>
+        <span>Feed Conversion Ratio</span>
+      </div>
+
+      <div class="metric">
+        <strong>+45%</strong>
+        <span>Litter Quality</span>
+      </div>
+
+      <div class="metric">
+        <strong>0</strong>
+        <span>Manual daily corrections</span>
+      </div>
+
+      <div class="metric">
+        <strong>Unified</strong>
+        <span>Operations + finance decisions</span>
+      </div>
+    </div>
+
+    <div class="footer">
+      The improvement came from fixing the system that generated the data —
+      not from adding more dashboards.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

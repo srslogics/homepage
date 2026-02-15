@@ -1,0 +1,27 @@
+:root {
+    /* Core background */
+    --bg-main: #020617;
+    --bg-panel: #020617;
+    --bg-soft: #020617;
+  
+    /* Borders */
+    --border-subtle: #1e293b;
+  
+    /* Text */
+    --text-primary: #e5e7eb;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+  
+    /* Accent (THIS is the key sync) */
+    --accent-primary: #38bdf8;
+    --accent-success: #22c55e;
+  
+    /* Typography */
+    --font-main: Inter, system-ui, sans-serif;
+  
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 12px;
+  }
+  
