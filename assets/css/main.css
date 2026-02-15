@@ -126,18 +126,76 @@ footer {
   border-top: 1px solid var(--border-subtle);
   font-size: 0.8rem;
 }
+/* ---------------- Mobile Fixes ---------------- */
+@media (max-width: 768px) {
 
-/* Mobile */
-@media (max-width: 600px) {
-  main {
-    padding: 4rem 1.5rem;
+  body {
+    overflow-x: hidden;
   }
 
+  header {
+    padding: 1.25rem 1.5rem;
+  }
+
+  main {
+    padding: 4rem 1.5rem;
+    text-align: left;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    line-height: 1.25;
+  }
+
+  .lead {
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Stack all grids */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Reduce card padding */
+  .card {
+    padding: 1.25rem;
+  }
+
+  /* CTA full-width */
   .cta {
     width: 100%;
     text-align: center;
+    padding: 1.1rem;
+    font-size: 1rem;
+  }
+
+  /* Section spacing */
+  section {
+    padding: 4rem 1.5rem;
+  }
+
+  footer {
+    padding: 2rem 1.5rem;
   }
 }
+@media (max-width: 768px) {
+  .bridge-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .bridge-left,
+  .bridge-right {
+    max-width: 100%;
+  }
+
+  .bridge-left h2 {
+    font-size: 2.2rem;
+  }
+}
+
 .topbar.unified {
     height: 64px;
     padding: 0 28px;
