@@ -1,4 +1,31 @@
 @import "./tokens.css";
+html {
+  scroll-behavior: smooth;
+}
+/* =====================================================
+   GLOBAL BACKGROUND DEPTH (Startup-grade effect)
+   ===================================================== */
+
+   body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+  
+    background:
+      radial-gradient(
+        circle at 20% 10%,
+        rgba(56,189,248,0.08),
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 80% 30%,
+        rgba(14,165,233,0.06),
+        transparent 45%
+      );
+  
+    pointer-events: none;
+  }
 
 /* Reset */
 * {
@@ -11,6 +38,7 @@ body {
   background: var(--bg-main);
   color: var(--text-primary);
   line-height: 1.6;
+  position: relative; /* ADD THIS */
 }
 
 /* Header */
@@ -20,6 +48,11 @@ header {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  background: rgba(2,6,23,0.7);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo {
@@ -93,8 +126,12 @@ section {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 2rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
-
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-primary);
+}
 .card h3 {
   color: var(--accent-primary);
   margin-top: 0;
@@ -300,7 +337,6 @@ footer {
     color: #020617;
     margin-top: 28px;
   }
-    
   .bridge-left {
   padding-top: 12px;
   }
@@ -343,5 +379,156 @@ footer {
       margin-right: auto;
     }
   }
-  
+  /* =====================================================
+   DATASENTINEL PAGE STYLES
+   ===================================================== */
+
+/* Hero Section */
+.hero {
+  padding: 7rem 2rem 5rem;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 5vw, 3.8rem);
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(56,189,248,0.08),
+    transparent 70%
+  );
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+/* CTA buttons */
+.btn-primary {
+  background: var(--accent-primary);
+  color: #020617;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.2s ease;
+
+  box-shadow:
+    0 10px 30px rgba(56,189,248,0.15);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+  box-shadow:
+    0 0 20px rgba(56,189,248,0.35),
+    0 14px 40px rgba(56,189,248,0.2);
+}
+
+.btn-secondary {
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  margin-left: 12px;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+/* Section headings */
+.section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+/* Lists inside sections */
+.section ul {
+  max-width: 700px;
+  margin: 2rem auto 0;
+  padding-left: 1.2rem;
+}
+
+.section li {
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
+
+/* Architecture block */
+pre {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  border: 1px solid var(--border-subtle);
+}
+
+/* Endpoint links */
+.section a {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+.section a:hover {
+  text-decoration: underline;
+}
+
+/* Navbar spacing improvement */
+nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+/* Footer polish */
+.footer {
+  margin-top: 80px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 5rem 1.5rem 3rem;
+    text-align: left;
+  }
+
+  .btn-secondary {
+    margin-left: 0;
+    margin-top: 12px;
+    display: block;
+  }
+
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .section h2 {
+    font-size: 1.6rem;
+  }
+}
     

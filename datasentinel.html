@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ===== SEO ===== -->
+  <title>DataSentinel | Data Reliability Platform | SrS Logics</title>
+
+  <meta name="description"
+    content="DataSentinel is a production-grade data validation, normalization, profiling and prediction platform built with FastAPI and deployed on AWS ECS Fargate." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="DataSentinel | Data Reliability Platform">
+  <meta property="og:description"
+    content="Production-grade data validation and reliability platform running on AWS ECS with FastAPI, S3 and PostgreSQL.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://srslogics.com/datasentinel">
+  <meta property="og:image" content="https://srslogics.com/assets/images/datasentinel-og.png">
+  <meta property="og:site_name" content="SrS Logics">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DataSentinel | Data Reliability Platform">
+  <meta name="twitter:description"
+    content="Production-grade data validation and reliability platform deployed on AWS ECS.">
+  <meta name="twitter:image" content="https://srslogics.com/assets/images/datasentinel-og.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="logo">SrS Logics</div>
+
+  <nav>
+    <a href="/index.html">Home</a>
+
+    <a href="/datasentinel">
+      DataSentinel
+    </a>
+
+    <a
+      href="https://calendly.com/shubhamsinghvr/strategy-call"
+      target="_blank"
+      rel="noopener"
+    >
+      Strategy Call
+    </a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="container">
+    <h1>DataSentinel</h1>
+
+    <p>
+      Production-grade data validation, conversion, normalization,
+      profiling, and prediction platform built for reliable data systems.
+    </p>
+
+    <p class="subtle">
+      Running in production on AWS ECS Fargate using event-driven architecture.
+    </p>
+
+    <div class="cta-group">
+      <a href="/datasentinel/login" class="btn-primary">
+        Explore
+      </a>
+
+      <a href="#architecture" class="btn-secondary">
+        View Architecture
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARCHITECTURE ================= -->
+<section id="architecture" class="section">
+  <div class="container">
+    <h2>Production Architecture</h2>
+
+    <p>
+      DataSentinel runs on an event-driven AWS architecture designed for
+      scalability, reliability, and auditability.
+    </p>
+
+    <pre>
+User Browser
+      ↓
+Application Load Balancer (HTTPS)
+      ↓
+ECS Fargate (FastAPI Services)
+      ↓
+S3 Object Storage + PostgreSQL
+    </pre>
+  </div>
+</section>
+
+<!-- ================= ENGINEERING STACK ================= -->
+<section class="section">
+  <div class="container">
+    <h2>Engineering Stack</h2>
+
+    <ul>
+      <li>FastAPI backend services</li>
+      <li>AWS ECS Fargate container deployment</li>
+      <li>Application Load Balancer with HTTPS</li>
+      <li>S3 object storage</li>
+      <li>PostgreSQL database (RDS / Supabase)</li>
+      <li>SQLAlchemy ORM</li>
+      <li>Stripe subscription system</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= ARCHITECTURE PRINCIPLES ================= -->
+<section class="section">
+  <div class="container">
+    <h2>Architecture Principles</h2>
+
+    <ul>
+      <li>Event-driven processing</li>
+      <li>Independent modular services</li>
+      <li>Idempotent data operations</li>
+      <li>Auditability and reporting</li>
+      <li>Schema validation enforcement</li>
+      <li>Production observability</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= ENDPOINTS ================= -->
+<section class="section">
+  <div class="container">
+    <h2>Live Production Endpoints</h2>
+
+    <ul>
+      <li>
+        Dashboard:
+        <a href="ttps://datasentinel.srslogics.com/login">/datasentinel/login</a>
+      </li>
+
+      <li>
+        API Docs:
+        <a href="https://datasentinel.srslogics.com/docs">/datasentinel/docs</a>
+      </li>
+
+      <li>
+        Health Check:
+        <a href="ttps://datasentinel.srslogics.com/health">/datasentinel/health</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 SrS Logics — Data Systems That Don’t Break at Scale</p>
+  </div>
+</footer>
+
+</body>
+</html>
