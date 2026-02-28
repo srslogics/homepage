@@ -501,17 +501,39 @@ footer {
     padding: 2rem 1.5rem;
   }
 }
+/* =====================================
+   FINAL MOBILE ARCHITECTURE OVERRIDE
+===================================== */
+
 @media (max-width: 768px) {
-  bridge-container {
+
+  .bridge-container {
     display: flex !important;
     flex-direction: column !important;
-    gap: 32px;
+    gap: 28px !important;
   }
 
   .bridge-left,
   .bridge-right {
     width: 100%;
-    max-width: 100%;
+  }
+
+  .bridge-right {
+    align-items: center;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .architecture-left h2 {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+
+  .flow-box {
+    width: 100%;
+    max-width: 320px;
   }
 }
 @media (max-width: 768px) {
