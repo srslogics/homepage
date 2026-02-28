@@ -185,6 +185,61 @@ section {
   padding: 7rem 2rem;
   text-align: center;
 }
+.case-outcome h2 {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  line-height: 1.25;
+}
+.case-headline {
+  max-width: 900px;
+  margin: 0 auto 18px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.case-subheadline {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+/* ===============================
+   CASE METRICS — PREMIUM STYLE
+================================ */
+
+.case-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.metric {
+  text-align: left;
+}
+
+.metric-value {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: -0.02em;
+}
+
+.metric-label {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.metric-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56,189,248,0.25),
+    transparent
+  );
+}
 
 .case-heading {
   font-size: 2.1rem;
@@ -215,6 +270,18 @@ section {
   font-size: 2.4rem;
   font-weight: 700;
   color: var(--accent-primary);
+}
+@media (max-width: 900px) {
+
+  .case-metrics {
+    text-align: center;
+    align-items: center;
+  }
+
+  .metric {
+    text-align: center;
+  }
+
 }
 
 .metric p {
