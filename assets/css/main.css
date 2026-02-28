@@ -507,25 +507,6 @@ footer {
 
 @media (max-width: 768px) {
 
-  .bridge-container {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 28px !important;
-  }
-
-  .bridge-left,
-  .bridge-right {
-    width: 100%;
-  }
-
-  .bridge-right {
-    align-items: center;
-  }
-
-}
-
-@media (max-width: 768px) {
-
   .architecture-left h2 {
     font-size: 2rem;
     line-height: 1.25;
@@ -536,15 +517,7 @@ footer {
     max-width: 320px;
   }
 }
-@media (max-width: 768px) {
 
-  .bridge-point {
-    width: 100%;
-    padding: 16px;
-    font-size: 0.95rem;
-  }
-
-}
 @media (max-width: 768px) {
 
   .bridge-left h2 {
@@ -564,6 +537,93 @@ footer {
   .bridge-right {
     align-items: center;
   }
+}
+/* =====================================================
+   FINAL ARCHITECTURE FLOW (ACTIVE VERSION)
+===================================================== */
+
+.architecture {
+  padding: 8rem 2rem;
+  text-align: center;
+}
+
+.architecture-title {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+}
+
+.architecture-intro {
+  max-width: 720px;
+  margin: 0 auto 60px;
+  color: var(--text-secondary);
+}
+
+/* FLOW */
+
+.architecture-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* NODE */
+
+.flow-node {
+  background: rgba(2,6,23,0.65);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+
+  padding: 16px 26px;
+  min-width: 260px;
+
+  font-weight: 500;
+
+  transition: all 0.25s ease;
+}
+
+.flow-node:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-primary);
+}
+
+/* HIGHLIGHT SERVICE LAYER */
+
+.flow-node.highlight {
+  border-color: rgba(56,189,248,0.7);
+  box-shadow: 0 0 30px rgba(56,189,248,0.18);
+}
+
+/* CONNECTOR */
+
+.flow-line {
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(
+    to bottom,
+    rgba(56,189,248,0.7),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .architecture-title {
+    font-size: 1.9rem;
+    line-height: 1.25;
+  }
+
+  .flow-node {
+    width: 100%;
+    max-width: 320px;
+    font-size: 0.95rem;
+  }
+
 }
 
 .topbar.unified {

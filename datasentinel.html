@@ -88,43 +88,38 @@
   </section>
 
 <!-- ================= ARCHITECTURE ================= -->
-<section class="architecture">
+<section id="architecture" class="architecture">
 
-    <div class="container architecture-container">
+    <div class="container">
   
-      <!-- LEFT SIDE -->
-      <div class="architecture-left">
-        <span class="section-label">PRODUCTION ARCHITECTURE</span>
+      <span class="section-label">PRODUCTION ARCHITECTURE</span>
   
-        <h2>Event-Driven System Design</h2>
+      <h2 class="architecture-title">
+        Event-Driven System Design
+      </h2>
   
-        <p>
-          DataSentinel operates as a modular event-driven platform where
-          each service independently validates, transforms, and monitors
-          data pipelines while maintaining auditability.
-        </p>
+      <p class="architecture-intro">
+        DataSentinel operates as a modular cloud platform where each service
+        independently validates, transforms, and monitors data pipelines
+        while maintaining auditability and scale reliability.
+      </p>
   
-        <ul class="architecture-points">
-          <li>HTTPS entry via Application Load Balancer</li>
-          <li>Containerized FastAPI services on ECS Fargate</li>
-          <li>Object storage for datasets</li>
-          <li>PostgreSQL for metadata & reporting</li>
-        </ul>
-      </div>
-  
-      <!-- RIGHT SIDE FLOW -->
       <div class="architecture-flow">
   
-        <div class="flow-box">User Browser</div>
-        <div class="flow-arrow">↓</div>
+        <div class="flow-node">User Browser</div>
+        <div class="flow-line"></div>
   
-        <div class="flow-box">Application Load Balancer</div>
-        <div class="flow-arrow">↓</div>
+        <div class="flow-node">Application Load Balancer (HTTPS)</div>
+        <div class="flow-line"></div>
   
-        <div class="flow-box">ECS Fargate (FastAPI)</div>
-        <div class="flow-arrow">↓</div>
+        <div class="flow-node highlight">
+          ECS Fargate — FastAPI Services
+        </div>
+        <div class="flow-line"></div>
   
-        <div class="flow-box">S3 + PostgreSQL</div>
+        <div class="flow-node">
+          S3 Storage + PostgreSQL
+        </div>
   
       </div>
   
