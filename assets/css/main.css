@@ -1153,7 +1153,7 @@ nav {
 @media (max-width: 768px) {
 
   .hero {
-    padding: 5rem 1.5rem 3rem;
+    padding: 7rem 2rem 3rem;
     text-align: left;
   }
 
@@ -1403,4 +1403,66 @@ nav {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* =====================================
+   TRUST STRIP — FINAL VERSION
+===================================== */
+
+.trust-strip {
+  margin-top: 20px;
+
+  border-top: 1px solid rgba(56,189,248,0.15);
+  border-bottom: 1px solid rgba(56,189,248,0.15);
+
+  background: rgba(2,6,23,0.55);
+  backdrop-filter: blur(10px);
+}
+
+.trust-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 26px 20px;
+  text-align: center;
+}
+
+.trust-label {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: rgba(148,163,184,0.9);
+  margin-bottom: 16px;
+}
+
+.trust-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+.trust-items span {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #e2e8f0; /* brighter */
+
+  opacity: 0.85;
+  transition: all 0.25s ease;
+}
+
+.trust-items span:hover {
+  color: var(--accent-primary);
+  opacity: 1;
+}
+.trust-strip::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56,189,248,0.4),
+    transparent
+  );
 }
