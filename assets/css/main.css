@@ -502,18 +502,45 @@ footer {
   }
 }
 @media (max-width: 768px) {
-  .bridge-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  bridge-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px;
   }
 
   .bridge-left,
   .bridge-right {
+    width: 100%;
     max-width: 100%;
   }
+}
+@media (max-width: 768px) {
+
+  .bridge-point {
+    width: 100%;
+    padding: 16px;
+    font-size: 0.95rem;
+  }
+
+}
+@media (max-width: 768px) {
 
   .bridge-left h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .bridge-description {
+    margin-bottom: 20px;
+  }
+
+}
+@media (max-width: 768px) {
+  .bridge-right {
+    align-items: center;
   }
 }
 
