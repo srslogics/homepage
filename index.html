@@ -380,6 +380,18 @@
 <footer>
   © 2026 SrS Logics · India · Sole Proprietorship
 </footer>
-
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show-metrics");
+      }
+    });
+  });
+  
+  document.querySelectorAll(".case-metrics").forEach(el => {
+    observer.observe(el);
+  });
+  </script>
 </body>
 </html>

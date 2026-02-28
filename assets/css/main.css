@@ -1380,3 +1380,27 @@ nav {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(8px); }
 }
+
+/* =====================================
+   PREMIUM METRIC REVEAL ANIMATION
+===================================== */
+
+.metric {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.show-metrics .metric {
+  animation: metricReveal 0.8s ease forwards;
+}
+
+.show-metrics .metric:nth-child(1) { animation-delay: 0.15s; }
+.show-metrics .metric:nth-child(3) { animation-delay: 0.3s; }
+.show-metrics .metric:nth-child(5) { animation-delay: 0.45s; }
+
+@keyframes metricReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
