@@ -55,51 +55,82 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <div class="container">
-    <h1>DataSentinel</h1>
-
-    <p>
-      Production-grade data validation, conversion, normalization,
-      profiling, and prediction platform built for reliable data systems.
-    </p>
-
-    <p class="subtle">
-      Running in production on AWS ECS Fargate using event-driven architecture.
-    </p>
-
-    <div class="cta-group">
-      <a href="/datasentinel/login" class="btn-primary">
-        Explore
-      </a>
-
-      <a href="#architecture" class="btn-secondary">
-        View Architecture
-      </a>
+    <div class="container">
+  
+        <h1 class="product-title">
+            Data<span class="accent">Sentinel</span>
+          </h1>
+  
+      <p class="lead">
+        Production-grade data validation, conversion, normalization,
+        profiling, and prediction platform built for reliable data systems.
+      </p>
+  
+      <p class="subtle">
+        Running in production on AWS ECS Fargate using event-driven architecture.
+      </p>
+  
+      <!-- CTA Buttons -->
+      <div class="cta-group">
+        <a href="https://datasentinel.srslogics.com/" class="btn-primary">
+          Explore DataSentinel
+        </a>
+  
+        <a href="#architecture" class="btn-secondary">
+            View Architecture
+          </a>
+      </div>
+  
+      <!-- Scroll Indicator -->
+      <div class="scroll-hint">↓</div>
+  
     </div>
-  </div>
-</section>
+  </section>
 
 <!-- ================= ARCHITECTURE ================= -->
-<section id="architecture" class="section">
-  <div class="container">
-    <h2>Production Architecture</h2>
+<section class="architecture">
 
-    <p>
-      DataSentinel runs on an event-driven AWS architecture designed for
-      scalability, reliability, and auditability.
-    </p>
-
-    <pre>
-User Browser
-      ↓
-Application Load Balancer (HTTPS)
-      ↓
-ECS Fargate (FastAPI Services)
-      ↓
-S3 Object Storage + PostgreSQL
-    </pre>
-  </div>
-</section>
+    <div class="container architecture-container">
+  
+      <!-- LEFT SIDE -->
+      <div class="architecture-left">
+        <span class="section-label">PRODUCTION ARCHITECTURE</span>
+  
+        <h2>Event-Driven System Design</h2>
+  
+        <p>
+          DataSentinel operates as a modular event-driven platform where
+          each service independently validates, transforms, and monitors
+          data pipelines while maintaining auditability.
+        </p>
+  
+        <ul class="architecture-points">
+          <li>HTTPS entry via Application Load Balancer</li>
+          <li>Containerized FastAPI services on ECS Fargate</li>
+          <li>Object storage for datasets</li>
+          <li>PostgreSQL for metadata & reporting</li>
+        </ul>
+      </div>
+  
+      <!-- RIGHT SIDE FLOW -->
+      <div class="architecture-flow">
+  
+        <div class="flow-box">User Browser</div>
+        <div class="flow-arrow">↓</div>
+  
+        <div class="flow-box">Application Load Balancer</div>
+        <div class="flow-arrow">↓</div>
+  
+        <div class="flow-box">ECS Fargate (FastAPI)</div>
+        <div class="flow-arrow">↓</div>
+  
+        <div class="flow-box">S3 + PostgreSQL</div>
+  
+      </div>
+  
+    </div>
+  
+  </section>
 
 <!-- ================= ENGINEERING STACK ================= -->
 <section class="section">
@@ -118,21 +149,76 @@ S3 Object Storage + PostgreSQL
   </div>
 </section>
 
-<!-- ================= ARCHITECTURE PRINCIPLES ================= -->
-<section class="section">
-  <div class="container">
-    <h2>Architecture Principles</h2>
 
-    <ul>
-      <li>Event-driven processing</li>
-      <li>Independent modular services</li>
-      <li>Idempotent data operations</li>
-      <li>Auditability and reporting</li>
-      <li>Schema validation enforcement</li>
-      <li>Production observability</li>
-    </ul>
-  </div>
-</section>
+<!-- ================= ARCHITECTURE PRINCIPLES ================= -->
+<section class="architecture-principles">
+
+    <div class="container">
+  
+      <span class="section-label">ENGINEERING PRINCIPLES</span>
+  
+      <h2>Built for Reliability, Not Just Features</h2>
+  
+      <p class="principles-intro">
+        DataSentinel is designed around production reliability principles used in
+        modern distributed systems. Every module operates independently while
+        maintaining auditability and correctness across the pipeline.
+      </p>
+  
+      <div class="principles-grid">
+  
+        <div class="principle">
+          <h3>Event-Driven Processing</h3>
+          <p>
+            Services react to data events instead of scheduled scripts,
+            enabling scalable and decoupled workflows.
+          </p>
+        </div>
+  
+        <div class="principle">
+          <h3>Idempotent Operations</h3>
+          <p>
+            Every pipeline step can safely re-run without corrupting data
+            or producing inconsistent results.
+          </p>
+        </div>
+  
+        <div class="principle">
+          <h3>Schema Enforcement</h3>
+          <p>
+            Validation occurs before transformation, preventing downstream
+            analytical errors.
+          </p>
+        </div>
+  
+        <div class="principle">
+          <h3>Observable Systems</h3>
+          <p>
+            Health checks, reports, and audit trails provide full visibility
+            into pipeline behavior.
+          </p>
+        </div>
+  
+        <div class="principle">
+          <h3>Modular Services</h3>
+          <p>
+            Validation, conversion, profiling, and prediction operate as
+            independent compute units.
+          </p>
+        </div>
+  
+        <div class="principle">
+          <h3>Production First Design</h3>
+          <p>
+            Infrastructure decisions prioritize reliability, scaling,
+            and maintainability over quick prototypes.
+          </p>
+        </div>
+  
+      </div>
+  
+    </div>
+  </section>
 
 <!-- ================= ENDPOINTS ================= -->
 <section class="section">
