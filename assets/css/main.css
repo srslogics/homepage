@@ -1466,6 +1466,123 @@ nav {
     transparent
   );
 }
+/* =====================================================
+   FINAL FOOTER — SrS Logics
+   ===================================================== */
+
+   .footer {
+    margin-top: 80px;
+    border-top: 1px solid var(--border-subtle);
+    padding: 60px 2rem 30px;
+    background: rgba(2,6,23,0.4);
+    backdrop-filter: blur(6px);
+  }
+  
+  /* Container */
+  .footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  
+  /* Columns */
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* BRAND COLUMN */
+  .footer-col.brand h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  
+  .footer-col.brand p {
+    color: var(--text-secondary);
+    max-width: 240px;
+    line-height: 1.6;
+  }
+  
+  /* SECTION TITLES */
+  .footer-col h4 {
+    font-size: 0.75rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 8px;
+  }
+  
+  /* LINKS */
+  .footer-col a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  
+    transition: color 0.2s ease, transform 0.15s ease;
+  }
+  
+  .footer-col a:hover {
+    color: var(--accent-primary);
+    transform: translateX(2px);
+  }
+  
+  /* LOCATION TEXT */
+  .footer-col .location {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+  
+  /* BOTTOM BAR */
+  .footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-subtle);
+  
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  
+  /* ================= MOBILE ================= */
+  
+  @media (max-width: 900px) {
+  
+    .footer-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+  
+  }
+  
+  @media (max-width: 600px) {
+  
+    .footer {
+      padding: 50px 1.5rem 24px;
+    }
+  
+    .footer-container {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      text-align: left;
+    }
+  
+    .footer-col.brand p {
+      max-width: 100%;
+    }
+  
+    .footer-bottom {
+      margin-top: 40px;
+    }
+  }
 /* =====================================
    MOBILE TRUST STRIP FIX
 ===================================== */
