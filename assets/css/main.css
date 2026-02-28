@@ -677,45 +677,162 @@ footer {
     color: var(--text-primary);
   }
 
-  .bridge {
-    padding: 6rem 2rem;
-    background: radial-gradient(
-      circle at top,
-      rgba(56,189,248,0.06),
+  /* =====================================================
+   PRODUCT BRIDGE — FLAGSHIP SECTION
+===================================================== */
+
+.bridge {
+  padding: 8rem 2rem;
+  position: relative;
+}
+
+/* subtle background glow */
+.bridge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(56,189,248,0.08),
       transparent 60%
     );
-  }
-  
+  z-index: -1;
+}
+
+/* MAIN SURFACE */
+
+.bridge-container {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 70px;
+
+  background: rgba(2,6,23,0.45);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+
+  padding: 60px;
+
+  backdrop-filter: blur(14px);
+}
+
+/* LEFT SIDE */
+
+.bridge-label {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: var(--accent-primary);
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.bridge-left h2 {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.bridge-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+/* CTA polish */
+
+.btn-primary.solid {
+  margin-top: 28px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+}
+
+/* RIGHT SIDE */
+
+.bridge-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* FEATURE POINTS */
+
+.bridge-point {
+  background: rgba(2,6,23,0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+
+  padding: 18px 20px;
+
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+
+  transition: all 0.25s ease;
+}
+
+.bridge-point:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56,189,248,0.6);
+}
+
+/* NUMBER STYLE */
+
+.bridge-point span {
+  font-weight: 700;
+  color: var(--accent-primary);
+  opacity: 0.8;
+  min-width: 26px;
+}
+
+.bridge-point p {
+  margin: 0;
+  color: #e5e7eb;
+  font-size: 0.95rem;
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
   .bridge-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 64px;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
+    padding: 40px 28px;
+    gap: 40px;
   }
-  
-  .bridge-label {
-    font-size: 0.9rem;
-    letter-spacing: 3px;
-    font-weight: 600;
-    color: #38bdf8;
-    display: inline-block;
-    margin-bottom: 12px;
+
+  .bridge-left {
+    text-align: left;
   }
-  
+
   .bridge-left h2 {
-    font-size: 2.8rem;
-    margin-bottom: 16px;
-    letter-spacing: -0.5px;
+    font-size: 2rem;
   }
+
+}
+  /* Product Name Branding */
+
+.product-name {
+  font-size: 2.6rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.product-name .data {
+  color: #ffffff;
+}
+
+.product-name .sentinel {
+  color: var(--accent-primary);
+}
+.product-name .sentinel {
+  color: var(--accent-primary);
+  text-shadow: 0 0 18px rgba(56,189,248,0.25);
+}
   
-  .bridge-description {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #cbd5f5;
-    max-width: 540px;
-  }
+  
   .btn-primary.solid {
     display: inline-block;
     padding: 14px 28px;
