@@ -23,17 +23,25 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
+  <canvas id="hybrid-bg"></canvas>
 
 <!-- ================= HEADER ================= -->
 <header>
   <div class="logo">SrS Logics</div>
+
   <nav>
     <a href="/index.html">Home</a>
 
-    <a href="/datasentinel.html">DataSentinel</a>
+
+    <a href="/uae.html">UAE</a>
 
     <a
       href="https://calendly.com/shubhamsinghvr/strategy-call"
@@ -45,50 +53,285 @@
   </nav>
 </header>
 
+<!-- ================= HERO ================= -->
 
 <!-- ================= HERO ================= -->
-<main id="hero">
-  <h1>
-    Data Systems That Don’t Break<br>
-    <span class="accent">at Scale</span>
-  </h1>
 
+<main id="hero">
+
+
+  <h1>
+  Custom Data & Backend Systems<br>
+  <span class="accent">Built for Real Operations</span>
+  </h1>
+  
   <p class="lead">
-    Validate, normalize, and monitor data pipelines with
-    production-grade reliability.
+  SrS Logics designs and builds custom data platforms,
+  backend services, and operational software tailored
+  to how your business actually runs.
   </p>
   
   <p class="subtle hero-proof">
-    Running live on AWS ECS Fargate using event-driven architecture.
+  From ingestion pipelines to automation platforms —
+  engineered for reliability and scale.
   </p>
-
+  
   <a
-    class="cta"
-    href="https://calendly.com/shubhamsinghvr/strategy-call"
-    target="_blank"
-    rel="noopener"
-  >
-    Book a Strategy Call
+  class="cta"
+  href="https://calendly.com/shubhamsinghvr/strategy-call"
+  target="_blank"
+  rel="noopener">
+  Book a Strategy Call
   </a>
+
 </main>
- <!-- ================= TRUST STRIP ================= -->
+
+
+<!-- ================= TRUST STRIP ================= -->
+
 <section class="trust-strip">
+
   <div class="trust-container">
 
     <p class="trust-label">
-      Built using production-grade architecture
+      Systems engineered with modern production infrastructure
     </p>
 
     <div class="trust-items">
+
       <span>FastAPI</span>
       <span>AWS ECS Fargate</span>
-      <span>Event-Driven Pipelines</span>
+      <span>Event-Driven Architecture</span>
       <span>PostgreSQL</span>
-      <span>Cloud-Native Design</span>
+      <span>Cloud-Native Systems</span>
+
     </div>
 
   </div>
+
 </section>
+<!-- ================= SYSTEMS ARCHITECTURE ================= -->
+
+<!-- ================= SYSTEM FLOW ================= -->
+<section class="system-flow">
+
+  <span class="section-label">HOW SRS LOGICS FITS INTO YOUR SYSTEM</span>
+
+  <h2 class="flow-title">
+    From Business Systems to Reliable Data Infrastructure
+  </h2>
+
+  <div class="flow-container">
+
+    <div class="flow-box">
+      <strong>Client Systems</strong>
+      <p>ERP • CRM • Legacy Software • Internal Tools</p>
+    </div>
+
+    <div class="flow-connector"></div>
+
+    <div class="flow-box highlight">
+      <strong>SrS Logics Engineering</strong>
+      <p>Custom Software • APIs • Integrations</p>
+    </div>
+
+    <div class="flow-connector"></div>
+
+    <div class="flow-box">
+      <strong>Deployment</strong>
+      <p>AWS • GCP • Client Infrastructure</p>
+    </div>
+
+    <div class="flow-connector"></div>
+
+    <div class="flow-box">
+      <strong>Data Processing</strong>
+      <p>Validation • Cleaning • Normalization</p>
+    </div>
+
+    <div class="flow-connector"></div>
+
+    <div class="flow-box">
+      <strong>Insights Layer</strong>
+      <p>Analytics • Dashboards • Predictions</p>
+    </div>
+
+  </div>
+
+</section>
+<!-- ================= CLIENT SCENARIOS ================= -->
+
+<section class="client-scenarios">
+
+  <span class="section-label">HOW WE WORK WITH CLIENTS</span>
+
+  <h2 class="scenario-title">
+    Two Ways SrS Logics Can Improve Your Systems
+  </h2>
+
+  <div class="scenario-grid">
+
+    <!-- Scenario 1 -->
+
+    <div class="scenario-card">
+
+      <h3>No Existing System</h3>
+
+      <p>
+        If your operations rely on spreadsheets, disconnected tools,
+        or manual processes, SrS Logics builds a complete custom
+        system tailored to how your business actually operates.
+      </p>
+
+      <ul>
+        <li>Custom backend systems</li>
+        <li>Operational automation</li>
+        <li>Reliable data pipelines</li>
+        <li>Deployment in your infrastructure</li>
+      </ul>
+
+    </div>
+
+    <!-- Scenario 2 -->
+
+    <div class="scenario-card highlight">
+
+      <h3>Existing Software</h3>
+
+      <p>
+        If your business already runs software systems such as
+        ERP, CRM, or internal tools, SrS Logics integrates with
+        them to improve reliability and unlock usable data.
+      </p>
+
+      <ul>
+        <li>API integrations</li>
+        <li>Data validation and normalization</li>
+        <li>Automation workflows</li>
+        <li>Analytics and prediction pipelines</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="timeline-section">
+
+  <span class="section-label">ENGINEERING PROCESS</span>
+  
+  <h2 class="timeline-title">Engineering Delivery Process</h2>
+  
+  <p class="timeline-intro">
+    Most projects follow a structured engineering process designed
+    to build reliable operational systems. Timelines may vary depending
+    on system complexity and client infrastructure.
+  </p>
+  
+  <div class="timeline">
+  
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
+  <h3>Project Planning & Architecture</h3>
+  <span>Week 1</span>
+  <p>Define system requirements, architecture, and technical roadmap.</p>
+  </div>
+  </div>
+  
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
+  <h3>UI / UX Design</h3>
+  <span>Week 2</span>
+  <p>Design user workflows, interface layouts, and system interactions.</p>
+  </div>
+  </div>
+  
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
+  <h3>Backend Development</h3>
+  <span>Week 3 – 6</span>
+  <p>Develop APIs, databases, and core system logic.</p>
+  </div>
+  </div>
+  
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
+  <h3>Frontend Dashboard Development</h3>
+  <span>Week 5 – 7</span>
+  <p>Build operational dashboards and user interfaces.</p>
+  </div>
+  </div>
+  
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
+  <h3>Integration & Data Pipelines</h3>
+  <span>Week 7 – 9</span>
+  <p>Connect systems and implement data pipelines.</p>
+  </div>
+  </div>
+  
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
+  <h3>Testing & Optimization</h3>
+  <span>Week 10 – 11</span>
+  <p>System testing, debugging, and performance optimization.</p>
+  </div>
+  </div>
+  
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
+  <h3>Deployment</h3>
+  <span>Week 12</span>
+  <p>Deploy system into production infrastructure.</p>
+  </div>
+  </div>
+  
+  </div>
+  
+  </section>
+  <section class="ongoing-projects">
+
+    <h2>Active Systems Being Engineered</h2>
+    
+    <div class="project-stack">
+    
+    <div class="project-card card1">
+    <h3>Merchant Payment Platform</h3>
+    <p>
+    Unified fintech infrastructure for merchants including
+    QR payments, device management, transaction analytics,
+    and settlement monitoring.
+    </p>
+    </div>
+    
+    <div class="project-card card2">
+    <h3>Cafe Management System</h3>
+    <p>
+    Complete operational software for cafes including
+    POS billing, QR ordering, table management,
+    and sales analytics dashboard.
+    </p>
+    </div>
+    
+    <div class="project-card card3">
+    <h3>Society QR Payment System</h3>
+    <p>
+    QR-based digital payment infrastructure for
+    housing societies with payment tracking
+    and financial monitoring dashboard.
+    </p>
+    </div>
+    
+    </div>
+    
+    </section>
 <!-- ================= PROBLEM ================= -->
 <section id="problem" class="problem-section">
 
@@ -190,51 +433,6 @@
 
 </section>
 <!-- ================= Product Bridge ================= -->
-<section class="bridge">
-  <div class="bridge-container">
-
-    <div class="bridge-left">
-      <span class="bridge-label">Flagship Product · Live Platform</span>
-      <h2 class="product-name">
-        <span class="data">Data</span><span class="sentinel">Sentinel</span>
-      </h2>
-      <p class="bridge-description">
-        DataSentinel is our production-grade data quality enforcement layer —
-        built directly from real failure modes we’ve seen while rebuilding
-        broken systems in high-stakes environments.
-      </p>
-
-      <a
-        href="/datasentinel.html"
-        class="btn-primary solid"
-        target="_blank"
-        rel="noopener"
-      >
-        Explore DataSentinel →
-      </a>
-    </div>
-
-    <div class="bridge-right">
-      <div class="bridge-point">
-        <span>01</span>
-        <p>Schema & rule validation at ingestion</p>
-      </div>
-      <div class="bridge-point">
-        <span>02</span>
-        <p>Normalization & standardization at scale</p>
-      </div>
-      <div class="bridge-point">
-        <span>03</span>
-        <p>Profiling, drift detection, and auditability</p>
-      </div>
-      <div class="bridge-point">
-        <span>04</span>
-        <p>Designed for operators — not dashboards</p>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 
 <!-- ================= CASE STUDY ================= -->
@@ -441,6 +639,123 @@
   document.querySelectorAll(".case-metrics").forEach(el => {
     observer.observe(el);
   });
-  </script>
+  const canvas = document.getElementById("hybrid-bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const nodes = [];
+const streams = [];
+
+const nodeCount = 40;
+const streamCount = 30;
+
+// network nodes
+
+for(let i=0;i<nodeCount;i++){
+
+nodes.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+
+vx:(Math.random()-0.5)*0.3,
+vy:(Math.random()-0.5)*0.3
+});
+
+}
+
+// flowing streams
+
+for(let i=0;i<streamCount;i++){
+
+streams.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+speed:0.3+Math.random()*0.7,
+length:80+Math.random()*100
+});
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+// streams
+
+streams.forEach(s=>{
+
+ctx.beginPath();
+
+ctx.moveTo(s.x,s.y);
+ctx.lineTo(s.x+s.length,s.y);
+
+ctx.strokeStyle="rgba(56,189,248,0.15)";
+ctx.lineWidth=1;
+
+ctx.stroke();
+
+s.x+=s.speed;
+
+if(s.x>canvas.width){
+s.x=-s.length;
+}
+
+});
+
+// nodes
+
+nodes.forEach(n=>{
+
+n.x+=n.vx;
+n.y+=n.vy;
+
+if(n.x<0||n.x>canvas.width)n.vx*=-1;
+if(n.y<0||n.y>canvas.height)n.vy*=-1;
+
+ctx.beginPath();
+ctx.arc(n.x,n.y,2,0,Math.PI*2);
+ctx.fillStyle="rgba(56,189,248,0.8)";
+ctx.fill();
+
+nodes.forEach(n2=>{
+
+const dx=n.x-n2.x;
+const dy=n.y-n2.y;
+
+const dist=Math.sqrt(dx*dx+dy*dy);
+
+if(dist<140){
+
+ctx.beginPath();
+ctx.moveTo(n.x,n.y);
+ctx.lineTo(n2.x,n2.y);
+
+ctx.strokeStyle=`rgba(56,189,248,${0.25*(1-dist/140)})`;
+
+ctx.stroke();
+
+}
+
+});
+
+});
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
+
+// resize
+
+window.addEventListener("resize",()=>{
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+});
+</script>
 </body>
 </html>
