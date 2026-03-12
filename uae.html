@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Software Development for UAE Businesses | SrS Logics</title>
-
-<meta name="description" content="Custom software development and automation systems for businesses in Dubai and Abu Dhabi. Built by SrS Logics.">
-<!-- Open Graph -->
+  <title>SrS Logics | Data Systems That Don’t Break at Scale</title>
+  <meta name="description" 
+  content="Custom software development for businesses in Dubai and the UAE. SrS Logics builds backend systems, automation platforms, and operational dashboards for restaurants, logistics companies, and startups.">
+  <!-- Open Graph -->
   <meta property="og:title" content="SrS Logics | Data Systems That Don’t Break at Scale">
   <meta property="og:description" content="High-trust data architecture and backend systems for operators who need correctness, speed, and control.">
   <meta property="og:type" content="website">
@@ -22,11 +20,17 @@
   <meta name="twitter:description" content="High-trust data architecture and backend systems for leaders who need correctness at scale.">
   <meta name="twitter:image" content="https://srslogics.com/og-image.png">
 
-<link rel="stylesheet" href="assets/css/main.css">
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
+  <canvas id="hybrid-bg"></canvas>
     <header>
         <div class="logo">SrS Logics</div>
       
@@ -54,8 +58,9 @@
     </h1>
   
     <p class="lead">
-      SrS Logics helps companies in Dubai and Abu Dhabi build reliable
-      software systems, automation platforms, and operational data infrastructure.
+      SrS Logics provides custom software development in Dubai and across the UAE,
+building backend systems, automation platforms, and operational software
+for businesses that require reliable infrastructure.
     </p>
   
     <a
@@ -263,21 +268,28 @@ performance, operational efficiency, and long-term growth.
 
 <!-- GLOBAL PRESENCE -->
 
+
+
 <section class="global">
-<div class="container">
-
-<h2>Working With Businesses Globally</h2>
-
-<p>
-SrS Logics works with companies across multiple markets,
-helping them build reliable software systems and data
-infrastructure that support operational growth.
-</p>
-
-</div>
-</section>
-
-
+  <div class="container">
+  
+  <h2>Custom Software Development in Dubai</h2>
+  
+  <p>
+  
+  Businesses across Dubai and the UAE rely on software systems
+  to manage operations, automate workflows, and analyze
+  business performance.
+  
+  SrS Logics helps companies design and build reliable
+  software platforms including backend systems,
+  automation infrastructure, analytics dashboards,
+  and operational applications tailored to real business workflows.
+  
+  </p>
+  
+  </div>
+  </section>
 <!-- CTA -->
 <section class="cta-section">
 
@@ -353,4 +365,123 @@ infrastructure that support operational growth.
 
 
 </body>
+<script>
+  const canvas = document.getElementById("hybrid-bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const nodes = [];
+const streams = [];
+
+const nodeCount = 40;
+const streamCount = 30;
+
+// network nodes
+
+for(let i=0;i<nodeCount;i++){
+
+nodes.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+
+vx:(Math.random()-0.5)*0.3,
+vy:(Math.random()-0.5)*0.3
+});
+
+}
+
+// flowing streams
+
+for(let i=0;i<streamCount;i++){
+
+streams.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+speed:0.3+Math.random()*0.7,
+length:80+Math.random()*100
+});
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+// streams
+
+streams.forEach(s=>{
+
+ctx.beginPath();
+
+ctx.moveTo(s.x,s.y);
+ctx.lineTo(s.x+s.length,s.y);
+
+ctx.strokeStyle="rgba(56,189,248,0.15)";
+ctx.lineWidth=1;
+
+ctx.stroke();
+
+s.x+=s.speed;
+
+if(s.x>canvas.width){
+s.x=-s.length;
+}
+
+});
+
+// nodes
+
+nodes.forEach(n=>{
+
+n.x+=n.vx;
+n.y+=n.vy;
+
+if(n.x<0||n.x>canvas.width)n.vx*=-1;
+if(n.y<0||n.y>canvas.height)n.vy*=-1;
+
+ctx.beginPath();
+ctx.arc(n.x,n.y,2,0,Math.PI*2);
+ctx.fillStyle="rgba(56,189,248,0.8)";
+ctx.fill();
+
+nodes.forEach(n2=>{
+
+const dx=n.x-n2.x;
+const dy=n.y-n2.y;
+
+const dist=Math.sqrt(dx*dx+dy*dy);
+
+if(dist<140){
+
+ctx.beginPath();
+ctx.moveTo(n.x,n.y);
+ctx.lineTo(n2.x,n2.y);
+
+ctx.strokeStyle=`rgba(56,189,248,${0.25*(1-dist/140)})`;
+
+ctx.stroke();
+
+}
+
+});
+
+});
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
+
+// resize
+
+window.addEventListener("resize",()=>{
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+});
+</script>
 </html>
