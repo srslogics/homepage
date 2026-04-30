@@ -148,13 +148,6 @@ img {
   color: var(--text-primary);
 }
 
-.nav-cta {
-  padding: 0.82rem 1.2rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-}
-
 main {
   display: block;
 }
@@ -959,20 +952,17 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  .site-nav .nav-cta {
-    grid-column: 1 / -1;
-    min-height: 3rem;
-  }
-
   .hero {
     padding-top: 4.6rem;
   }
 
   .hero-copy h1 {
-    max-width: 6.6ch;
+    max-width: 100%;
     font-size: clamp(2.3rem, 12vw, 3.4rem);
-    line-height: 1;
-    overflow-wrap: anywhere;
+    line-height: 1.04;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: manual;
   }
 
   .hero-copy .lead,
