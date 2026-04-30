@@ -451,6 +451,48 @@ section {
   font-size: 0.9rem;
 }
 
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.status-pill::before {
+  content: "";
+  width: 0.48rem;
+  height: 0.48rem;
+  border-radius: 999px;
+  background: var(--accent-strong);
+  box-shadow: 0 0 0 6px rgba(240, 86, 72, 0.08);
+}
+
+.status-pill.live::before {
+  background: #d1b16a;
+}
+
+.status-pill.testing::before {
+  background: #e88452;
+}
+
+.project-meta {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.project-meta p {
+  margin: 0;
+}
+
 .section-header {
   display: grid;
   gap: 0.9rem;
