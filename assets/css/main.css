@@ -493,6 +493,72 @@ section {
   margin: 0;
 }
 
+.engagement-groups {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.engagement-group {
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(33, 24, 25, 0.88) 0%, rgba(17, 13, 14, 0.88) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-lg);
+}
+
+.engagement-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.engagement-group-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.engagement-group-header p {
+  margin: 0.35rem 0 0;
+  color: var(--text-secondary);
+}
+
+.engagement-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.engagement-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+  gap: 1rem;
+  padding: 1rem 1.05rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.engagement-title {
+  margin: 0;
+  font-size: 1.06rem;
+}
+
+.engagement-copy {
+  margin: 0.35rem 0 0;
+  color: var(--text-secondary);
+}
+
+.engagement-meta {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+}
+
+.engagement-meta span {
+  color: var(--text-secondary);
+}
+
 .section-header {
   display: grid;
   gap: 0.9rem;
