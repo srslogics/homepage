@@ -19,6 +19,6 @@
   --radius-md: 24px;
   --radius-lg: 36px;
   --container: 1180px;
-  --font-sans: "Sora", "Segoe UI", sans-serif;
-  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
