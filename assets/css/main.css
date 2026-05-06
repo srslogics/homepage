@@ -619,6 +619,27 @@ section {
   color: var(--text-secondary);
 }
 
+.case-study-card {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.case-study-card .tag-row {
+  margin-top: 0;
+}
+
+.case-study-card .compact-actions {
+  margin-top: auto;
+}
+
+.case-study-client {
+  color: var(--highlight);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .card-icon {
   width: 2.8rem;
   height: 2.8rem;
