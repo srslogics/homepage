@@ -9,10 +9,10 @@
   --text-primary: #edf4ff;
   --text-secondary: #bdd0ea;
   --text-muted: #7f94b4;
-  --accent: #2c7df2;
-  --accent-strong: #7b4fff;
-  --accent-soft: rgba(72, 128, 255, 0.16);
-  --highlight: #7ad8ff;
+  --accent: #1f92ff;
+  --accent-strong: #6a61ff;
+  --accent-soft: rgba(55, 154, 255, 0.18);
+  --highlight: #a6f0ff;
   --shadow-lg: 0 32px 80px rgba(0, 0, 0, 0.42);
   --shadow-md: 0 18px 44px rgba(0, 0, 0, 0.28);
   --radius-sm: 14px;
