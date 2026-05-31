@@ -1229,6 +1229,18 @@ section {
   font-size: 0.88rem;
 }
 
+.inline-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(166, 190, 233, 0.22);
+}
+
+.inline-link:hover,
+.inline-link:focus-visible {
+  color: var(--highlight);
+  border-bottom-color: rgba(166, 240, 255, 0.4);
+}
+
 .page-hero {
   padding-top: 5.2rem;
 }
