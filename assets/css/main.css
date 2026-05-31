@@ -645,18 +645,14 @@ section {
   align-items: start;
 }
 
-.engagement-gallery {
-  display: grid;
-  gap: 0.75rem;
-  justify-content: start;
-}
-
-.engagement-gallery-two {
-  grid-template-columns: repeat(2, minmax(0, 190px));
-}
-
-.engagement-gallery-three {
-  grid-template-columns: repeat(3, minmax(0, 160px));
+.engagement-launch {
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  text-align: left;
 }
 
 .engagement-shot {
@@ -671,6 +667,21 @@ section {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
     0 16px 34px rgba(2, 6, 14, 0.22);
+  position: relative;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.engagement-launch:hover .engagement-shot,
+.engagement-launch:focus-visible .engagement-shot {
+  transform: translateY(-3px);
+  border-color: rgba(166, 240, 255, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 20px 42px rgba(2, 6, 14, 0.28);
+}
+
+.engagement-launch:focus-visible {
+  outline: none;
 }
 
 .engagement-preview {
@@ -682,6 +693,21 @@ section {
   border-radius: calc(var(--radius-md) - 10px);
   border: 1px solid rgba(166, 190, 233, 0.08);
   box-shadow: 0 10px 24px rgba(3, 7, 15, 0.18);
+}
+
+.engagement-count {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  padding: 0.34rem 0.58rem;
+  border-radius: 999px;
+  background: rgba(6, 10, 20, 0.84);
+  border: 1px solid rgba(166, 190, 233, 0.16);
+  color: var(--text-primary);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .engagement-shot figcaption {
@@ -705,6 +731,122 @@ section {
 
 .engagement-meta span {
   color: var(--text-secondary);
+}
+
+.lightbox-open {
+  overflow: hidden;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 6, 12, 0.82);
+  backdrop-filter: blur(14px);
+}
+
+.lightbox-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1100px, calc(100% - 2rem));
+  margin: 4vh auto;
+  padding: 1.2rem;
+  border-radius: 28px;
+  border: 1px solid rgba(166, 190, 233, 0.14);
+  background: linear-gradient(180deg, rgba(12, 18, 31, 0.96), rgba(8, 13, 22, 0.98));
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.lightbox-close,
+.lightbox-nav {
+  appearance: none;
+  border: 1px solid rgba(166, 190, 233, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  margin-left: auto;
+}
+
+.lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.lightbox-header strong {
+  font-size: 1.15rem;
+}
+
+.lightbox-counter {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.lightbox-stage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lightbox-nav {
+  width: 3rem;
+  height: 3rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lightbox-nav:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.lightbox-figure {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 22px;
+  border: 1px solid rgba(166, 190, 233, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.lightbox-figure img {
+  display: block;
+  width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.lightbox-figure figcaption {
+  margin-top: 0.85rem;
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .section-header {
@@ -898,7 +1040,8 @@ section {
 
 .testimonial-copy,
 .testimonial-author,
-.testimonial-role {
+.testimonial-role,
+.testimonial-email {
   position: relative;
   z-index: 1;
 }
@@ -924,6 +1067,21 @@ section {
   font-size: 0.9rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.testimonial-email {
+  display: inline-block;
+  margin-top: 0.65rem;
+  color: #36224a;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(54, 34, 74, 0.18);
+}
+
+.testimonial-email:hover,
+.testimonial-email:focus-visible {
+  color: #241533;
+  border-bottom-color: rgba(36, 21, 51, 0.44);
 }
 
 .feature-list,
@@ -1288,9 +1446,9 @@ section {
     grid-template-columns: 1fr;
   }
 
-  .engagement-gallery-two,
-  .engagement-gallery-three {
-    grid-template-columns: 1fr;
+  .engagement-launch,
+  .engagement-shot {
+    width: 100%;
   }
 
   .engagement-group-header {
@@ -1299,6 +1457,25 @@ section {
 
   .engagement-meta {
     gap: 0.3rem;
+  }
+
+  .lightbox-dialog {
+    width: min(calc(100% - 1rem), 1100px);
+    margin: 2vh auto;
+    padding: 0.9rem;
+  }
+
+  .lightbox-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .lightbox-nav {
+    width: 100%;
+    height: 2.9rem;
+  }
+
+  .lightbox-figure img {
+    max-height: 60vh;
   }
 
   .hero-panel,

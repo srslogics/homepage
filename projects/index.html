@@ -103,10 +103,12 @@
                   <div class="engagement-content">
                     <h4 class="engagement-title">KNP Signature</h4>
                     <p class="engagement-copy">A finance and business dashboard platform currently deployed for live operational use.</p>
-                    <figure class="engagement-shot">
-                      <img class="engagement-preview" src="../assets/images/projects-knp-signature-main.png" alt="KNP Signature deployed business dashboard">
-                      <figcaption>Business dashboard</figcaption>
-                    </figure>
+                    <button class="engagement-launch" type="button" data-gallery-title="KNP Signature" data-images="../assets/images/projects-knp-signature-main.png" data-captions="Business dashboard" aria-label="Open KNP Signature gallery">
+                      <figure class="engagement-shot">
+                        <img class="engagement-preview" src="../assets/images/projects-knp-signature-main.png" alt="KNP Signature deployed business dashboard">
+                        <figcaption>Business dashboard</figcaption>
+                      </figure>
+                    </button>
                   </div>
                   <div class="engagement-meta">
                     <span><strong>Client:</strong> KNP Enterprises</span>
@@ -118,16 +120,13 @@
                   <div class="engagement-content">
                     <h4 class="engagement-title">Royal Celebration Console</h4>
                     <p class="engagement-copy">A venue operations console currently in on-site use within the client’s business environment.</p>
-                    <div class="engagement-gallery engagement-gallery-two">
+                    <button class="engagement-launch" type="button" data-gallery-title="Royal Celebration Console" data-images="../assets/images/projects-royal-console.png|../assets/images/projects-royal-website.png" data-captions="Console workspace|Public website" aria-label="Open Royal Celebration Console gallery">
                       <figure class="engagement-shot">
                         <img class="engagement-preview" src="../assets/images/projects-royal-console.png" alt="Royal Celebration Console deployed workspace">
+                        <span class="engagement-count">2 views</span>
                         <figcaption>Console workspace</figcaption>
                       </figure>
-                      <figure class="engagement-shot">
-                        <img class="engagement-preview" src="../assets/images/projects-royal-website.png" alt="Royal Celebration public presence preview">
-                        <figcaption>Public website</figcaption>
-                      </figure>
-                    </div>
+                    </button>
                   </div>
                   <div class="engagement-meta">
                     <span><strong>Client:</strong> Royal Celebrations</span>
@@ -139,20 +138,13 @@
                   <div class="engagement-content">
                     <h4 class="engagement-title">Owner and Farmer Apps</h4>
                     <p class="engagement-copy">A combined owner workspace and farmer reporting flow now in on-site use.</p>
-                    <div class="engagement-gallery engagement-gallery-three">
+                    <button class="engagement-launch" type="button" data-gallery-title="Owner and Farmer Apps" data-images="../assets/images/projects-utsav-owner.png|../assets/images/projects-utsav-farmer.png|../assets/images/projects-utsav-website.png" data-captions="Owner dashboard|Farmer app|Public website" aria-label="Open Owner and Farmer Apps gallery">
                       <figure class="engagement-shot">
                         <img class="engagement-preview" src="../assets/images/projects-utsav-owner.png" alt="Utsav owner workspace preview">
+                        <span class="engagement-count">3 views</span>
                         <figcaption>Owner dashboard</figcaption>
                       </figure>
-                      <figure class="engagement-shot">
-                        <img class="engagement-preview" src="../assets/images/projects-utsav-farmer.png" alt="Utsav farmer app preview">
-                        <figcaption>Farmer app</figcaption>
-                      </figure>
-                      <figure class="engagement-shot">
-                        <img class="engagement-preview" src="../assets/images/projects-utsav-website.png" alt="Utsav public presence preview">
-                        <figcaption>Public website</figcaption>
-                      </figure>
-                    </div>
+                    </button>
                   </div>
                   <div class="engagement-meta">
                     <span><strong>Client:</strong> Utsav</span>
@@ -286,6 +278,25 @@
       </section>
     </main>
 
+    <div class="lightbox" id="project-lightbox" hidden>
+      <div class="lightbox-backdrop" data-lightbox-close></div>
+      <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+        <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close gallery">Close</button>
+        <div class="lightbox-header">
+          <strong id="lightbox-title">Project preview</strong>
+          <span class="lightbox-counter" id="lightbox-counter">1 / 1</span>
+        </div>
+        <div class="lightbox-stage">
+          <button class="lightbox-nav" type="button" id="lightbox-prev" aria-label="Previous image">Prev</button>
+          <figure class="lightbox-figure">
+            <img id="lightbox-image" src="" alt="">
+            <figcaption id="lightbox-caption"></figcaption>
+          </figure>
+          <button class="lightbox-nav" type="button" id="lightbox-next" aria-label="Next image">Next</button>
+        </div>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="container footer-grid">
         <section class="footer-card">
@@ -332,5 +343,77 @@
       <div class="container footer-bottom">© 2026 SrS Logics. Founder-led software company based in Nagpur, India.</div>
     </footer>
   </div>
+
+  <script>
+    (() => {
+      const lightbox = document.getElementById("project-lightbox");
+      const lightboxTitle = document.getElementById("lightbox-title");
+      const lightboxCounter = document.getElementById("lightbox-counter");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const prevButton = document.getElementById("lightbox-prev");
+      const nextButton = document.getElementById("lightbox-next");
+      const closeTargets = lightbox.querySelectorAll("[data-lightbox-close]");
+      const launchers = document.querySelectorAll(".engagement-launch");
+
+      let gallery = [];
+      let activeIndex = 0;
+      let activeTitle = "";
+
+      const updateView = () => {
+        const item = gallery[activeIndex];
+        if (!item) return;
+        lightboxTitle.textContent = activeTitle;
+        lightboxCounter.textContent = `${activeIndex + 1} / ${gallery.length}`;
+        lightboxImage.src = item.src;
+        lightboxImage.alt = item.caption ? `${activeTitle} - ${item.caption}` : activeTitle;
+        lightboxCaption.textContent = item.caption || "";
+        prevButton.disabled = gallery.length <= 1;
+        nextButton.disabled = gallery.length <= 1;
+      };
+
+      const openLightbox = (button) => {
+        gallery = button.dataset.images.split("|").map((src, index) => ({
+          src,
+          caption: (button.dataset.captions || "").split("|")[index] || ""
+        }));
+        activeIndex = 0;
+        activeTitle = button.dataset.galleryTitle || "Project preview";
+        updateView();
+        lightbox.hidden = false;
+        document.body.classList.add("lightbox-open");
+      };
+
+      const closeLightbox = () => {
+        lightbox.hidden = true;
+        document.body.classList.remove("lightbox-open");
+        lightboxImage.src = "";
+      };
+
+      const move = (direction) => {
+        if (gallery.length <= 1) return;
+        activeIndex = (activeIndex + direction + gallery.length) % gallery.length;
+        updateView();
+      };
+
+      launchers.forEach((button) => {
+        button.addEventListener("click", () => openLightbox(button));
+      });
+
+      closeTargets.forEach((target) => {
+        target.addEventListener("click", closeLightbox);
+      });
+
+      prevButton.addEventListener("click", () => move(-1));
+      nextButton.addEventListener("click", () => move(1));
+
+      document.addEventListener("keydown", (event) => {
+        if (lightbox.hidden) return;
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowLeft") move(-1);
+        if (event.key === "ArrowRight") move(1);
+      });
+    })();
+  </script>
 </body>
 </html>
