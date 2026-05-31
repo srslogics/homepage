@@ -1015,7 +1015,10 @@ section {
 }
 
 .testimonial-card {
-  padding: 1.75rem;
+  display: grid;
+  align-content: start;
+  gap: 0.95rem;
+  padding: 1.9rem;
   border: 1px solid rgba(53, 37, 72, 0.12);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(249, 246, 255, 0.99) 100%);
@@ -1038,7 +1041,9 @@ section {
   opacity: 1;
 }
 
+.testimonial-mark,
 .testimonial-copy,
+.testimonial-signature,
 .testimonial-author,
 .testimonial-role,
 .testimonial-email {
@@ -1046,42 +1051,60 @@ section {
   z-index: 1;
 }
 
+.testimonial-mark {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: rgba(110, 83, 154, 0.14);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 6rem;
+  line-height: 0.72;
+}
+
 .testimonial-copy {
   margin: 0;
   color: #251834;
-  font-size: 1.04rem;
-  line-height: 1.8;
+  font-size: 1.08rem;
+  line-height: 1.72;
+  letter-spacing: -0.01em;
+}
+
+.testimonial-signature {
+  margin-top: 0.65rem;
+  padding: 1.15rem 1.2rem;
+  border-radius: 24px;
+  background: #332046;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .testimonial-author {
   display: block;
-  margin-top: 1.4rem;
   font-size: 1.02rem;
-  color: #251834;
+  color: #f4f7ff;
 }
 
 .testimonial-role {
   display: block;
-  margin-top: 0.35rem;
-  color: #4b3b61;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  margin-top: 0.3rem;
+  color: #d4deef;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 .testimonial-email {
-  display: inline-block;
-  margin-top: 0.65rem;
-  color: #36224a;
-  font-size: 0.9rem;
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 0.7rem;
+  color: #b7c7e3;
+  font-size: 0.88rem;
   text-decoration: none;
-  border-bottom: 1px solid rgba(54, 34, 74, 0.18);
+  border-bottom: 1px solid rgba(183, 199, 227, 0.22);
 }
 
 .testimonial-email:hover,
 .testimonial-email:focus-visible {
-  color: #241533;
-  border-bottom-color: rgba(36, 21, 51, 0.44);
+  color: #eef4ff;
+  border-bottom-color: rgba(238, 244, 255, 0.52);
 }
 
 .feature-list,
