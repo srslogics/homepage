@@ -587,6 +587,97 @@ section {
   gap: 1.25rem;
 }
 
+.region-project-groups {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.region-projects {
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 16% 0%, rgba(166, 240, 255, 0.09), transparent 28%),
+    linear-gradient(180deg, rgba(16, 25, 42, 0.96) 0%, rgba(7, 13, 23, 0.98) 100%);
+  border: 1px solid rgba(168, 190, 227, 0.13);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 28px 70px rgba(3, 7, 15, 0.42);
+  overflow: hidden;
+}
+
+.region-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.45rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.region-summary::-webkit-details-marker {
+  display: none;
+}
+
+.region-summary::after {
+  content: "Open";
+  flex: 0 0 auto;
+  padding: 0.62rem 0.95rem;
+  border-radius: 999px;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(166, 190, 233, 0.14);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.region-projects[open] .region-summary::after {
+  content: "Close";
+}
+
+.region-kicker {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--accent-strong);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.region-summary h3 {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2.4rem);
+}
+
+.region-summary p {
+  margin: 0.35rem 0 0;
+  color: var(--text-secondary);
+}
+
+.region-summary-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  margin-left: auto;
+}
+
+.region-summary-meta span {
+  padding: 0.55rem 0.75rem;
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(166, 190, 233, 0.1);
+  font-size: 0.78rem;
+}
+
+.region-project-body {
+  display: grid;
+  gap: 1.25rem;
+  padding: 0 1rem 1rem;
+}
+
 .engagement-group {
   padding: 1.5rem;
   border-radius: var(--radius-lg);
@@ -1551,6 +1642,24 @@ section {
 
   .engagement-group {
     padding: 1.15rem;
+  }
+
+  .region-summary {
+    display: grid;
+    padding: 1.15rem;
+  }
+
+  .region-summary::after {
+    width: fit-content;
+  }
+
+  .region-summary-meta {
+    justify-content: flex-start;
+    margin-left: 0;
+  }
+
+  .region-project-body {
+    padding: 0 0.6rem 0.6rem;
   }
 
   .engagement-group-header,
