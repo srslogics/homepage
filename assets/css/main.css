@@ -1430,6 +1430,13 @@ section {
   max-width: 12ch;
 }
 
+.page-hero .hero-copy h1.hero-title-compact {
+  max-width: 15ch;
+  font-size: clamp(3.1rem, 5.4vw, 5.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
 .detail-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -1679,6 +1686,11 @@ section {
   .headline-md,
   .headline-lg {
     max-width: 100%;
+  }
+
+  .page-hero .hero-copy h1.hero-title-compact {
+    font-size: clamp(2.15rem, 8.8vw, 3.1rem);
+    line-height: 1.02;
   }
 
   .hero-actions {
