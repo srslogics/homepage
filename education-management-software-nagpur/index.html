@@ -19,6 +19,214 @@
   <link rel="canonical" href="https://srslogics.com/education-management-software-nagpur/">
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/images/favicon-192.png">
   <link rel="stylesheet" href="../assets/css/main.css">
+  <style>
+    .education-page .page-hero {
+      padding-top: 6rem;
+      position: relative;
+    }
+
+    .education-page .page-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 34rem;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 14% 24%, rgba(120, 198, 255, 0.12), transparent 26%),
+        radial-gradient(circle at 88% 18%, rgba(103, 95, 255, 0.14), transparent 30%);
+      opacity: 0.9;
+    }
+
+    .education-page .hero-grid,
+    .education-page .stats-band,
+    .education-page .cards-4,
+    .education-page .case-grid {
+      position: relative;
+      z-index: 1;
+    }
+
+    .education-page .hero-grid {
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+      gap: 2.4rem;
+      align-items: start;
+    }
+
+    .education-page .hero-copy h1 {
+      max-width: 10.8ch;
+      letter-spacing: -0.045em;
+    }
+
+    .education-page .hero-copy .lead {
+      max-width: 48rem;
+      font-size: 1.12rem;
+    }
+
+    .education-page .hero-panel {
+      padding: 1.75rem;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 18%),
+        linear-gradient(180deg, rgba(14, 22, 37, 0.98) 0%, rgba(8, 14, 24, 0.98) 100%);
+    }
+
+    .education-page .signal-grid {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+      margin-top: 1.35rem;
+    }
+
+    .education-page .signal-card {
+      padding: 1.25rem 1.25rem 1.1rem;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(130, 208, 255, 0.08), transparent 34%),
+        rgba(255, 255, 255, 0.025);
+    }
+
+    .education-page .signal-card strong {
+      font-size: 1.1rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .education-page .signal-card span {
+      margin-top: 0.55rem;
+      font-size: 0.93rem;
+    }
+
+    .education-page .mini-stack {
+      gap: 0.9rem;
+      margin-top: 1.1rem;
+    }
+
+    .education-page .mini-stack div {
+      padding: 1rem 1.05rem;
+      border-radius: 18px;
+    }
+
+    .education-page .education-overview-wrap {
+      margin-top: 1.2rem;
+    }
+
+    .education-page .stats-band {
+      margin-top: 0;
+      padding: 1.2rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      border-radius: 28px;
+    }
+
+    .education-page .stats-band > div {
+      padding: 1.05rem 1rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(166, 190, 233, 0.06);
+    }
+
+    .education-page .stat-number {
+      font-size: clamp(1.25rem, 2vw, 1.6rem);
+      line-height: 1.05;
+      color: #eef5ff;
+    }
+
+    .education-page .stat-label {
+      display: block;
+      margin-top: 0.45rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .education-page .section-header {
+      max-width: 56rem;
+      margin-bottom: 2.6rem;
+    }
+
+    .education-page .section-lead,
+    .education-page .section-copy {
+      max-width: 50rem;
+    }
+
+    .education-page .cards-4 {
+      gap: 1.35rem;
+    }
+
+    .education-page .card {
+      padding: 1.6rem;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 22%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.012));
+    }
+
+    .education-page .card h3 {
+      font-size: 1.12rem;
+      line-height: 1.3;
+    }
+
+    .education-page .card p {
+      font-size: 0.95rem;
+      line-height: 1.72;
+    }
+
+    .education-page .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-bottom: 1.15rem;
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+    }
+
+    .education-page .case-panel {
+      padding: 1.9rem;
+      border-radius: 26px;
+    }
+
+    .education-page .feature-list li,
+    .education-page .check-list li {
+      font-size: 0.96rem;
+      line-height: 1.72;
+    }
+
+    .education-page .cta-panel {
+      padding: 2.35rem;
+      grid-template-columns: minmax(0, 1.2fr) auto;
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 18%),
+        linear-gradient(135deg, rgba(38, 86, 182, 0.18), rgba(104, 96, 255, 0.08) 54%, rgba(7, 13, 23, 0.96) 100%);
+    }
+
+    .education-page .cta-panel .headline-md {
+      max-width: 18ch;
+    }
+
+    .education-page .footer-card:first-child p {
+      max-width: 26rem;
+    }
+
+    @media (max-width: 1080px) {
+      .education-page .hero-grid,
+      .education-page .stats-band {
+        grid-template-columns: 1fr;
+      }
+
+      .education-page .cta-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .education-page .page-hero {
+        padding-top: 5rem;
+      }
+
+      .education-page .hero-panel,
+      .education-page .card,
+      .education-page .case-panel,
+      .education-page .cta-panel {
+        padding: 1.3rem;
+      }
+    }
+  </style>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -40,7 +248,7 @@
     }
   </script>
 </head>
-<body>
+<body class="education-page">
   <div class="site-shell">
     <header class="site-header">
       <div class="container">
@@ -59,14 +267,14 @@
 
         <nav class="site-nav" id="primary-nav" aria-label="Primary">
           <a href="../">Home</a>
-          <a href="../projects/">Projects</a>
+          <a href="../education-management-software-nagpur/">Institutional Software</a>
           <a href="../services/">Services</a>
+          <a href="../projects/">Projects</a>
           <a href="../pricing/">Pricing</a>
           <a href="../process/">Process</a>
           <a href="../about/">About</a>
-          <a href="../careers/">Careers</a>
-          <a href="../uae/">UAE</a>
           <a href="../raipur/">Raipur</a>
+          <a href="../careers/">Careers</a>
         </nav>
       </div>
     </header>
@@ -76,9 +284,9 @@
         <div class="container hero-grid">
           <div class="hero-copy">
             <span class="eyebrow">Nagpur education systems</span>
-            <h1>Education management software for <span class="accent-text">schools, colleges, and universities in Nagpur</span>.</h1>
+            <h1>Institutional software systems for <span class="accent-text">schools, colleges, and universities in Nagpur</span>.</h1>
             <p class="lead">
-              SrS Logics designs institutional software for education teams that want stronger control over admissions, administration, fee workflows, staff coordination, reporting, and leadership visibility. The objective is not to force a generic platform into the institution. It is to shape the system around how the institution actually functions.
+              SrS Logics designs education management software for institutions that need stronger control across admissions, fee administration, academic records, and leadership review. The aim is not to impose a generic ERP. It is to shape a system around the institution's own administrative structure, approval hierarchy, and reporting logic.
             </p>
             <div class="hero-actions">
               <a class="button" href="https://calendly.com/shubhamsinghvr/strategy-call" target="_blank" rel="noopener">Discuss your requirement</a>
@@ -91,29 +299,48 @@
               <span>Institutional fit</span>
               <span>Structured delivery</span>
             </div>
+            <div class="signal-grid">
+              <div class="signal-card">
+                Institutional Investment Range
+                <span>Engagements are typically structured between <strong>Rs.6 Lakhs and Rs.15 Lakhs</strong>, depending on scope, workflow depth, reporting architecture, and implementation complexity.</span>
+              </div>
+              <div class="signal-card">
+                Typical Delivery Horizon
+                <span>Most institutional implementations are planned across <strong>16 to 18 weeks</strong>, from requirement finalization through testing, review, and handover.</span>
+              </div>
+            </div>
             <div class="mini-stack">
               <div>
-                <strong>Best suited to</strong>
-                <span>Schools, colleges, universities, and private education groups that need stronger operational clarity.</span>
+                Best suited to
+                <span>Schools, colleges, universities, and private education groups that need stronger administrative clarity and operational discipline.</span>
               </div>
               <div>
-                <strong>Typical trigger</strong>
-                <span>Admissions, fees, records, approvals, and reporting still depend on scattered tools or repeated manual follow-up.</span>
+                Typical trigger
+                <span>Admissions, fees, records, and approvals still depend on scattered tools, fragmented software, or repeated manual follow-up.</span>
               </div>
               <div>
-                <strong>Delivery model</strong>
-                <span>Requirement review, system design, build, testing, handover, and post-launch support shaped around institutional workflow.</span>
-              </div>
-              <div>
-                <strong>Commercial range</strong>
-                <span>Most education management software engagements are structured in the range of Rs.6 Lakhs to 15 Lakhs depending on institutional complexity, modules, reporting expectations, and infrastructure scope.</span>
-              </div>
-              <div>
-                <strong>Delivery horizon</strong>
-                <span>Typical delivery for a serious institutional system is planned across roughly 16 to 18 weeks from requirement finalization through testing and handover.</span>
+                Delivery model
+                <span>Requirement review, platform structure, and testing discipline shaped around institutional workflow.</span>
               </div>
             </div>
           </aside>
+        </div>
+
+        <div class="container education-overview-wrap">
+          <div class="stats-band" aria-label="Education management software overview">
+            <div>
+              <span class="stat-number">Admissions to governance</span>
+              <span class="stat-label">institutional software can be shaped across enquiry flow, fee handling, records, approvals, communication, and leadership review</span>
+            </div>
+            <div>
+              <span class="stat-number">Institution-first structure</span>
+              <span class="stat-label">the workflow is designed around the institution instead of adapting the institution to generic software logic</span>
+            </div>
+            <div>
+              <span class="stat-number">Premium implementation scope</span>
+              <span class="stat-label">positioned for serious schools, colleges, and universities that want a durable internal operating system</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -121,9 +348,9 @@
         <div class="container">
           <div class="section-header">
             <span class="eyebrow">What the system can include</span>
-            <h2 class="headline-lg">A serious education system should improve administration, reporting, and decision-making across the institution.</h2>
+            <h2 class="headline-lg">A serious institutional system should improve administration, records, reporting, and decision-making across the organization.</h2>
             <p class="section-lead">
-              Some institutions need a focused admissions and fee platform. Others need a broader system that connects operational administration, internal approvals, academic handling, staff coordination, and management reporting. The scope should follow the institution's actual structure.
+              Some institutions need a focused admissions and fee platform first. Others need a broader system that connects administration, internal approvals, academic records, staff coordination, communication, and leadership reporting. The scope should follow the institution's actual structure, not a fixed package.
             </p>
           </div>
 
@@ -131,22 +358,54 @@
             <article class="card">
               <div class="card-icon">01</div>
               <h3>Admissions and enquiry management</h3>
-              <p>Lead capture, counselling flow, form handling, follow-up tracking, and admission-stage visibility.</p>
+              <p>Lead capture, counselling flow, form handling, follow-up tracking, application review, and admission-stage visibility for teams and leadership.</p>
             </article>
             <article class="card">
               <div class="card-icon">02</div>
               <h3>Fee and finance administration</h3>
-              <p>Fee planning, payment visibility, reminder logic, balance tracking, and internal finance review.</p>
+              <p>Fee planning, payment visibility, reminder logic, balance tracking, concessions, and disciplined internal finance review.</p>
             </article>
             <article class="card">
               <div class="card-icon">03</div>
               <h3>Student, staff, and records handling</h3>
-              <p>Role-based access, student records, staff workflows, document handling, and day-to-day administrative control.</p>
+              <p>Role-based access, student records, staff workflows, document handling, notices, approvals, and day-to-day administrative control.</p>
             </article>
             <article class="card">
               <div class="card-icon">04</div>
               <h3>Management dashboards and reports</h3>
-              <p>Clear visibility for principals, directors, trustees, and administrators who need dependable operational reporting.</p>
+              <p>Clear visibility for principals, directors, trustees, and administrators who need dependable admissions, operations, and finance reporting.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-frame">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">Operational modules</span>
+            <h2 class="headline-lg">The platform can be shaped around the parts of the institution that create the most operational friction.</h2>
+          </div>
+
+          <div class="cards-4">
+            <article class="card">
+              <div class="card-icon">A</div>
+              <h3>Admissions office</h3>
+              <p>Lead tracking, counsellor follow-up, application review, document status, and admission movement.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">B</div>
+              <h3>Fee office and accounts</h3>
+              <p>Installments, dues, concessions, payment status, reminders, and fee visibility for administrators.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">C</div>
+              <h3>Academic and admin handling</h3>
+              <p>Student records, notices, internal approvals, department coordination, and record reliability.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">D</div>
+              <h3>Leadership review</h3>
+              <p>Management dashboards for trustees, directors, principals, and administrators who need cleaner control.</p>
             </article>
           </div>
         </div>
@@ -155,38 +414,38 @@
       <section class="section-frame">
         <div class="container case-grid">
           <article class="glass-panel case-panel">
-            <span class="case-label">Where institutions usually struggle</span>
-            <h3>The problem is often fragmented administration rather than the total absence of software.</h3>
+            <span class="case-label">What leadership usually sees</span>
+            <h3>The issue is rarely the absence of software. It is weak control across fragmented institutional processes and inconsistent administrative visibility.</h3>
             <ul class="feature-list" style="margin-top: 1rem;">
               <li>
-                <strong>Admissions spread across forms, calls, and spreadsheets</strong>
-                <span>Follow-ups become inconsistent and leadership has weak visibility into the actual pipeline.</span>
+                Admissions spread across calls, forms, and separate trackers
+                <span>Follow-ups become inconsistent and leadership loses visibility into the actual admission conversion pipeline.</span>
               </li>
               <li>
-                <strong>Finance and academic records maintained separately</strong>
-                <span>Fee status, student records, and administrative handling drift apart and create unnecessary manual work.</span>
+                Finance, records, and administration maintained separately
+                <span>Fee status, student records, academic coordination, and administrative handling drift apart and create repeated reconciliation effort.</span>
               </li>
               <li>
-                <strong>Reports built manually every time someone asks</strong>
-                <span>Operational review becomes slower, less consistent, and more dependent on individual staff effort.</span>
+                Reports compiled manually whenever leadership asks
+                <span>Operational review becomes slower, less dependable, and overly dependent on individual staff effort.</span>
               </li>
             </ul>
           </article>
 
           <aside class="glass-panel case-panel">
-            <span class="case-label">How SrS Logics approaches it</span>
+            <span class="case-label">What the platform should do</span>
             <ul class="feature-list" style="margin-top: 1rem;">
               <li>
-                <strong>Institution-first design</strong>
-                <span>The workflow is shaped around the way the institution already functions, not around a rigid software template.</span>
+                Create one dependable operating layer
+                <span>Key administrative movements should no longer depend on separate spreadsheets, chats, scattered documents, and disconnected follow-up.</span>
               </li>
               <li>
-                <strong>Module-led expansion</strong>
-                <span>A focused admissions, fee, or administration module can be built first and expanded into a broader system later.</span>
+                Improve leadership visibility
+                <span>Decision-makers should be able to review admissions, fee status, and process delays with clarity.</span>
               </li>
               <li>
-                <strong>Leadership visibility</strong>
-                <span>The system is designed to improve control, review quality, and operational clarity for decision-makers.</span>
+                Support disciplined expansion
+                <span>A focused module can begin the engagement, with broader institutional coverage added through a structured roadmap.</span>
               </li>
             </ul>
           </aside>
@@ -196,22 +455,22 @@
       <section class="section-frame">
         <div class="container">
           <div class="section-header">
-            <span class="eyebrow">Relevant institution types</span>
-            <h2 class="headline-lg">Suitable across different education structures in Nagpur.</h2>
+            <span class="eyebrow">Institutional coverage</span>
+            <h2 class="headline-lg">Suitable across different education structures, from single-campus institutions to broader education groups.</h2>
           </div>
 
           <div class="cards-3">
             <article class="card">
               <h3>Schools and school groups</h3>
-              <p>Admissions, fee administration, parent communication support, admin operations, and branch-level reporting.</p>
+              <p>Admissions, fee administration, communication support, admin operations, branch-level review, and reporting control for individual schools or groups.</p>
             </article>
             <article class="card">
               <h3>Colleges and private institutes</h3>
-              <p>Student lifecycle handling, departmental coordination, records management, and operational visibility.</p>
+              <p>Student lifecycle handling, departmental coordination, records management, approval workflows, and operational visibility across private institutes and colleges.</p>
             </article>
             <article class="card">
               <h3>Universities and multi-department institutions</h3>
-              <p>Role hierarchy, approval routing, interdepartmental coordination, and leadership dashboards across broader structures.</p>
+              <p>Role hierarchy, approval routing, interdepartmental coordination, record governance, and leadership dashboards across broader university structures.</p>
             </article>
           </div>
         </div>
@@ -220,17 +479,19 @@
       <section class="section-frame">
         <div class="container case-grid">
           <article class="glass-panel case-panel">
-            <span class="case-label">System direction</span>
-            <h3>The institution may need a focused software layer or a broader end-to-end operating system.</h3>
-            <p class="section-copy">
-              One institution may want admissions and fee control first. Another may need a broader system across records, administration, approvals, staff handling, notices, and reporting. The scope can start with the highest-friction area and then expand in a controlled way.
-            </p>
+            <span class="case-label">Engagement structure</span>
+            <h3>The system can begin with a focused operational layer or be planned as a broader institutional platform from the start.</h3>
+            <ul class="check-list" style="margin-top: 1rem;">
+              <li>Admissions and enquiry management as the first institutional control layer</li>
+              <li>Fee administration and finance visibility as a second-stage operational system</li>
+              <li>Broader institution-wide software across records, approvals, staff handling, notices, communication, and reporting</li>
+            </ul>
           </article>
           <aside class="glass-panel case-panel">
-            <span class="case-label">Why this model works</span>
-            <h3>Adoption improves when the software respects institutional reality instead of demanding operational compromise.</h3>
+            <span class="case-label">Commercial direction</span>
+            <h3>This page is positioned for institutions evaluating a serious software engagement rather than a lightweight admin tool.</h3>
             <p class="section-copy">
-              The goal is to reduce friction, improve reliability, and give institutional leadership better visibility without making daily operations harder for the people who actually use the system.
+              The commercial range of Rs.6 Lakhs to Rs.15 Lakhs and the 16 to 18 week delivery window reflect a more substantial level of analysis, system planning, implementation depth, data structure design, and testing discipline than low-end template deployments.
             </p>
           </aside>
         </div>
@@ -241,10 +502,10 @@
           <div class="cta-panel">
             <div>
               <span class="eyebrow">Next step</span>
-              <h2 class="headline-md">If your institution in Nagpur needs stronger administrative software, we can review the requirement directly.</h2>
-              <p>We can discuss admissions flow, fee handling, operational structure, reporting expectations, user roles, and whether the institution needs a focused management system or a broader institutional platform.</p>
+              <h2 class="headline-md">Discuss the right institutional system for your institution.</h2>
+              <p>We can review admissions flow, fee administration, reporting structure, approval logic, user roles, and whether the institution needs a focused management layer or a broader end-to-end platform.</p>
             </div>
-            <a class="button" href="https://calendly.com/shubhamsinghvr/strategy-call" target="_blank" rel="noopener">Book strategy call</a>
+            <a class="button" href="https://calendly.com/shubhamsinghvr/strategy-call" target="_blank" rel="noopener">Book institutional review</a>
           </div>
         </div>
       </section>

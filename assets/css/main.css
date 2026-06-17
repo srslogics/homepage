@@ -453,7 +453,7 @@ section {
   background: linear-gradient(90deg, transparent, rgba(166, 240, 255, 0.3), transparent);
 }
 
-.signal-card strong,
+.signal-card > strong,
 .metric-value,
 .stat-number {
   display: block;
@@ -462,7 +462,7 @@ section {
   letter-spacing: -0.03em;
 }
 
-.signal-card strong {
+.signal-card > strong {
   font-size: 2.1rem;
   color: var(--text-primary);
   text-shadow: 0 0 22px rgba(166, 240, 255, 0.08);
@@ -488,7 +488,7 @@ section {
   border: 1px solid rgba(166, 190, 233, 0.08);
 }
 
-.mini-stack strong {
+.mini-stack > div > strong {
   display: block;
   margin-bottom: 0.35rem;
   color: var(--text-primary);
@@ -1286,7 +1286,7 @@ section {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.018));
 }
 
-.feature-list strong {
+.feature-list > li > strong {
   display: block;
   margin-bottom: 0.35rem;
   color: var(--text-primary);
