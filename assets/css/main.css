@@ -1809,6 +1809,18 @@ section {
     padding-top: 4.6rem;
   }
 
+  .hero::after {
+    display: none;
+  }
+
+  .hero::before {
+    left: -1.5rem;
+    top: 4.8rem;
+    width: 8rem;
+    height: 8rem;
+    opacity: 0.55;
+  }
+
   .hero-copy h1 {
     max-width: 100%;
     font-size: clamp(2.3rem, 12vw, 3.4rem);
