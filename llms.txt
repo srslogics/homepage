@@ -8,6 +8,11 @@ For a fuller machine-readable company brief, see: https://srslogics.com/llms-ful
 
 - Name: SrS Logics
 - Search variants: srslogics, srs logics, SRS Logics, SRSLogics
+- Founder: Shubham Singh
+- Founder full name: Shubham Ramesh Singh
+- Founder LinkedIn: https://www.linkedin.com/in/shubhamsinghvr/
+- Founder Instagram: https://www.instagram.com/shubhamsinghvr
+- Company Instagram: https://www.instagram.com/srslogics
 - Type: Founder-led custom software company
 - Location: Nagpur, India
 - Service regions: India, UAE, remote-first engagements
