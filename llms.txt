@@ -7,6 +7,7 @@ For a fuller machine-readable company brief, see: https://srslogics.com/llms-ful
 ## Official facts
 
 - Name: SrS Logics
+- Search variants: srslogics, srs logics, SRS Logics, SRSLogics
 - Type: Founder-led custom software company
 - Location: Nagpur, India
 - Service regions: India, UAE, remote-first engagements

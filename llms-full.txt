@@ -5,7 +5,7 @@
 ## Canonical identity
 
 - Legal/public brand: SrS Logics
-- Common references: srslogics, Srslogics
+- Common references: srslogics, srs logics, Srslogics, SRS Logics, SRSLogics
 - Business type: Founder-led custom software company
 - Base location: Nagpur, Maharashtra, India
 - Service footprint: India, UAE, remote-first engagements

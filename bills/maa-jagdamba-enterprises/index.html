@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice | Maa Jagdamba Enterprises | SrS Logics</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../assets/images/favicon-192.png">
+  <style>
+    :root {
+      --ink: #18273b;
+      --muted: #607089;
+      --line: #d7e0ec;
+      --soft: #f5f8fc;
+      --accent: #204b7a;
+      --paper: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background: #eef3f8;
+      color: var(--ink);
+      padding: 32px 16px;
+    }
+
+    .page {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 16px;
+    }
+
+    .print-button {
+      border: 1px solid #bfd0e3;
+      background: var(--paper);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 12px 20px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .invoice {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 60px rgba(16, 33, 55, 0.08);
+    }
+
+    .invoice-inner {
+      padding: 40px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .brand p,
+    .bill-to p,
+    .meta p,
+    .footer-note p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .brand p {
+      margin-top: 10px;
+      max-width: 320px;
+    }
+
+    .invoice-title {
+      text-align: right;
+    }
+
+    .invoice-title strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 28px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bill-to h2,
+    .summary h2 {
+      margin: 0 0 12px;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .bill-to strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .meta {
+      display: grid;
+      gap: 12px;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 12px;
+      font-size: 15px;
+    }
+
+    .meta-label {
+      color: var(--muted);
+    }
+
+    .meta-value {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 28px;
+    }
+
+    thead th {
+      padding: 14px 12px;
+      background: var(--soft);
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    tbody td {
+      padding: 16px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .amount {
+      text-align: right;
+      white-space: nowrap;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .desc strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .desc span {
+      color: var(--muted);
+    }
+
+    .summary {
+      width: min(100%, 360px);
+      margin-left: auto;
+      margin-top: 28px;
+      padding: 24px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .summary-line strong {
+      color: var(--ink);
+    }
+
+    .summary-line.total {
+      margin-top: 10px;
+      padding-top: 16px;
+      border-top: 1px solid #bfcddd;
+      font-size: 19px;
+    }
+
+    .footer-note {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-note strong {
+      color: var(--ink);
+    }
+
+    .signature {
+      margin-top: 44px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .signature-box {
+      width: 260px;
+      text-align: left;
+      padding-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .signature-box strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .signature-mark {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .invoice-inner {
+        padding: 24px;
+      }
+
+      .topbar,
+      .details {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .invoice-title {
+        text-align: left;
+      }
+
+      .meta-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .summary {
+        width: 100%;
+      }
+
+      .signature {
+        justify-content: flex-start;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      body {
+        background: #ffffff;
+        padding: 0;
+        font-size: 12px;
+      }
+
+      .toolbar {
+        display: none;
+      }
+
+      .invoice {
+        box-shadow: none;
+        border: none;
+      }
+
+      .invoice-inner {
+        padding: 0;
+      }
+
+      .topbar {
+        gap: 16px;
+        padding-bottom: 10px;
+      }
+
+      .brand h1,
+      .invoice-title strong {
+        font-size: 24px;
+      }
+
+      .brand p {
+        margin-top: 4px;
+        max-width: 280px;
+        line-height: 1.35;
+      }
+
+      .details {
+        gap: 18px;
+        padding: 12px 0;
+      }
+
+      .bill-to strong {
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+
+      .bill-to p,
+      .meta-row,
+      tbody td,
+      .summary-line,
+      .footer-note p,
+      .signature-box {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .meta {
+        gap: 6px;
+      }
+
+      table {
+        margin-top: 12px;
+      }
+
+      thead th {
+        padding: 8px 10px;
+        font-size: 10px;
+      }
+
+      tbody td {
+        padding: 8px 10px;
+      }
+
+      .desc strong {
+        margin-bottom: 2px;
+      }
+
+      .summary {
+        width: 300px;
+        margin-top: 12px;
+        padding: 14px;
+      }
+
+      .summary h2 {
+        margin-bottom: 8px;
+        font-size: 11px;
+      }
+
+      .summary-line {
+        padding: 6px 0;
+      }
+
+      .summary-line.total {
+        margin-top: 4px;
+        padding-top: 8px;
+        font-size: 14px;
+      }
+
+      .footer-note {
+        margin-top: 12px;
+        padding-top: 8px;
+        gap: 4px;
+      }
+
+      .signature {
+        margin-top: 10px;
+      }
+
+      .signature-box {
+        width: 220px;
+        padding-top: 0;
+      }
+
+      .signature-mark {
+        margin-bottom: 4px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="toolbar">
+      <button class="print-button" type="button" onclick="window.print()">Print / Save PDF</button>
+    </div>
+
+    <article class="invoice">
+      <div class="invoice-inner">
+        <section class="topbar">
+          <div class="brand">
+            <h1>SrS Logics</h1>
+            <p>
+              Custom software and website development<br>
+              Nagpur, Maharashtra<br>
+              shubhamsingh@srslogics.com<br>
+              +91 9270925106
+            </p>
+          </div>
+
+          <div class="invoice-title">
+            <strong>Invoice</strong>
+          </div>
+        </section>
+
+        <section class="details">
+          <div class="bill-to">
+            <h2>Bill To</h2>
+            <strong>Maa Jagdamba Enterprises</strong>
+            <p>
+              Royal Celebration, Chakki, Khapa Road, Godhani Road,<br>
+              Godhani (Railway), Maharashtra 441123
+            </p>
+          </div>
+
+          <div class="meta">
+            <div class="meta-row">
+              <span class="meta-label">Invoice No.</span>
+              <span class="meta-value">SRS-MJE-2026-001</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Invoice Date</span>
+              <span class="meta-value">03 July 2026</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Payment Terms</span>
+              <span class="meta-value">Balance payable on receipt</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Status</span>
+              <span class="meta-value">Pending Rs.9,000</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">GST / PAN</span>
+              <span class="meta-value">KVZPS6138H</span>
+            </div>
+          </div>
+        </section>
+
+        <table aria-label="Invoice breakdown">
+          <thead>
+            <tr>
+              <th style="width: 70px;">#</th>
+              <th>Description</th>
+              <th style="width: 180px;">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td class="desc">
+                <strong>Software and Website Development</strong>
+                <span>Total agreed quotation for the project.</span>
+              </td>
+              <td class="amount">Rs.38,000</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td class="desc">
+                <strong>Advance received on 01 June 2026</strong>
+                <span>First part payment received against the project quotation.</span>
+              </td>
+              <td class="amount">Rs.15,000</td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td class="desc">
+                <strong>Advance received on 24 June 2026</strong>
+                <span>Second part payment received against the project quotation.</span>
+              </td>
+              <td class="amount">Rs.14,000</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <section class="summary">
+          <h2>Amount Summary</h2>
+          <div class="summary-line">
+            <span>Total quotation</span>
+            <strong>Rs.38,000</strong>
+          </div>
+          <div class="summary-line">
+            <span>Amount received</span>
+            <strong>Rs.29,000</strong>
+          </div>
+          <div class="summary-line total">
+            <span>Balance due</span>
+            <strong>Rs.9,000</strong>
+          </div>
+        </section>
+
+        <section class="footer-note">
+          <p><strong>Note:</strong> This invoice is issued for software and website development work completed / in progress as per the agreed quotation.</p>
+          <p><strong>Outstanding amount:</strong> Rs.9,000 remains payable.</p>
+          <p><strong>Payment method:</strong> UPI ID: 9270925106@ibl</p>
+        </section>
+
+        <div class="signature">
+          <div class="signature-box">
+            <span class="signature-mark">Authorized Signatory</span>
+            <strong>Shubham Ramesh Singh</strong>
+            <div>Founder, SrS Logics</div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
