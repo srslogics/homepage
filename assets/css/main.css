@@ -1913,7 +1913,7 @@ section {
   }
 
   .hero {
-    padding-top: 4.6rem;
+    padding-top: 3.7rem;
   }
 
   .hero::after {
@@ -1930,11 +1930,27 @@ section {
 
   .hero-copy h1 {
     max-width: 100%;
-    font-size: clamp(2.3rem, 12vw, 3.4rem);
-    line-height: 1.04;
+    font-size: clamp(1.95rem, 9.2vw, 2.95rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
     overflow-wrap: normal;
     word-break: normal;
     hyphens: manual;
+  }
+
+  .hero-copy .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    line-height: 1.6;
+  }
+
+  .hero-copy .eyebrow::before {
+    width: 2.2rem;
+  }
+
+  .hero-copy .lead {
+    font-size: 1rem;
+    line-height: 1.72;
   }
 
   .hero-copy .lead,
@@ -1956,6 +1972,7 @@ section {
   }
 
   .hero-actions {
+    gap: 0.8rem;
     flex-direction: column;
     align-items: stretch;
   }
