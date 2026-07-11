@@ -588,14 +588,23 @@ section {
   gap: 1rem;
 }
 
+.stats-band > div {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+}
+
 .stat-number {
   font-size: clamp(2rem, 3vw, 2.6rem);
   color: var(--accent-hot);
+  line-height: 0.95;
 }
 
 .stat-label {
   color: var(--text-muted);
   font-size: 0.88rem;
+  line-height: 1.55;
+  max-width: 28ch;
 }
 
 .logo-band {
