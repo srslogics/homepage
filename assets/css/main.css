@@ -969,6 +969,7 @@ section {
 .engagement-preview {
   display: block;
   width: 100%;
+  height: auto;
   margin-top: 0;
   aspect-ratio: 4 / 5;
   object-fit: cover;
