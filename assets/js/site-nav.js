@@ -6,7 +6,7 @@
     ["Home", ""],
     ["Services", "services/"],
     ["Institutional", "education-management-software-nagpur/"],
-    ["Projects", "projects/"],
+    ["Portfolio", "projects/"],
     ["Case Studies", "case-studies/"],
     ["UAE", "uae/"],
     ["Insights", "insights/"],
