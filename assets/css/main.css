@@ -148,8 +148,19 @@ img {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.7rem;
   text-decoration: none;
+}
+
+.brand::before {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 2.25rem;
+  border: 1px solid rgba(142, 216, 255, 0.22);
+  border-radius: 0.58rem;
+  background: url("../../favicon.svg?v=20260804-2") center / cover no-repeat;
+  box-shadow: 0 8px 22px rgba(1, 8, 16, 0.24);
+  content: "";
 }
 
 .brand-mark {
@@ -159,10 +170,9 @@ img {
 }
 
 .brand-name {
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  letter-spacing: 0.045em;
   text-shadow: 0 0 18px rgba(142, 216, 255, 0.1);
 }
 
@@ -2207,8 +2217,8 @@ summary:focus-visible {
   }
 
   .brand-name {
-    font-size: 0.92rem;
-    letter-spacing: 0.16em;
+    font-size: 0.96rem;
+    letter-spacing: 0.035em;
   }
 
   .brand-tag {
