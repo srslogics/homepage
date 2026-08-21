@@ -8,7 +8,7 @@
     ["Institutional", "education-management-software-nagpur/"],
     ["Client Systems", "projects/"],
     ["Case Studies", "case-studies/"],
-    ["UAE", "uae/"],
+    ["Regions", "regions/"],
     ["Insights", "insights/"],
     ["Company", "about/"]
   ];
@@ -39,7 +39,10 @@
       const targetPath = url.pathname.replace(/\/index\.html$/, "/");
       const isCaseStudy = label === "Case Studies" && currentPath.includes("/case-studies/");
       const isInsight = label === "Insights" && currentPath.includes("/insights/");
-      const isUaePage = label === "UAE" && [
+      const isRegionPage = label === "Regions" && [
+        "/regions/",
+        "/uk/",
+        "/us/",
         "/uae/",
         "/custom-software-development-dubai/",
         "/internal-business-software-uae/",
@@ -49,7 +52,7 @@
       link.href = url.href;
       link.textContent = label;
 
-      if (currentPath === targetPath || isCaseStudy || isInsight || isUaePage) {
+      if (currentPath === targetPath || isCaseStudy || isInsight || isRegionPage) {
         link.setAttribute("aria-current", "page");
       }
 
@@ -97,5 +100,29 @@
         closeMenu();
       }
     });
+  });
+
+  document.querySelectorAll(".site-footer").forEach((footer) => {
+    if (footer.querySelector(".footer-trust-links, [data-trust-links]")) return;
+
+    const bottom = footer.querySelector(".footer-bottom");
+    if (!bottom) return;
+
+    const links = document.createElement("nav");
+    links.className = "footer-trust-links";
+    links.setAttribute("aria-label", "Trust and legal");
+
+    [
+      ["Privacy", "privacy/"],
+      ["Terms", "terms/"],
+      ["Security", "security/"]
+    ].forEach(([label, path]) => {
+      const link = document.createElement("a");
+      link.href = new URL(path, siteRoot).href;
+      link.textContent = label;
+      links.append(link);
+    });
+
+    bottom.insertAdjacentElement("afterend", links);
   });
 })();

@@ -1,8 +1,8 @@
 # SrS Logics
 
-> SrS Logics is a founder-led custom software company based in Nagpur, India. It designs internal business software, workflow systems, dashboards, finance tools, reporting platforms, and institution-specific systems for clients across India and the UAE.
+> SrS Logics is a senior-led custom software company based in Nagpur, India. It designs internal business software, workflow systems, dashboards, finance tools, reporting platforms, and institution-specific systems for clients across India, UAE, UK, and USA.
 
-Last updated: 2026-07-29
+Last updated: 2026-08-21
 Canonical website: https://srslogics.com/
 
 ## Canonical identity
@@ -11,7 +11,7 @@ Canonical website: https://srslogics.com/
 - Alternate brand spellings: srslogics, srs logics, SRS Logics, SRSLogics
 - Founder: Shubham Singh
 - Operating base: Nagpur, Maharashtra, India
-- Markets served: India, UAE, and selected remote engagements
+- Markets served: India, UAE, United Kingdom, and United States through a remote delivery model
 - Email: shubhamsingh@srslogics.com
 - Telephone: +91 9270925106
 
@@ -31,7 +31,7 @@ Core capabilities:
 
 ## Delivery and commercial facts
 
-- Typical focused software delivery: approximately 4 to 6 weeks, depending on scope and review speed
+- Typical focused software delivery: approximately 4 to 6 weeks; larger or integration-heavy platforms use staged timelines
 - Typical post-launch support: 6 months unless revised in the engagement terms
 - Typical India project range: Rs.30,000 to Rs.5 Lakhs, depending on scope and engineering requirements
 - Institutional software range: Rs.6 Lakhs to Rs.15 Lakhs with a typical 16 to 18 week delivery horizon
@@ -48,6 +48,10 @@ Core capabilities:
 - [Case studies](https://srslogics.com/case-studies/): Verified examples of software in operational use
 - [About SrS Logics](https://srslogics.com/about/): Company identity, founder, operating base, and delivery approach
 - [Founder insights](https://srslogics.com/insights/): Articles on workflow fit and practical digital transformation
+- [Regions](https://srslogics.com/regions/): International delivery model and priority markets
+- [Privacy](https://srslogics.com/privacy/): Website, enquiry, and client privacy information
+- [Terms](https://srslogics.com/terms/): Website and project-engagement terms
+- [Security](https://srslogics.com/security/): Secure development and responsibility model
 
 ## Regional and sector pages
 
@@ -55,6 +59,8 @@ Core capabilities:
 - [Education management software in Nagpur](https://srslogics.com/education-management-software-nagpur/)
 - [Business data analysis systems](https://srslogics.com/business-data-analysis-systems/)
 - [Custom business software in the UAE](https://srslogics.com/uae/)
+- [Custom software delivery for UK businesses](https://srslogics.com/uk/)
+- [Custom software delivery for US businesses](https://srslogics.com/us/)
 - [Custom software development in Dubai](https://srslogics.com/custom-software-development-dubai/)
 - [Internal business software in the UAE](https://srslogics.com/internal-business-software-uae/)
 - [Workflow automation software in Dubai](https://srslogics.com/workflow-automation-software-dubai/)

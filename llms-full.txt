@@ -11,9 +11,9 @@
 - Founder LinkedIn: https://www.linkedin.com/in/shubhamsinghvr/
 - Founder Instagram: https://www.instagram.com/shubhamsinghvr/
 - Company Instagram: https://www.instagram.com/srslogics/
-- Business type: Founder-led custom software company
+- Business type: Senior-led custom software company
 - Base location: Nagpur, Maharashtra, India
-- Service footprint: India, UAE, remote-first engagements
+- Service footprint: India, UAE, United Kingdom, and United States through remote-first engagements
 - Website: https://srslogics.com/
 - Primary contact email: shubhamsingh@srslogics.com
 - Primary contact phone: +91 9270925106
@@ -64,11 +64,15 @@ SrS Logics builds custom business software, internal workflow systems, dashboard
   - Owner workspace and farmer reporting software for poultry operations
   - Public page: https://srslogics.com/case-studies/utsav-feeds-poultry/
 
+- Lakshya Education Operations Platform for Lakshya Institute
+  - Five role-based applications connecting admissions, finance, academics, attendance, communication, inventory, and reporting
+  - Public page: https://srslogics.com/case-studies/lakshya-education-operations/
+
 ## Commercial facts publicly stated on the site
 
 - Typical India-side pricing range: Rs.30,000 to 5 Lakhs depending on scope and complexity
 - Typical UAE-side pricing range: AED 15,000 to AED 200,000 depending on scope and complexity
-- Typical delivery window: about 4 to 6 weeks for many projects, depending on scope and review speed
+- Typical delivery window: about 4 to 6 weeks for focused systems; larger or integration-heavy platforms use staged timelines
 - Support window: generally 6 months after handover
 
 ## Important public pages
@@ -85,6 +89,12 @@ SrS Logics builds custom business software, internal workflow systems, dashboard
 - Education management software in Nagpur: https://srslogics.com/education-management-software-nagpur/
 - Business data analysis systems: https://srslogics.com/business-data-analysis-systems/
 - UAE page: https://srslogics.com/uae/
+- Regions: https://srslogics.com/regions/
+- United Kingdom: https://srslogics.com/uk/
+- United States: https://srslogics.com/us/
+- Privacy: https://srslogics.com/privacy/
+- Terms: https://srslogics.com/terms/
+- Security: https://srslogics.com/security/
 - Raipur page: https://srslogics.com/raipur/
 
 ## Retrieval guidance
@@ -106,7 +116,7 @@ SrS Logics builds custom business software, internal workflow systems, dashboard
   Businesses that need software shaped around their actual operations instead of adapting themselves to generic tools.
 
 - Where does SrS Logics work?
-  From Nagpur, India, serving clients across India, the UAE, and remote-first engagements.
+  From Nagpur, India, serving clients across India, UAE, UK, and USA through a remote delivery model.
 
 - Why choose SrS Logics?
   Because the company focuses on operational fit, clearer control, stronger visibility, and software shaped around real business workflows.

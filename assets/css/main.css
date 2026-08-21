@@ -293,7 +293,7 @@ section {
 }
 
 .hero {
-  padding: 7rem 0 5rem;
+  padding: 4.6rem 0 4.5rem;
   position: relative;
 }
 
@@ -366,10 +366,30 @@ section {
 }
 
 .hero-copy h1 {
-  font-size: clamp(3.7rem, 6.6vw, 5.9rem);
-  max-width: 12.5ch;
+  font-size: clamp(3.2rem, 4.7vw, 4.7rem);
+  max-width: 15.5ch;
   letter-spacing: -0.045em;
   text-shadow: 0 14px 36px rgba(31, 74, 122, 0.1);
+}
+
+.footer-trust-links {
+  width: min(var(--container), calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 0 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-trust-links a {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.footer-trust-links a:hover {
+  color: var(--accent);
 }
 
 .headline-xl {
@@ -1175,6 +1195,43 @@ section {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+/* Regional pages share the brand system without looking like cloned templates. */
+.market-uk .hero-panel {
+  border-radius: 4px 28px 4px 28px;
+}
+
+.market-us .hero-panel {
+  border-radius: 12px;
+  box-shadow:
+    12px 12px 0 rgba(29, 100, 200, 0.055),
+    var(--shadow-lg);
+}
+
+.market-uae .hero-panel {
+  border-radius: 28px 6px 28px 6px;
+  border-inline-start: 3px solid var(--accent);
+}
+
+@media (min-width: 781px) {
+  .market-uae .page-hero {
+    padding-top: 3.9rem;
+  }
+}
+
+.market-regions .hero-panel {
+  border-top: 3px solid var(--accent);
+  border-radius: 8px 8px var(--radius-lg) var(--radius-lg);
+}
+
+.staggered-cards > :nth-child(2) {
+  transform: translateY(1.5rem);
+}
+
+.offset-cards > :nth-child(1),
+.offset-cards > :nth-child(3) {
+  transform: translateY(1rem);
+}
+
 .cards-2,
 .story-grid,
 .product-grid,
@@ -1624,25 +1681,28 @@ section {
   font-size: 0.88rem;
 }
 
-.inline-link {
+.inline-link,
+.text-link {
   color: var(--text-primary);
   text-decoration: none;
   border-bottom: 1px solid rgba(29, 100, 200, 0.22);
 }
 
 .inline-link:hover,
-.inline-link:focus-visible {
+.inline-link:focus-visible,
+.text-link:hover,
+.text-link:focus-visible {
   color: var(--highlight);
   border-bottom-color: rgba(29, 100, 200, 0.4);
 }
 
 .page-hero {
-  padding-top: 6.2rem;
+  padding-top: 4.8rem;
 }
 
 .page-hero .hero-copy h1 {
-  max-width: 15ch;
-  font-size: clamp(3.3rem, 5.5vw, 5.2rem);
+  max-width: 16.5ch;
+  font-size: clamp(3.1rem, 4.8vw, 4.55rem);
   line-height: 1;
 }
 
@@ -2007,6 +2067,12 @@ summary:focus-visible {
 @media (max-width: 780px) {
   .container {
     width: min(calc(100% - 1.5rem), var(--container));
+  }
+
+  .staggered-cards > :nth-child(2),
+  .offset-cards > :nth-child(1),
+  .offset-cards > :nth-child(3) {
+    transform: none;
   }
 
   section {
