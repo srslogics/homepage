@@ -81,6 +81,7 @@ SrS Logics builds custom business software, internal workflow systems, dashboard
 - Services: https://srslogics.com/services/
 - Projects: https://srslogics.com/projects/
 - Case studies: https://srslogics.com/case-studies/
+- Client reviews: https://srslogics.com/client-reviews/
 - About: https://srslogics.com/about/
 - Pricing: https://srslogics.com/pricing/
 - Process: https://srslogics.com/process/

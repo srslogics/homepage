@@ -37,7 +37,9 @@
       const link = document.createElement("a");
       const url = new URL(path, siteRoot);
       const targetPath = url.pathname.replace(/\/index\.html$/, "/");
-      const isCaseStudy = label === "Case Studies" && currentPath.includes("/case-studies/");
+      const isCaseStudy = label === "Case Studies" && (
+        currentPath.includes("/case-studies/") || currentPath.includes("/client-reviews/")
+      );
       const isInsight = label === "Insights" && currentPath.includes("/insights/");
       const isRegionPage = label === "Regions" && [
         "/regions/",
