@@ -142,7 +142,8 @@
         observer.unobserve(entry.target);
       });
     }, {
-      threshold: 0.08,
+      // Long galleries must reveal even when only their top edge is visible.
+      threshold: 0,
       rootMargin: "0px 0px -8% 0px"
     });
 

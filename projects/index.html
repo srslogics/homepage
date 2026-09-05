@@ -30,7 +30,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=20260804-2">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260804-2">
   <link rel="manifest" href="/manifest.json?v=20260804-2">
-  <link rel="stylesheet" href="../assets/css/main.css?v=20260823-1">
+  <link rel="stylesheet" href="../assets/css/main.css?v=20260905-1">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -166,9 +166,9 @@
         <div class="container hero-grid">
           <div class="hero-copy">
             <span class="eyebrow">Client Systems</span>
-            <h1>Current software engagements across <span class="accent-text">deployment, testing, and active build work</span>.</h1>
+            <h1>Explore the systems <span class="accent-text">we build.</span></h1>
             <p class="lead">
-              Review the software systems currently being deployed, tested, and developed across the active SrS Logics portfolio.
+              Client software across finance, hospitality, poultry, and education. Open a gallery to see the product in detail.
             </p>
           </div>
 
@@ -180,15 +180,15 @@
             <div class="mini-stack">
               <div>
                 <strong>Development</strong>
-                <span>Projects currently in build phase with ongoing feature and workflow implementation.</span>
+                <span>Features and workflows in active development.</span>
               </div>
               <div>
                 <strong>Testing</strong>
-                <span>Systems under validation, review, and pre-handover stabilization.</span>
+                <span>Release checks and client review before handover.</span>
               </div>
               <div>
                 <strong>Deployed</strong>
-                <span>Software already operating in the client environment.</span>
+                <span>Software in use in the client environment.</span>
               </div>
               <div>
                 <strong>Total active engagements</strong>
@@ -203,11 +203,11 @@
         <div class="container">
           <div class="section-header">
             <span class="eyebrow">Project register</span>
-            <h2 class="headline-lg">Current software work separated by region and engagement type.</h2>
+            <h2 class="headline-lg">Client systems by region.</h2>
           </div>
 
           <div class="region-project-groups">
-            <details class="region-projects" id="nagpur-projects">
+            <details class="region-projects" id="nagpur-projects" open>
               <summary class="region-summary">
                 <div>
                   <span class="region-kicker">Regional portfolio</span>
@@ -233,8 +233,8 @@
                   <div class="engagement-list">
                     <article class="engagement-item">
                       <div class="engagement-content">
-                        <h4 class="engagement-title">KNP Signature</h4>
-                        <p class="engagement-copy">A finance and business dashboard platform currently deployed for live operational use.</p>
+                        <h4 class="engagement-title" id="knp-signature">KNP Signature</h4>
+                        <p class="engagement-copy">Billing, stock, party ledgers, payments, and report exports in one business workspace.</p>
                         <button class="engagement-launch" type="button" data-gallery-title="KNP Signature" data-images="../assets/images/projects-knp-dashboard.jpg|../assets/images/projects-knp-retail-billing.jpg|../assets/images/projects-knp-daily-entries.jpg|../assets/images/projects-knp-ledger.jpg|../assets/images/projects-knp-reports.jpg|../assets/images/projects-knp-analytics-overview.jpg|../assets/images/projects-knp-analytics-trends.jpg|../assets/images/projects-knp-analytics-breakdown.jpg" data-captions="Business dashboard|Retail billing and invoice preview|Daily purchase entries|Party ledger|Report exports|Analytics overview|Sales and purchase trends|Operational analytics breakdown" aria-label="Open KNP Signature gallery">
                           <figure class="engagement-shot">
                             <img class="engagement-preview" src="../assets/images/projects-knp-dashboard.jpg" alt="KNP Signature deployed business dashboard" width="1800" height="1014" loading="lazy" decoding="async">
@@ -252,8 +252,8 @@
 
                     <article class="engagement-item">
                       <div class="engagement-content">
-                        <h4 class="engagement-title">Royal Celebration Console</h4>
-                        <p class="engagement-copy">A venue operations console currently in on-site use within the client’s business environment.</p>
+                        <h4 class="engagement-title" id="royal-celebrations">Royal Celebration Console</h4>
+                        <p class="engagement-copy">Enquiries, bookings, hotel stays, vendors, and payments for the venue team.</p>
                         <button class="engagement-launch" type="button" data-gallery-title="Royal Celebration Console" data-images="../assets/images/projects-royal-console.jpg|../assets/images/projects-royal-website.jpg" data-captions="Console workspace|Public website" aria-label="Open Royal Celebration Console gallery">
                           <figure class="engagement-shot">
                             <img class="engagement-preview" src="../assets/images/projects-royal-console.jpg" alt="Royal Celebration Console deployed workspace" width="1600" height="933" loading="lazy" decoding="async">
@@ -271,7 +271,7 @@
 
                     <article class="engagement-item">
                       <div class="engagement-content">
-                        <h4 class="engagement-title">Poultry Integration System</h4>
+                        <h4 class="engagement-title" id="utsav-feed-industries">Poultry Integration System</h4>
                         <p class="engagement-copy">A combined owner workspace and farmer reporting flow now in on-site use.</p>
                         <button class="engagement-launch" type="button" data-gallery-title="Poultry Integration System" data-images="../assets/images/projects-utsav-owner.jpg|../assets/images/projects-utsav-farmer.jpg|../assets/images/projects-utsav-website.jpg" data-captions="Owner dashboard|Farmer app|Public website" aria-label="Open Poultry Integration System gallery">
                           <figure class="engagement-shot">
@@ -575,10 +575,17 @@
       const launchers = document.querySelectorAll(".engagement-launch");
 
       const openRegionFromHash = () => {
-        const target = window.location.hash ? document.querySelector(window.location.hash) : null;
-        if (target && target.tagName === "DETAILS") {
-          target.open = true;
+        let id;
+        try {
+          id = decodeURIComponent(window.location.hash.slice(1));
+        } catch {
+          return;
         }
+        const target = document.getElementById(id);
+        if (!target) return;
+        const region = target.closest("details.region-projects");
+        if (region) region.open = true;
+        target.scrollIntoView({ block: "start" });
       };
 
       openRegionFromHash();
@@ -657,6 +664,6 @@
       });
     })();
   </script>
-  <script src="../assets/js/site-nav-client-systems.js?v=20260823-1"></script>
+  <script src="../assets/js/site-nav-client-systems.js?v=20260905-1"></script>
 </body>
 </html>

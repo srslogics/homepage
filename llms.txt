@@ -1,6 +1,6 @@
 # SrS Logics
 
-> SrS Logics is a senior-led custom software company based in Nagpur, India. It designs internal business software, workflow systems, dashboards, finance tools, reporting platforms, and institution-specific systems for clients across India, UAE, UK, and USA.
+> SrS Logics is a senior-led custom software company based in Nagpur, India. It designs internal business software, workflow systems, dashboards, finance tools, reporting platforms, and institution-specific systems with project availability across India, UAE, UK, and USA.
 
 Last updated: 2026-08-23
 Canonical website: https://srslogics.com/
@@ -43,9 +43,9 @@ Core capabilities:
 - [Home](https://srslogics.com/): Company overview, services, operating model, and common questions
 - [Services](https://srslogics.com/services/): Custom software, workflows, dashboards, finance systems, and data systems
 - [Process](https://srslogics.com/process/): Requirement review, planning, development, testing, handover, and support
-- [Pricing](https://srslogics.com/pricing/): Typical commercial range and payment structure
+- [Pricing](https://srslogics.com/pricing/): Project scope, proposal currencies, and payment milestones
 - [Projects](https://srslogics.com/projects/): Deployed, active, and current client engagements
-- [Case studies](https://srslogics.com/case-studies/): Verified examples of software in operational use
+- [Case studies](https://srslogics.com/case-studies/): Published examples of software in operational use
 - [Client reviews](https://srslogics.com/client-reviews/): Complete statements from named business owners using deployed SrS Logics systems
 - [About SrS Logics](https://srslogics.com/about/): Company identity, founder, operating base, and delivery approach
 - [Founder insights](https://srslogics.com/insights/): Articles on workflow fit and practical digital transformation
