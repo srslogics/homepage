@@ -96,4 +96,19 @@ for (const launcher of app.launchers) {
   click(app.elements.get("close"));
   assert.equal(app.document.activeElement, launcher);
 }
-console.log("PASS: project anchors, malformed hashes, all galleries, eight KNP views, wraparound, keyboard controls, and focus restoration.");
+const royal = app.launchers.find((node) => node.dataset.galleryTitle === "Royal Celebration Console");
+assert.equal(royal.dataset.images.split("|").length, 11);
+assert.equal(royal.dataset.captions.split("|").length, 11);
+click(royal);
+assert.match(img.src, /projects-royal-dashboard-20260906\.jpg$/);
+for (let index = 2; index <= 11; index++) {
+  click(app.elements.get("lightbox-next"));
+  assert.equal(counter(), index + " / 11");
+  assert.equal(app.elements.get("lightbox-caption").textContent, royal.dataset.captions.split("|")[index - 1]);
+}
+assert.match(img.src, /projects-royal-sign-in-20260906\.jpg$/);
+click(app.elements.get("lightbox-next"));
+assert.equal(counter(), "1 / 11");
+key("Escape");
+assert.equal(app.document.activeElement, royal);
+console.log("PASS: project anchors, all galleries, eight KNP views, eleven Royal Celebration views, wraparound, keyboard controls, and focus restoration.");
