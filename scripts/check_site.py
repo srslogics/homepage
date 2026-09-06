@@ -109,6 +109,11 @@ def main():
                 failures.append(f"{file}: missing anchor {link}")
 
     projects = pages["projects/index.html"]
+    homepage = (ROOT / "index.html").read_text()
+    assert not re.search(r"utsav|poultry", homepage, re.I), "Utsav must stay off the homepage"
+    utsav = next(g for g in projects.galleries if g["data-gallery-title"] == "Poultry Integration System")
+    assert len(utsav["data-images"].split("|")) == 3, "Utsav gallery must retain all three views"
+    assert (ROOT / "case-studies/utsav-feeds-poultry/index.html").is_file(), "Utsav case study must remain available"
     knp = next(g for g in projects.galleries if g["data-gallery-title"] == "KNP Signature")
     assert len(knp["data-images"].split("|")) == 8, "KNP gallery must retain all eight views"
     lakshya = (ROOT / "case-studies/lakshya-education-operations/index.html").read_text()

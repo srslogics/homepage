@@ -3870,6 +3870,14 @@ body:not(.page-home) [id="frequently-asked-questions"] .card h3 {
   min-width: 0;
 }
 
+.work-grid > .work-card:only-child {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
 .work-image {
   display: block;
   border: 1px solid var(--surface-line);
@@ -4124,6 +4132,7 @@ summary:focus-visible,
 
 @media (max-width: 960px) {
   .home-hero .hero-grid,
+  .work-grid > .work-card:only-child,
   .founder-grid,
   .client-note,
   .case-evidence,
