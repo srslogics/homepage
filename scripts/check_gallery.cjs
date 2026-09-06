@@ -32,6 +32,11 @@ function setup(hash = "") {
   region.closest = () => region;
   const target = element("knp-signature");
   target.closest = () => region;
+  const education = element("education-institutions");
+  education.open = false;
+  education.closest = () => education;
+  const lakshyaTarget = element("lakshya-institute");
+  lakshyaTarget.closest = () => education;
   for (const id of ["project-lightbox", "lightbox-title", "lightbox-counter", "lightbox-image", "lightbox-caption", "lightbox-prev", "lightbox-next", "close"]) element(id);
   const modal = elements.get("project-lightbox");
   modal.querySelector = () => elements.get("close");
@@ -47,7 +52,7 @@ function setup(hash = "") {
   document.querySelectorAll = () => launchers;
   const window = { location: { hash }, addEventListener: (name, fn) => windowEvents.set(name, fn) };
   vm.runInNewContext(script, { document, window });
-  return { elements, launchers, document, documentEvents, window, windowEvents, region, target, modal, bodyClasses };
+  return { elements, launchers, document, documentEvents, window, windowEvents, region, target, education, lakshyaTarget, modal, bodyClasses };
 }
 
 for (const hash of ["", "#missing", "#%E0%A4%A", "#[invalid-selector"]) {
@@ -56,6 +61,12 @@ for (const hash of ["", "#missing", "#%E0%A4%A", "#[invalid-selector"]) {
 for (const hash of ["#knp-signature", "#knp%2Dsignature", "#nagpur-projects"]) {
   const app = setup(hash);
   assert.equal(app.region.open, true);
+}
+for (const hash of ["#lakshya-institute", "#lakshya%2Dinstitute"]) {
+  const app = setup(hash);
+  assert.equal(app.education.open, true);
+  assert.equal(app.lakshyaTarget.scrolled, true);
+  assert.equal(app.region.open, false);
 }
 const app = setup();
 app.window.location.hash = "#knp-signature";
@@ -111,4 +122,27 @@ click(app.elements.get("lightbox-next"));
 assert.equal(counter(), "1 / 11");
 key("Escape");
 assert.equal(app.document.activeElement, royal);
-console.log("PASS: project anchors, all galleries, eight KNP views, eleven Royal Celebration views, wraparound, keyboard controls, and focus restoration.");
+const lakshya = app.launchers.find((node) => node.dataset.galleryTitle === "Lakshya Institute Education Ecosystem");
+const lakshyaImages = lakshya.dataset.images.split("|");
+const lakshyaCaptions = lakshya.dataset.captions.split("|");
+assert.equal(lakshyaImages.length, 26);
+assert.equal(lakshyaCaptions.length, 26);
+click(lakshya);
+for (let index = 0; index < 26; index++) {
+  assert.equal(counter(), (index + 1) + " / 26");
+  assert.equal(img.src, lakshyaImages[index]);
+  assert.equal(app.elements.get("lightbox-caption").textContent, lakshyaCaptions[index]);
+  assert.match(img.alt, /private data obscured/);
+  click(app.elements.get("lightbox-next"));
+}
+assert.equal(counter(), "1 / 26");
+assert.match(img.src, /projects-lakshya-operations-overview-20260906\.jpg$/);
+key("ArrowLeft");
+assert.equal(counter(), "26 / 26");
+assert.match(img.src, /projects-lakshya-faculty-profile-20260906\.jpg$/);
+key("ArrowRight");
+assert.equal(counter(), "1 / 26");
+key("Escape");
+assert.equal(app.modal.hidden, true);
+assert.equal(app.document.activeElement, lakshya);
+console.log("PASS: project anchors, all galleries, 8 KNP views, 11 Royal views, 26 Lakshya views, wraparound, keyboard controls, and focus restoration.");

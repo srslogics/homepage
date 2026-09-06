@@ -1,5 +1,6 @@
 """Check the static site's pages, local links, structured data, and galleries."""
 
+import hashlib
 import json
 import re
 import subprocess
@@ -118,6 +119,18 @@ def main():
     assert len(knp["data-images"].split("|")) == 8, "KNP gallery must retain all eight views"
     lakshya = (ROOT / "case-studies/lakshya-education-operations/index.html").read_text()
     assert "<img" not in lakshya.split("<main>")[1].split("</main>")[0], "Lakshya case study must stay image-free"
+    lakshya_gallery = next(g for g in projects.galleries if g["data-gallery-title"] == "Lakshya Institute Education Ecosystem")
+    approved = json.loads((ROOT / "scripts/fixtures/lakshya-public-images.json").read_text())
+    assert len(approved) == 26, "Lakshya must include all 26 privacy-reviewed screens"
+    assert lakshya_gallery["data-images"].split("|") == ["../assets/images/" + item["file"] for item in approved]
+    assert lakshya_gallery["data-captions"].split("|") == [item["caption"] + " (private data obscured)" for item in approved]
+    assert approved[0]["file"] in homepage, "Lakshya must have a visual homepage feature"
+    assert 'href="projects/#lakshya-institute"' in homepage
+    assert 'href="../../projects/#lakshya-institute"' in lakshya
+    for item in approved:
+        asset = ROOT / "assets/images" / item["file"]
+        # Any image replacement needs a fresh privacy review before its hash changes.
+        assert hashlib.sha256(asset.read_bytes()).hexdigest() == item["sha256"], f"Privacy-reviewed asset changed: {asset.name}"
     for file in ROOT.glob("assets/js/*.js"):
         result = subprocess.run(["node", "--check", str(file)], text=True, capture_output=True)
         if result.returncode:

@@ -1,0 +1,132 @@
+[
+  {
+    "file": "projects-lakshya-operations-overview-20260906.jpg",
+    "caption": "Management: Operations overview",
+    "sha256": "9c95be70e701a41730aeafa1e860c51098937b7b78386ca5d043000fdf8d110a"
+  },
+  {
+    "file": "projects-lakshya-operations-admissions-20260906.jpg",
+    "caption": "Management: Admissions and enquiries",
+    "sha256": "5d4bdf567356c20e5610d737c8fe908d01dd54765210ee45c05b24a89ea3dad3"
+  },
+  {
+    "file": "projects-lakshya-operations-students-20260906.jpg",
+    "caption": "Management: Student records",
+    "sha256": "667b2565b6f593d9bb9545acb3aa22ef4a1776fba78d60d2a2b6f07a507abd79"
+  },
+  {
+    "file": "projects-lakshya-operations-finance-20260906.jpg",
+    "caption": "Management: Fees and finance",
+    "sha256": "2fd3f713e575c6c8249a9985d3bd0721e03c08243b2b70f4eae1060c4df9308f"
+  },
+  {
+    "file": "projects-lakshya-operations-payroll-20260906.jpg",
+    "caption": "Management: Payroll",
+    "sha256": "98f6bc46eeaa87af553d9d034b32cc28f2fcea77e786a05b64d55d665ff6f91c"
+  },
+  {
+    "file": "projects-lakshya-operations-attendance-20260906.jpg",
+    "caption": "Management: Staff attendance",
+    "sha256": "a365ead43381dfdbf8be4367778cec46151ba04be8b03586d91c67c83e053284"
+  },
+  {
+    "file": "projects-lakshya-operations-communication-20260906.jpg",
+    "caption": "Management: Communication",
+    "sha256": "b3f66411e7b2309e09d83e44722534d00e18c1abfc3011e7c40ea8f0976fbc62"
+  },
+  {
+    "file": "projects-lakshya-operations-examinations-20260906.jpg",
+    "caption": "Management: Examinations",
+    "sha256": "050be38bc71723d2344faf6371fb509294bb6aff3838d8d9169218238917c036"
+  },
+  {
+    "file": "projects-lakshya-operations-timetable-20260906.jpg",
+    "caption": "Management: Faculty and timetable",
+    "sha256": "9624bacb5a28efbb17af236900656ab741949223348b09d241d6fa0c1be060d5"
+  },
+  {
+    "file": "projects-lakshya-operations-inventory-20260906.jpg",
+    "caption": "Management: Inventory",
+    "sha256": "99994c5904f360b1adbad718e5f167bbafe86a1c2def51cffa4926982ad5e285"
+  },
+  {
+    "file": "projects-lakshya-operations-reports-20260906.jpg",
+    "caption": "Management: Reports",
+    "sha256": "9d369a5c07d5129caa366a1908ea23a770d6dafd486f17dfd14f06e3befbf5f5"
+  },
+  {
+    "file": "projects-lakshya-operations-settings-20260906.jpg",
+    "caption": "Management: Accounts and access",
+    "sha256": "a19dcd1260f6324ebd7fe49392ac226cd7c6c28951771c869dec7dc02a174490"
+  },
+  {
+    "file": "projects-lakshya-student-home-20260906.jpg",
+    "caption": "Student portal: Home",
+    "sha256": "643a9f7a643035c9e8584f66ec7d8dabd2b39aa885f326708976e3677c3d8d96"
+  },
+  {
+    "file": "projects-lakshya-student-assignments-20260906.jpg",
+    "caption": "Student portal: Assignments",
+    "sha256": "d633e2edabc4f042db994a038c5b3d959bb7a07923f4cee0323d330cebf20ecc"
+  },
+  {
+    "file": "projects-lakshya-student-examinations-20260906.jpg",
+    "caption": "Student portal: Examinations",
+    "sha256": "208d8f88572fd3ad68ac49e67402a67ed645f8fc939631c556992bb04fa94b99"
+  },
+  {
+    "file": "projects-lakshya-student-attendance-20260906.jpg",
+    "caption": "Student portal: Attendance",
+    "sha256": "69dc1fa0f7e915beff81a628261b61fb4efa7d0c180e907c5fd7e174e0a89cba"
+  },
+  {
+    "file": "projects-lakshya-student-messages-20260906.jpg",
+    "caption": "Student portal: Messages",
+    "sha256": "2221238cde1067289ece168044b36d7adc779de5de9f31f827a2f1e2d002be2b"
+  },
+  {
+    "file": "projects-lakshya-student-notices-20260906.jpg",
+    "caption": "Student portal: Notices",
+    "sha256": "0fadd20b60974091d57c50adb7af42662165a47a5500f9ef6ad78a2d494b1c64"
+  },
+  {
+    "file": "projects-lakshya-student-profile-20260906.jpg",
+    "caption": "Student portal: Profile",
+    "sha256": "a8a2fe7db23af4890baa243f292a42bf5aa779471b527e4d6bb9c3f11f2dc9e1"
+  },
+  {
+    "file": "projects-lakshya-faculty-home-20260906.jpg",
+    "caption": "Faculty portal: Today",
+    "sha256": "7569cc25c321dd311e40820e2aa2b7ed194857b526176987aed33d63abf16dd9"
+  },
+  {
+    "file": "projects-lakshya-faculty-assignments-20260906.jpg",
+    "caption": "Faculty portal: Assignments",
+    "sha256": "c887b42c4e58ca99f2386cd5412379eced8d898db718cdd65b937bb5428c92d1"
+  },
+  {
+    "file": "projects-lakshya-faculty-examinations-20260906.jpg",
+    "caption": "Faculty portal: Examinations",
+    "sha256": "0840e910204053d816a6d8f9aea96895959c945662473d0162782986744894a3"
+  },
+  {
+    "file": "projects-lakshya-faculty-batches-20260906.jpg",
+    "caption": "Faculty portal: Batches",
+    "sha256": "d2f6fc95ba70f3519b10e340d5d1bcb5d3d61745cabee9dfefe8db088ccba61d"
+  },
+  {
+    "file": "projects-lakshya-faculty-messages-20260906.jpg",
+    "caption": "Faculty portal: Student messages",
+    "sha256": "8e7bbc09a6c7ee6e65fc2c3306a5e508c49dec1e17296e0ea7f1775e11a1061b"
+  },
+  {
+    "file": "projects-lakshya-faculty-notices-20260906.jpg",
+    "caption": "Faculty portal: Notices",
+    "sha256": "20576989bccdba455049cd16037423198f93bccef08e4c7324cc66f53a63019c"
+  },
+  {
+    "file": "projects-lakshya-faculty-profile-20260906.jpg",
+    "caption": "Faculty portal: Profile",
+    "sha256": "8d5f68afec35d39046d65aebc84791a28226b5be2384fe7d90ee17008ceb8bf3"
+  }
+]

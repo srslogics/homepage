@@ -3870,7 +3870,13 @@ body:not(.page-home) [id="frequently-asked-questions"] .card h3 {
   min-width: 0;
 }
 
-.work-grid > .work-card:only-child {
+.work-grid-featured {
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.work-grid > .work-card:only-child,
+.work-grid-featured > .work-card {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
@@ -3895,6 +3901,11 @@ body:not(.page-home) [id="frequently-asked-questions"] .card h3 {
 
 .work-card-copy {
   padding: 1.3rem 0;
+}
+
+.work-card .work-privacy-note {
+  font-size: 0.875rem;
+  margin: 1rem 0 0;
 }
 
 .work-category {
@@ -4133,6 +4144,7 @@ summary:focus-visible,
 @media (max-width: 960px) {
   .home-hero .hero-grid,
   .work-grid > .work-card:only-child,
+  .work-grid-featured > .work-card,
   .founder-grid,
   .client-note,
   .case-evidence,
