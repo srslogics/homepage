@@ -3842,6 +3842,18 @@ body:not(.page-home) [id="frequently-asked-questions"] .card h3 {
   color: var(--text-muted);
 }
 
+.client-line > strong {
+  flex: 1 1 10rem;
+}
+
+.client-line small {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
 .section-heading-row {
   display: flex;
   align-items: end;
