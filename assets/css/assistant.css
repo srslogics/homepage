@@ -1,0 +1,52 @@
+.assistant-main { padding-block: 3rem 5rem; }
+.assistant-intro { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+.assistant-intro h1 { font-size: clamp(2.4rem, 4vw, 4rem); margin: .5rem 0; max-width: 19ch; }
+.assistant-intro p { max-width: 57ch; color: var(--text-secondary); margin: 0; }
+.assistant-intro > a { max-width: 23ch; flex-shrink: 0; padding-bottom: .35rem; }
+.assistant-workspace { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.assistant-conversation, .assistant-brief { border: 1px solid var(--surface-line); border-radius: var(--radius-lg); background: var(--bg-panel); box-shadow: var(--shadow-md); min-width: 0; overflow: hidden; }
+.assistant-topbar { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: 1.25rem; border-bottom: 1px solid var(--surface-line); }
+.assistant-identity { display: flex; gap: .75rem; align-items: center; }
+.assistant-identity h2 { font: 700 1rem var(--font-sans); margin: 0; }
+.assistant-identity span { color: var(--text-muted); font-size: .75rem; }
+.assistant-text-button { background: none; border: 0; padding: .65rem .4rem; color: var(--accent-strong); font: 600 .8rem var(--font-sans); cursor: pointer; }
+.assistant-log { height: 390px; overflow-y: auto; overscroll-behavior: contain; padding: 1.5rem; background: radial-gradient(ellipse at top left, var(--bg-elevated), transparent 70%); }
+.assistant-message { background: #fff; border: 1px solid var(--surface-line); border-radius: 4px 16px 16px; padding: 1rem 1.15rem; max-width: 94%; margin-bottom: 1rem; overflow-wrap: anywhere; }
+.assistant-message.is-user { margin-left: auto; border-radius: 16px 4px 16px 16px; background: var(--accent-hot); color: white; }
+.message-author { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .035em; opacity: .78; }
+.assistant-message p { margin: .5rem 0 0; font-size: .92rem; white-space: pre-wrap; }
+.assistant-message a { display: inline-block; margin-top: .7rem; font-size: .85rem; color: var(--accent-strong); }
+.assistant-compose { padding: 1.15rem 1.5rem; border-top: 1px solid var(--surface-line); }
+.assistant-starters { display: flex; flex-wrap: wrap; gap: .5rem; }
+.assistant-starters button { text-align: left; border: 1px solid var(--surface-line); background: var(--bg-alt); color: var(--accent-hot); border-radius: 10px; padding: .65rem .8rem; font: 600 .8rem var(--font-sans); cursor: pointer; }
+.assistant-starters button:hover { background: var(--bg-elevated); }
+.assistant-note { color: var(--text-muted); font-size: .75rem; line-height: 1.6; margin: .9rem 0 0; }
+.assistant-consent { display: block; font-size: .78rem; color: var(--text-secondary); margin: 1rem 0; }
+.assistant-consent input { width: auto; margin: 0 .3rem 0 0; }
+.assistant-input-row { display: flex; gap: .65rem; align-items: end; }
+.assistant-main textarea, .assistant-brief input { width: 100%; min-width: 0; font: inherit; font-size: .88rem; color: var(--text-primary); border: 1px solid var(--border-strong); background: #fff; padding: .75rem; border-radius: 10px; resize: vertical; }
+.assistant-main textarea { max-height: 400px; }
+.assistant-main button:disabled { opacity: .55; cursor: wait; }
+.assistant-main :focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px; }
+.assistant-brief { padding: 1.5rem; }
+.assistant-brief h2 { font: 400 2rem var(--font-display); margin: .5rem 0; }
+.assistant-brief > p { font-size: .87rem; color: var(--text-secondary); }
+.assistant-brief label, .assistant-field-label { display: block; font-size: .78rem; font-weight: 600; margin: 1rem 0 .35rem; }
+.assistant-brief .button { margin-top: 1rem; font-size: .85rem; }
+.brief-actions { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.assistant-brief > .inline-link { display: inline-block; margin-top: 1rem; font-size: .85rem; }
+.assistant-main [hidden] { display: none !important; }
+@media (max-width: 900px) {
+  .assistant-intro { display: block; }
+  .assistant-intro > a { display: inline-block; margin-top: 1rem; max-width: none; }
+  .assistant-workspace { grid-template-columns: minmax(0, 1fr); }
+  .assistant-main { padding-top: 2rem; }
+  .assistant-log { height: 340px; }
+}
+@media (max-width: 480px) {
+  .assistant-topbar, .assistant-compose, .assistant-brief, .assistant-log { padding: 1rem; }
+  .assistant-identity img { width: 32px; height: 32px; }
+  .assistant-identity h2 { font-size: .9rem; }
+  .assistant-input-row { flex-direction: column; align-items: stretch; }
+  .assistant-main textarea, .assistant-brief input { font-size: 16px; }
+}

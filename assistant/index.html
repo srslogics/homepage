@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Assistant | SrS Logics</title>
+  <meta name="description" content="Explore custom software with SrS Logics and prepare a project brief around your goals, your team, and your requirements.">
+  <meta name="theme-color" content="#f8fafc">
+  <meta property="og:title" content="Project Assistant | SrS Logics">
+  <meta property="og:description" content="A useful first conversation about the software you need.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://srslogics.com/assistant/">
+  <link rel="canonical" href="https://srslogics.com/assistant/">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../assets/css/main.css?v=20260907-1">
+  <link rel="stylesheet" href="../assets/css/assistant.css?v=20260907-1">
+</head>
+<body class="page-assistant">
+  <div class="site-shell">
+    <header class="site-header"><div class="container"><a class="brand" href="../" aria-label="SrS Logics home"><span class="brand-mark"><span class="brand-name">SrS Logics</span><span class="brand-tag">Custom software systems</span></span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><span></span><span></span><span></span></button><nav class="site-nav" id="primary-nav" aria-label="Primary"></nav></div></header>
+    <main id="main-content" class="assistant-main container">
+      <div class="assistant-intro">
+        <div><span class="eyebrow">SrS Logics / Project assistant</span><h1>Start with what <span class="accent-text">you need.</span></h1><p>No technical brief? No problem. Explore what is possible, then tell us what matters to you.</p></div>
+        <a class="inline-link" href="https://calendly.com/shubhamsinghvr/strategy-call" target="_blank" rel="noopener">Prefer a conversation with Shubham?</a>
+      </div>
+      <div class="assistant-workspace">
+        <section class="assistant-conversation" aria-labelledby="conversation-heading">
+          <div class="assistant-topbar"><div class="assistant-identity"><img src="../favicon.svg" alt="" width="40" height="40"><div><h2 id="conversation-heading">SrS Logics Assistant</h2><span id="assistant-mode">Guided mode / curated answers</span></div></div><button id="clear-chat" class="assistant-text-button" type="button">Clear chat</button></div>
+          <div id="chat-log" class="assistant-log" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions">
+            <article class="assistant-message"><span class="message-author">SrS Logics / Project guide</span><p>Welcome. Software should fit your requirements, not the other way around. Explore a question below, or use the brief to describe what you want to build.</p></article>
+          </div>
+          <div class="assistant-compose">
+            <div class="assistant-starters" aria-label="Conversation starters">
+              <button type="button" data-topic="start">I have a software idea</button>
+              <button type="button" data-topic="work">Show me your work</button>
+              <button type="button" data-topic="approach">How do you work?</button>
+              <button type="button" data-topic="pricing">What about cost and timing?</button>
+            </div>
+            <p id="assistant-status" class="assistant-note" role="status">Live AI is not connected. These are curated answers; the project brief works without AI.</p>
+            <form id="chat-form" hidden>
+              <label class="assistant-consent"><input id="ai-consent" type="checkbox" required> I agree to send my messages to Groq for AI replies. <a href="../privacy/#project-assistant">Privacy details</a></label>
+              <label class="assistant-field-label" for="chat-input">Your message</label>
+              <div class="assistant-input-row"><textarea id="chat-input" rows="2" maxlength="1500" placeholder="What would you like the software to do?" required></textarea><button id="chat-send" class="button" type="submit">Send</button></div>
+              <p class="assistant-note">AI can make mistakes. Do not share passwords, customer records, or confidential financial details. Quotes and delivery dates need a human review.</p>
+            </form>
+          </div>
+        </section>
+        <aside class="assistant-brief" aria-labelledby="brief-heading">
+          <span class="eyebrow">Your next step</span><h2 id="brief-heading">An idea, made clearer.</h2><p>A few notes are enough to start. Only what you enter here goes into your brief, not the conversation.</p>
+          <form id="brief-form">
+            <label for="brief-goal">What do you want to build or improve?</label><textarea id="brief-goal" name="goal" rows="3" maxlength="1000" placeholder="The outcome you want, in your own words" required></textarea>
+            <label for="brief-users">Who will use it?</label><input id="brief-users" name="users" maxlength="300" placeholder="Your team, customers, students, or others">
+            <label for="brief-current">How does this work today?</label><textarea id="brief-current" name="current" rows="2" maxlength="700" placeholder="Current tools, steps, or frustrations"></textarea>
+            <label for="brief-priority">What matters most for the first version?</label><textarea id="brief-priority" name="priority" rows="2" maxlength="700" placeholder="Must-have features or a preferred timeframe"></textarea>
+            <button class="button" type="submit">Review my brief <span aria-hidden="true">&rarr;</span></button>
+          </form>
+          <section id="brief-review" class="brief-review" aria-labelledby="review-heading" hidden>
+            <h3 id="review-heading" tabindex="-1">Your project brief</h3><textarea id="brief-output" aria-label="Editable project brief" rows="10" maxlength="4000"></textarea>
+            <div class="brief-actions"><button id="copy-brief" type="button" class="button">Copy brief</button><button id="email-brief" class="button secondary" type="button">Open email draft</button><button id="edit-brief" class="assistant-text-button" type="button">Back to notes</button></div>
+            <p id="brief-status" class="assistant-note" role="status">Nothing has been sent. Review your brief before sharing.</p>
+          </section>
+          <p class="assistant-note">Your notes stay in this page until you choose to share them. Reloading clears them. Do not include private records.</p>
+          <a class="inline-link" href="../projects/">Explore client systems &rarr;</a>
+        </aside>
+      </div>
+      <noscript><p>The interactive assistant needs JavaScript. You can still <a href="../projects/">explore our work</a> or <a href="mailto:shubhamsingh@srslogics.com">email your requirements to Shubham</a>.</p></noscript>
+    </main>
+    <footer class="site-footer"><div class="container footer-bottom"><span>&copy; 2026 SrS Logics. Custom software from Nagpur, India.</span><a href="../privacy/">Privacy</a></div></footer>
+  </div>
+  <script src="../assets/js/site-nav-client-systems.js?v=20260907-2"></script>
+  <script src="../assets/js/assistant-config.js?v=20260907-1"></script>
+  <script src="../assets/js/assistant.js?v=20260908-1"></script>
+</body>
+</html>

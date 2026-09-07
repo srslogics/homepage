@@ -73,7 +73,7 @@ class Page(HTMLParser):
 
 def main():
     files = subprocess.check_output(
-        ["git", "ls-files", "*.html"], cwd=ROOT, text=True
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "*.html"], cwd=ROOT, text=True
     ).splitlines()
     pages = {file: Page((ROOT / file).read_text()) for file in files}
     failures = []

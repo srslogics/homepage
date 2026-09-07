@@ -23,6 +23,8 @@ SrS Logics designs internal business systems around real operating requirements,
 - `uae/` and Dubai pages - UAE market entry points
 - `pricing/` and `process/` - commercial and delivery structure
 - `about/`, `insights/`, and `careers/` - company information
+- `assistant/` - public project guide, optional AI conversation, and local brief builder
+- `server/` - separate optional AI service; see `server/README.md` before enabling
 - `assets/css/` - shared design system
 - `assets/js/site-nav.js` - global navigation behavior
 - `assets/images/` - brand and project media
@@ -34,6 +36,9 @@ SrS Logics designs internal business systems around real operating requirements,
 - Canonical URLs, Open Graph metadata, and JSON-LD structured data
 - `sitemap.xml`, `robots.txt`, and machine-readable company briefs
 - Private invoice pages use `noindex,nofollow`
+- The assistant defaults to curated answers without an API connection. Live AI
+  requires a separately hosted service with a server-only key, usage controls,
+  and a configured public endpoint. The existing static hosting is unchanged.
 
 ## Public Website
 

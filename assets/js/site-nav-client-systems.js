@@ -105,6 +105,16 @@
   });
 
   document.querySelectorAll(".site-footer").forEach((footer) => {
+    const footerBottom = footer.querySelector(".footer-bottom");
+    if (footerBottom && !footer.querySelector("[data-project-assistant]")) {
+      const assistantLink = document.createElement("a");
+      assistantLink.href = new URL("assistant/", siteRoot).href;
+      assistantLink.dataset.projectAssistant = "";
+      assistantLink.textContent = "Project assistant";
+      const assistantEntry = document.createElement("p");
+      assistantEntry.append(assistantLink);
+      footerBottom.append(assistantEntry);
+    }
     if (footer.querySelector(".footer-trust-links, [data-trust-links]")) return;
 
     const bottom = footer.querySelector(".footer-bottom");

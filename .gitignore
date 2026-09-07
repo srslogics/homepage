@@ -3,3 +3,6 @@ artifacts/
 bills/
 output/
 tmp/
+.env
+.env.*
+!.env.example
