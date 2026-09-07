@@ -1750,6 +1750,39 @@ section {
   max-width: 46rem;
 }
 
+.company-story {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.company-story-heading .headline-md {
+  margin-top: 1rem;
+  scroll-margin-top: 8rem;
+}
+
+.company-story-source {
+  display: grid;
+  justify-items: start;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--surface-line);
+}
+
+.company-story-source p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 960px) {
+  .company-story {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .article-prose > p {
   margin: 0;
   color: var(--text-secondary);
