@@ -1,6 +1,7 @@
 import { createServer } from "node:http";
 import { pathToFileURL } from "node:url";
 import { instructions } from "./assistant-knowledge.mjs";
+import { scopedReply } from "./assistant-scope.mjs";
 
 const MAX_BODY = 24000;
 const MAX_INPUT = 8000;
@@ -92,8 +93,8 @@ export function createAssistantServer({ env = process.env, request = fetch, now 
       if (result.status !== "completed") return send(502, { error: "AI reply incomplete. Please try again." });
       const reply = result.output?.filter((item) => item.type === "message" && item.role === "assistant")
         .flatMap((item) => item.content || []).filter((item) => item.type === "output_text").map((item) => item.text).join("\n");
-      if (!reply?.trim() || reply.length > 6000) return send(502, { error: "AI reply unavailable" });
-      send(200, { reply });
+      if (!reply?.trim()) return send(502, { error: "AI reply unavailable" });
+      send(200, { reply: scopedReply(reply) });
     } catch {
       // Never log conversation text, credentials, or raw provider errors.
       send(502, { error: "AI reply unavailable. Please try later or use the project brief." });

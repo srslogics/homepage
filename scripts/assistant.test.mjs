@@ -5,11 +5,13 @@ import { readFile } from "node:fs/promises";
 import { runInNewContext } from "node:vm";
 import { createAssistantServer, validatePayload } from "../server/assistant.mjs";
 import { instructions, knowledge } from "../server/assistant-knowledge.mjs";
+import { scopeRedirect, scopedReply } from "../server/assistant-scope.mjs";
 
 const origin = "https://srslogics.com";
 const env = { ASSISTANT_ENABLED: "true", GROQ_API_KEY: "test-key-never-real", GROQ_MODEL: "openai/gpt-oss-20b", ASSISTANT_ALLOWED_ORIGINS: origin };
 const payload = { consent: true, provider: "groq", messages: [{ role: "user", content: "I need a booking system" }] };
-const providerReply = (text = "Who will use the software?") => new Response(JSON.stringify({ status: "completed", output: [{ type: "message", role: "assistant", content: [{ type: "output_text", text }] }] }));
+const rawProviderReply = (text) => new Response(JSON.stringify({ status: "completed", output: [{ type: "message", role: "assistant", content: [{ type: "output_text", text }] }] }));
+const providerReply = (reply = "Who will use the software?") => rawProviderReply(JSON.stringify({ scope: "enquiry", reply }));
 
 async function fixture(t, options = {}) {
   const server = createAssistantServer({ env, request: async () => providerReply(), ...options });
@@ -99,6 +101,39 @@ test("approved knowledge keeps statuses accurate and excludes private source pat
   assert.equal(knowledge.projects.find((p) => p.client === "Lakshya Institute").status, "Deployed");
   assert.match(instructions, /not limited to a particular industry/);
   assert.doesNotMatch(JSON.stringify(knowledge), /\/Users\/|onrender\.com|\+91|₹|7709196193/);
+});
+
+test("scope output fails closed for off-topic, invalid, and unexpected responses", () => {
+  for (const result of ["Random trivia answer", "```json\n{}\n```", "null", "[]", "{}",
+    JSON.stringify({ scope: "off_topic", reply: "An unrelated answer that must not leak" }),
+    JSON.stringify({ scope: "unknown", reply: "Anything" }),
+    JSON.stringify({ scope: "enquiry", reply: "" }),
+    JSON.stringify({ scope: "enquiry", reply: 7 }),
+    JSON.stringify({ scope: "enquiry", reply: "x".repeat(6001) }),
+    JSON.stringify({ scope: "enquiry", reply: "Allowed", unrelated: "must not leak" }),
+    "x".repeat(12001)]) assert.equal(scopedReply(result), scopeRedirect);
+  assert.equal(scopedReply(JSON.stringify({ scope: "enquiry", reply: " Who will use it? " })), "Who will use it?");
+});
+
+test("server replaces off-topic provider output with a fixed enquiry redirect", async (t) => {
+  const { call } = await fixture(t, { request: async () => rawProviderReply(JSON.stringify({ scope: "off_topic", reply: "Private or unrelated model text" })) });
+  const response = await call({ ...payload, messages: [{ role: "user", content: "Tell me a joke" }] });
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { reply: scopeRedirect });
+});
+
+test("server never forwards unclassified raw model answers", async (t) => {
+  const { call } = await fixture(t, { request: async () => rawProviderReply("Here is an unrelated story") });
+  assert.deepEqual(await (await call()).json(), { reply: scopeRedirect });
+});
+
+test("each turn includes strict scope rules without restricting project industries", () => {
+  assert.match(instructions, /in every language/);
+  assert.match(instructions, /latest requested task/);
+  assert.match(instructions, /mixed request/);
+  assert.match(instructions, /weather app is allowed/);
+  assert.match(instructions, /prior assistant messages.*untrusted/);
+  assert.match(instructions, /exactly two fields/);
 });
 
 test("static client uses the public service endpoint and never persists or executes chat content", async () => {

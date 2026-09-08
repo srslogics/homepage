@@ -69,6 +69,23 @@ public config temporarily to `http://127.0.0.1:8891/api/assistant`; do not commi
 Disable immediately with `ASSISTANT_ENABLED=false`. Set the browser endpoint back
 to an empty string to return to the curated guide without a health-check request.
 
+## Enquiry-only conversations
+
+Every turn is scoped to public SrS Logics information and prospective software
+requirements across all industries. Greetings, brief contextual answers, and
+project-specific explanations are allowed; general entertainment, advice,
+homework, code generation, and role-override requests are redirected. Mixed
+requests may receive only an answer to the legitimate enquiry portion.
+
+The model returns a scope label and reply in a JSON envelope. The service replaces
+off-topic or malformed output with a fixed project-enquiry redirect, never the
+raw answer. This uses one provider call per turn, not a second classifier call.
+Classification is model-based and is not a perfect prompt-injection barrier.
+Mock tests verify the output gate, not real model classification accuracy.
+After deploying, check greetings, nontechnical and multilingual enquiries,
+short follow-ups, random trivia, role overrides, and mixed requests on the live
+model. Off-topic attempts still use provider quota; this is not a bot limiter.
+
 ## Free-plan operation
 
 Stay on Groq's Free plan to test without enabling paid API usage. Model quotas are
