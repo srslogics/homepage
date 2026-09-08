@@ -48,7 +48,7 @@ public config temporarily to `http://127.0.0.1:8891/api/assistant`; do not commi
   uploads, client-system access, private screenshots, or financial records are used.
 - The browser keeps chat and brief state in memory, not cookies or local storage.
   Clear chat cancels the current request; it cannot retract data already sent.
-- Consent explicitly naming Groq is required before sending chat history to the service and Groq. The
+- Consent to sharing messages with the AI provider is required before sending chat history. The linked privacy details identify Groq. The
   Responses request uses `store: false`; this is NOT a guarantee of zero provider
   retention. Provider abuse-monitoring rules and host technical logs still apply.
   Enable Zero Data Retention in Groq's Data Controls before launch and review its

@@ -271,11 +271,13 @@ test("client will not enable live chat for an unexpected provider", async () => 
   assert.equal(ui.get("chat-log").children.length, 3);
 });
 
-test("consent and setup consistently name Groq, with no committed key", async () => {
+test("consent links to provider disclosure, with no committed key", async () => {
   const page = await readFile(new URL("../assistant/index.html", import.meta.url), "utf8");
   const privacy = await readFile(new URL("../privacy/index.html", import.meta.url), "utf8");
   const example = await readFile(new URL("../server/.env.example", import.meta.url), "utf8");
-  assert.match(page, /messages to Groq/);
+  assert.match(page, /share my messages with our AI provider for replies/);
+  assert.match(page, /href="\.\.\/privacy\/#project-assistant"/);
+  assert.doesNotMatch(page, /Groq/);
   assert.match(privacy, /assistant service and Groq/);
   assert.doesNotMatch(page + privacy + example, /OPENAI_API_KEY|messages to OpenAI|assistant service and OpenAI/);
   assert.match(example, /^GROQ_API_KEY=$/m);
