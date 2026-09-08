@@ -101,10 +101,15 @@ test("approved knowledge keeps statuses accurate and excludes private source pat
   assert.doesNotMatch(JSON.stringify(knowledge), /\/Users\/|onrender\.com|\+91|₹|7709196193/);
 });
 
-test("static client defaults to offline mode and never persists or executes chat content", async () => {
+test("static client uses the public service endpoint and never persists or executes chat content", async () => {
   const source = await readFile(new URL("../assets/js/assistant.js", import.meta.url), "utf8");
   const config = await readFile(new URL("../assets/js/assistant-config.js", import.meta.url), "utf8");
-  assert.match(config, /endpoint: ""/);
+  const context = { window: {} };
+  runInNewContext(config, context);
+  const settings = context.window.SRS_ASSISTANT_CONFIG;
+  assert.deepEqual(Object.keys(settings), ["endpoint"]);
+  assert.equal(settings.endpoint, "https://srs-logics-assistant.onrender.com/api/assistant");
+  assert.ok(Object.isFrozen(settings));
   assert.doesNotMatch(source, /innerHTML|localStorage|sessionStorage|document\.cookie/);
   assert.match(source, /body\.textContent = text/);
   assert.match(source, /consent: true/);
@@ -112,7 +117,7 @@ test("static client defaults to offline mode and never persists or executes chat
 });
 
 // Small DOM harness for interaction logic. This is not visual/browser QA.
-async function client({ connected = false, provider, healthProvider = "groq" } = {}) {
+async function client({ connected = false, provider, healthProvider = "groq", healthRequest } = {}) {
   class Element {
     constructor() { this.children = []; this.events = {}; this.value = ""; this.textContent = ""; this.hidden = false; this.disabled = false; this.checked = false; this.dataset = {}; }
     append(...children) { children.forEach((child) => { child.parent = this; this.children.push(child); }); }
@@ -139,7 +144,7 @@ async function client({ connected = false, provider, healthProvider = "groq" } =
     window, location, URL, AbortController, AbortSignal, setTimeout, clearTimeout,
     navigator: { clipboard: { writeText: async (value) => { copied = value; } } },
     document: { currentScript: { src: "https://srslogics.com/assets/js/assistant.js" }, getElementById: get, createElement: () => new Element(), querySelectorAll: () => starters },
-    fetch: async (url, options) => options?.method === "POST" ? provider(url, options) : new Response(JSON.stringify({ enabled: true, provider: healthProvider }))
+    fetch: async (url, options) => options?.method === "POST" ? provider(url, options) : healthRequest ? healthRequest(url, options) : new Response(JSON.stringify({ enabled: true, provider: healthProvider }))
   });
   await new Promise((resolve) => setImmediate(resolve));
   return { get, starters, window, copied: () => copied };
@@ -200,6 +205,34 @@ test("failed live reply retains message for retry and leaves brief usable", asyn
   ui.get("brief-goal").value = "Describe my project";
   await ui.get("brief-form").fire("submit");
   assert.equal(ui.get("brief-review").hidden, false);
+});
+
+test("disabled service stays in guided mode and a manual retry can connect", async () => {
+  let checks = 0;
+  let calls = 0;
+  const ui = await client({ connected: true,
+    healthRequest: async () => new Response(JSON.stringify({ enabled: ++checks > 1, provider: "groq" })),
+    provider: async () => { calls++; return providerReply(); }
+  });
+  assert.equal(ui.get("retry-connection").hidden, false);
+  assert.match(ui.get("assistant-status").textContent, /currently unavailable/);
+  ui.get("chat-input").value = "My project";
+  ui.get("ai-consent").checked = true;
+  await ui.get("chat-form").fire("submit");
+  assert.equal(calls, 0);
+  await ui.get("retry-connection").fire("click");
+  assert.match(ui.get("assistant-mode").textContent, /AI assistant/);
+  assert.equal(ui.get("retry-connection").hidden, true);
+  assert.equal(checks, 2);
+});
+
+test("failed wake-up check offers retry without losing brief notes", async () => {
+  const ui = await client({ connected: true, healthRequest: async () => { throw new Error("timeout"); } });
+  assert.equal(ui.get("retry-connection").hidden, false);
+  ui.get("brief-goal").value = "Keep these notes";
+  await ui.get("retry-connection").fire("click");
+  assert.equal(ui.get("brief-goal").value, "Keep these notes");
+  assert.match(ui.get("assistant-status").textContent, /curated project guide/);
 });
 
 test("rejects old-provider consent without calling Groq", async (t) => {

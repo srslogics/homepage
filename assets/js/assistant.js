@@ -10,6 +10,7 @@
     pricing: { title: "What about cost and timing?", text: "A useful estimate needs a clear scope: users, features, integrations, existing data, and delivery priorities. This assistant cannot quote a price or promise a launch date. Prepare a brief, then discuss it with Shubham for a project-specific review.", path: "process/", link: "See how a project begins" }
   };
   let live = false;
+  let connecting = false;
   let endpoint;
   let history = [];
   let controller;
@@ -137,12 +138,15 @@
 
   async function connect() {
     const configured = window.SRS_ASSISTANT_CONFIG?.endpoint;
-    if (!configured || location.protocol === "file:") return;
+    if (!configured || location.protocol === "file:" || connecting || live) return;
     try {
       endpoint = new URL(configured, location.href);
       const local = ["localhost", "127.0.0.1"].includes(endpoint.hostname) && ["localhost", "127.0.0.1"].includes(location.hostname);
       if (endpoint.protocol !== "https:" && !(local && endpoint.protocol === "http:")) return;
-      const response = await fetch(endpoint, { credentials: "omit", signal: AbortSignal.timeout(5000) });
+      connecting = true;
+      $("retry-connection").hidden = true;
+      $("assistant-status").textContent = "Connecting to AI. The service may take a minute to wake up; the project guide and brief are available meanwhile.";
+      const response = await fetch(endpoint, { credentials: "omit", signal: AbortSignal.timeout(60000) });
       if (!response.ok) return;
       const health = await response.json();
       if (!health.enabled || health.provider !== "groq") return;
@@ -155,6 +159,14 @@
       if (log.children.length === 1) log.replaceChildren(initial.cloneNode(true));
       else message("Live AI is now available. Agree below to send a message; the curated answers above were not AI-generated.");
     } catch { /* The local project guide remains usable when the AI service is offline. */ }
+    finally {
+      if (connecting && !live) {
+        $("assistant-status").textContent = "AI is currently unavailable. Use the curated project guide and brief, or retry the connection.";
+        $("retry-connection").hidden = false;
+      }
+      connecting = false;
+    }
   }
+  $("retry-connection").addEventListener("click", connect);
   connect();
 })();
