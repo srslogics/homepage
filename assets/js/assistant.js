@@ -4,15 +4,16 @@
   if (!log) return;
   const root = new URL("../../", document.currentScript.src);
   const topics = {
-    start: { title: "I have a software idea", text: "Start with the outcome: what should the software make possible, and who will use it? SrS Logics builds around client requirements, not a fixed industry template. Use the brief alongside this conversation to capture your goal, current approach, and priorities.", path: "services/", link: "Explore our services" },
-    work: { title: "Show me your work", text: "Public examples include deployed systems for KNP Enterprises, Royal Celebrations, and Lakshya Institute. OctoMinds Preschool's multi-centre ERP is in development, not a completed deployment. These are examples of our work, not a limit on the industries we work with.", path: "projects/", link: "View client systems and their status" },
-    approach: { title: "How do you work?", text: "SrS Logics starts by understanding your goals, the people using the software, and the work it needs to support. Scope and priorities are agreed before delivery. Implementation, training, and adoption matter alongside the software itself. Shubham Singh is the founder; this guide is not Shubham or a live team member.", path: "about/", link: "Read our story" },
-    pricing: { title: "What about cost and timing?", text: "A useful estimate needs a clear scope: users, features, integrations, existing data, and delivery priorities. This assistant cannot quote a price or promise a launch date. Prepare a brief, then discuss it with Shubham for a project-specific review.", path: "process/", link: "See how a project begins" }
+    start: { title: "I have a software idea", text: "Choose one real task the first version should make easier, then follow it from start to finish: who starts it, what information they enter, who checks it, and what happens next. For example, an expense request might move from staff entry to manager approval to accounts recording payment.\n\nThat is a suggested discovery approach, not a fixed product. Describe your own task and where it gets difficult; the brief can capture it while live chat is unavailable.", path: "services/", link: "Explore our services" },
+    work: { title: "Show me your work", text: "KNP Signature, deployed for KNP Enterprises, connects retail billing, stock, payments, and party ledgers. Royal Celebration Console, deployed for Royal Celebrations, connects enquiries and bookings with hotel stays, vendors, and collections.\n\nLakshya Institute's deployed platform gives management, students, parents, faculty, and attendance staff separate applications around shared institutional records. OctoMinds Preschool's seven-centre ERP is in development. These show different kinds of connected workflows; we consider requirements across industries.", path: "projects/", link: "Explore projects and screenshots" },
+    approach: { title: "How do you work?", text: "1. Understand the work: review a real process, its users, current tools, and exceptions.\n2. Agree the first release: define what it covers, who can do what, and how you will check it works.\n3. Review working milestones: inspect actual user flows as the software develops.\n4. Test and hand over: validate agreed workflows, document deployment, transfer access, and define support.\n\nImplementation support and training help the team adopt the system. Shubham confirms the project scope and commitments.", path: "process/", link: "See the delivery process" },
+    pricing: { title: "What about cost and timing?", text: "The estimate changes with the number of workflows, user permissions, existing data to migrate, integrations, and hosting requirements. A first release covering one approval process is a different scope from a platform connecting several departments.\n\nThe public process guide says focused systems may reach production review in 4 to 6 weeks; larger platforms use staged releases. This is indicative, not a promise for your project. Prices and support terms are confirmed after reviewing your requirements.", path: "pricing/", link: "Read published pricing guidance" }
   };
   let live = false;
   let connecting = false;
   let endpoint;
   let history = [];
+  let expandedHistory = false;
   let controller;
   let generation = 0;
   const initial = log.firstElementChild.cloneNode(true);
@@ -33,9 +34,25 @@
       link.textContent = source.link;
       item.append(link);
     }
+    if (live && !user && !source) {
+      const copy = document.createElement("button");
+      copy.type = "button";
+      copy.className = "assistant-text-button";
+      copy.textContent = "Copy reply";
+      copy.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(text);
+          copy.textContent = "Copied";
+        } catch {
+          $("assistant-status").textContent = "Copying is unavailable. Select the reply text to copy it manually.";
+        }
+      });
+      item.append(copy);
+    }
     log.append(item);
     while (log.children.length > 24) log.firstElementChild.remove();
-    log.scrollTop = log.scrollHeight;
+    // Keep the start of a detailed answer visible instead of jumping to its end.
+    log.scrollTop += item.getBoundingClientRect().top - log.getBoundingClientRect().top - 16;
   }
 
   document.querySelectorAll("[data-topic]").forEach((button) => {
@@ -73,13 +90,25 @@
     event.preventDefault();
     const text = $("chat-input").value.trim();
     if (!live || !text || $("chat-send").disabled || !$("ai-consent").checked) return;
+    if (text.length > 1500) {
+      $("assistant-status").textContent = "Please keep each message within 1,500 characters.";
+      return;
+    }
     const turn = generation;
     controller = new AbortController();
     const requestController = controller;
     const timeout = setTimeout(() => requestController.abort(), 25000);
-    const messages = [...history, { role: "user", content: text }].slice(-11);
-    // Retain complete recent exchanges within the service's input bound.
-    while (messages.reduce((n, item) => n + item.content.length, 0) > 8000 && messages.length > 1) messages.splice(0, 2);
+    // Older deployments still require short history entries until the service updates.
+    const messages = [...history, { role: "user", content: text }].map((item) => ({
+      role: item.role,
+      content: !expandedHistory && item.role === "assistant" ? item.content.slice(0, 1500) : item.content
+    }));
+    let trimmed = false;
+    while (messages.length > (expandedHistory ? 17 : 11) || messages.reduce((n, item) => n + item.content.length, 0) > (expandedHistory ? 16000 : 8000)) {
+      // Prefer the opening exchange, but never discard the immediately preceding answer.
+      messages.splice(messages.length > 5 ? 2 : 0, 2);
+      trimmed = true;
+    }
     message(text, true);
     setBusy(true);
     $("assistant-status").textContent = "Preparing an AI reply...";
@@ -90,9 +119,11 @@
       if (typeof result.reply !== "string" || !result.reply.trim() || result.reply.length > 6000) throw new Error("The AI reply could not be read. Please retry or use the brief.");
       if (turn !== generation) return;
       message(result.reply);
-      history = [...messages, { role: "assistant", content: result.reply.slice(0, 1500) }];
+      history = [...messages, { role: "assistant", content: result.reply }];
       $("chat-input").value = "";
-      $("assistant-status").textContent = "AI reply. Verify important details with Shubham before making decisions.";
+      $("assistant-status").textContent = trimmed
+        ? "Some older exchanges no longer fit in this conversation. Restate any earlier detail that still matters."
+        : "You can ask for more detail, compare approaches, or request a project outline.";
     } catch (error) {
       if (turn === generation) $("assistant-status").textContent = error.name === "AbortError" ? "The reply took too long. Please retry or use the project brief." : error.message;
     } finally {
@@ -151,11 +182,12 @@
       const health = await response.json();
       if (!health.enabled || health.provider !== "groq") return;
       live = true;
+      expandedHistory = health.conversationVersion === 2;
       $("assistant-mode").textContent = "AI assistant / not a live team member";
       $("chat-form").hidden = false;
       $("assistant-status").textContent = "AI replies use approved public company information. Agree below before sending a message.";
       initial.querySelector(".message-author").textContent = "SrS Logics / AI assistant";
-      initial.querySelector("p").textContent = "Hello. I am the SrS Logics AI assistant, not Shubham. Tell me what you would like your software to do, or choose a starting question below.";
+      initial.querySelector("p").textContent = "Tell me what you want to build, or describe a task that is difficult today. I can help map the workflow, suggest a first release, and explain relevant SrS Logics projects. A rough idea is enough to begin.";
       if (log.children.length === 1) log.replaceChildren(initial.cloneNode(true));
       else message("Live AI is now available. Agree below to send a message; the curated answers above were not AI-generated.");
     } catch { /* The local project guide remains usable when the AI service is offline. */ }

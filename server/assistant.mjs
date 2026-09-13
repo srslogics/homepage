@@ -3,14 +3,15 @@ import { pathToFileURL } from "node:url";
 import { instructions } from "./assistant-knowledge.mjs";
 import { scopedReply } from "./assistant-scope.mjs";
 
-const MAX_BODY = 24000;
-const MAX_INPUT = 8000;
+// Allow JSON escaping of bounded multilingual conversations without truncating turns.
+const MAX_BODY = 100000;
+const MAX_INPUT = 16000;
 
 export function validatePayload(body) {
-  if (body?.consent !== true || body.provider !== "groq" || !Array.isArray(body.messages) || !body.messages.length || body.messages.length > 11 || body.messages.length % 2 !== 1) return false;
+  if (body?.consent !== true || body.provider !== "groq" || !Array.isArray(body.messages) || !body.messages.length || body.messages.length > 17 || body.messages.length % 2 !== 1) return false;
   let length = 0;
   for (const [index, message] of body.messages.entries()) {
-    if (!message || message.role !== (index % 2 === 0 ? "user" : "assistant") || typeof message.content !== "string" || !message.content.trim() || message.content.length > 1500) return false;
+    if (!message || message.role !== (index % 2 === 0 ? "user" : "assistant") || typeof message.content !== "string" || !message.content.trim() || message.content.length > (message.role === "user" ? 1500 : 6000)) return false;
     length += message.content.length;
   }
   return length <= MAX_INPUT;
@@ -19,7 +20,7 @@ export function validatePayload(body) {
 export function createAssistantServer({ env = process.env, request = fetch, now = Date.now } = {}) {
   const origins = new Set((env.ASSISTANT_ALLOWED_ORIGINS || "").split(",").map((x) => x.trim()).filter(Boolean));
   const enabled = env.ASSISTANT_ENABLED === "true" && !!env.GROQ_API_KEY && !!env.GROQ_MODEL && origins.size > 0;
-  const health = { enabled, provider: "groq" };
+  const health = { enabled, provider: "groq", conversationVersion: 2 };
   const configuredLimit = Number(env.ASSISTANT_HOURLY_LIMIT || 60);
   if (!Number.isSafeInteger(configuredLimit) || configuredLimit < 1 || configuredLimit > 1000) throw new Error("ASSISTANT_HOURLY_LIMIT must be an integer from 1 to 1000.");
   let windowStart = now();
@@ -79,7 +80,7 @@ export function createAssistantServer({ env = process.env, request = fetch, now 
         body: JSON.stringify({
           model: env.GROQ_MODEL, instructions,
           input: payload.messages.map(({ role, content }) => ({ role, content })),
-          store: false, max_output_tokens: 1200,
+          store: false, max_output_tokens: 2200,
           ...(env.GROQ_MODEL.startsWith("openai/gpt-oss-") ? { reasoning: { effort: "low" } } : {})
         }),
         signal: controller.signal
@@ -94,7 +95,9 @@ export function createAssistantServer({ env = process.env, request = fetch, now 
       const reply = result.output?.filter((item) => item.type === "message" && item.role === "assistant")
         .flatMap((item) => item.content || []).filter((item) => item.type === "output_text").map((item) => item.text).join("\n");
       if (!reply?.trim()) return send(502, { error: "AI reply unavailable" });
-      send(200, { reply: scopedReply(reply) });
+      const answer = scopedReply(reply);
+      if (!answer) return send(502, { error: "AI reply could not be read. Please retry." });
+      send(200, { reply: answer });
     } catch {
       // Never log conversation text, credentials, or raw provider errors.
       send(502, { error: "AI reply unavailable. Please try later or use the project brief." });

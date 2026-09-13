@@ -6,9 +6,22 @@ It serves only `/api/assistant`, never repository files or private invoice pages
 
 ## Current state
 
-The page and local brief builder work now. Live AI is deliberately off until a
-server-side Groq key, model, allowed origins, and public endpoint are configured.
-No provider calls are made by the default website. No credentials are committed.
+The page points to the separate public assistant service. The browser checks its
+health before enabling AI conversation; an unavailable or disabled service leaves
+the curated guide and local brief builder usable. Server-side enablement requires
+a Groq key, model, and allowed origins. No credentials are committed.
+
+The assistant uses public project details and a discovery approach that answers
+the visitor's question, explains a possible workflow, and scopes a first release.
+Simple questions stay brief; detailed plans can use up to 500 words / 6000
+characters. It can draft an outline in chat, which the visitor can copy. It does
+not populate the brief form or send an enquiry automatically.
+
+Conversation version 2 supports 17 alternating messages, 16000 total characters,
+1500 characters per user message, and 6000 per assistant message. The browser
+preserves recent complete turns and the opening exchange when it fits, indicates when older
+turns were dropped, and clears everything on reload or Clear chat. The version is
+advertised in health so a newer page still works against an older service.
 
 ## Activate after review
 
@@ -27,7 +40,7 @@ No provider calls are made by the default website. No credentials are committed.
    headers without a documented trusted proxy configuration.
 4. Set `ASSISTANT_ENABLED=true` only after the above controls are ready. Confirm
    GET `/api/assistant` with the allowed Origin header returns
-   `{"enabled":true,"provider":"groq"}`.
+   a response with `enabled: true`, `provider: "groq"`, and `conversationVersion: 2`.
 5. Set the public HTTPS endpoint in `assets/js/assistant-config.js` to that service's
    `/api/assistant` URL. No key belongs in this file. Push/deploy the static site only
    when approved. Verify a real consented conversation before announcing live AI.
@@ -42,8 +55,9 @@ public config temporarily to `http://127.0.0.1:8891/api/assistant`; do not commi
 
 ## Data boundaries
 
-- Knowledge is manually curated in `assistant-knowledge.mjs` from approved public
-  About, Services, Process, and Client Systems content, reviewed 7 September 2026.
+- Knowledge is manually curated in `assistant-knowledge.mjs` from public About,
+  Services, Process, Pricing, Client Systems, and case study content, reviewed
+  13 September 2026. Suggestions for a new system are distinct from company facts.
   Review project statuses when the public portfolio changes. No automatic crawling,
   uploads, client-system access, private screenshots, or financial records are used.
 - The browser keeps chat and brief state in memory, not cookies or local storage.
@@ -78,8 +92,10 @@ homework, code generation, and role-override requests are redirected. Mixed
 requests may receive only an answer to the legitimate enquiry portion.
 
 The model returns a scope label and reply in a JSON envelope. The service replaces
-off-topic or malformed output with a fixed project-enquiry redirect, never the
-raw answer. This uses one provider call per turn, not a second classifier call.
+classified off-topic output with a fixed project-enquiry redirect. Malformed
+output returns a retryable 502 instead of falsely treating a legitimate project
+question as off-topic. Raw invalid answers are never displayed. This uses one
+provider call per turn, not a second classifier call.
 Classification is model-based and is not a perfect prompt-injection barrier.
 Mock tests verify the output gate, not real model classification accuracy.
 After deploying, check greetings, nontechnical and multilingual enquiries,
@@ -96,9 +112,18 @@ responses preserve the usage-limit UI and the brief remains available. There is
 no automatic retry, paid-provider fallback, or plan upgrade in this code. Hosting
 charges are separate. Choosing a paid Groq account can incur usage charges.
 
-The implementation uses Groq's beta Responses API, `store: false`, and low
-reasoning effort for GPT-OSS models. Only final assistant text is returned; internal
+The implementation uses Groq's beta Responses API, `store: false`, a 2200-token
+output ceiling, and low reasoning effort for GPT-OSS models. Longer conversations
+and detailed answers use more quota than short enquiries. Only final assistant text is returned; internal
 reasoning is discarded. Check these references when changing models or API fields:
 - [Responses API](https://console.groq.com/docs/responses-api)
 - [Free-plan limits](https://console.groq.com/docs/rate-limits)
 - [Available models](https://console.groq.com/docs/models)
+
+## Answer-quality review
+
+The automated suite checks transport, complete conversation history, consent,
+scope parsing, retry behavior, and UI interactions with a fake provider. It cannot
+prove live model answer quality. Use `assistant-evaluation.md` to review the actual
+model before publishing this revision. Deploy the service before or alongside the
+static page; verify version 2 health and repeat the scenarios after deployment.

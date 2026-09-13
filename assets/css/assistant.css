@@ -10,11 +10,11 @@
 .assistant-identity h2 { font: 700 1rem var(--font-sans); margin: 0; }
 .assistant-identity span { color: var(--text-muted); font-size: .75rem; }
 .assistant-text-button { background: none; border: 0; padding: .65rem .4rem; color: var(--accent-strong); font: 600 .8rem var(--font-sans); cursor: pointer; }
-.assistant-log { height: 390px; overflow-y: auto; overscroll-behavior: contain; padding: 1.5rem; background: radial-gradient(ellipse at top left, var(--bg-elevated), transparent 70%); }
+.assistant-log { height: 480px; overflow-y: auto; overscroll-behavior: contain; padding: 1.5rem; background: radial-gradient(ellipse at top left, var(--bg-elevated), transparent 70%); }
 .assistant-message { background: #fff; border: 1px solid var(--surface-line); border-radius: 4px 16px 16px; padding: 1rem 1.15rem; max-width: 94%; margin-bottom: 1rem; overflow-wrap: anywhere; }
 .assistant-message.is-user { margin-left: auto; border-radius: 16px 4px 16px 16px; background: var(--accent-hot); color: white; }
 .message-author { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .035em; opacity: .78; }
-.assistant-message p { margin: .5rem 0 0; font-size: .92rem; white-space: pre-wrap; }
+.assistant-message p { margin: .5rem 0 0; font-size: .92rem; line-height: 1.7; white-space: pre-wrap; }
 .assistant-message a { display: inline-block; margin-top: .7rem; font-size: .85rem; color: var(--accent-strong); }
 .assistant-compose { padding: 1.15rem 1.5rem; border-top: 1px solid var(--surface-line); }
 .assistant-starters { display: flex; flex-wrap: wrap; gap: .5rem; }
