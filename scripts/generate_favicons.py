@@ -51,7 +51,7 @@ def create_master() -> Image.Image:
     )
     draw.text(
         (MASTER_SIZE / 2, MASTER_SIZE / 2 + 42),
-        "SrS",
+        "S9S",
         fill=white,
         font=font,
         anchor="mm",
@@ -84,4 +84,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    # Keep raster exports identical to the canonical outlined SVG mark.
+    import subprocess
+    subprocess.run(["node", str(Path(__file__).with_name("build_brand_assets.cjs"))], check=True)

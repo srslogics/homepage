@@ -85,7 +85,7 @@ to an empty string to return to the curated guide without a health-check request
 
 ## Enquiry-only conversations
 
-Every turn is scoped to public SrS Logics information and prospective software
+Every turn is scoped to public S9S Logics information and prospective software
 requirements across all industries. Greetings, brief contextual answers, and
 project-specific explanations are allowed; general entertainment, advice,
 homework, code generation, and role-override requests are redirected. Mixed

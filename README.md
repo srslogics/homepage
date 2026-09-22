@@ -1,10 +1,10 @@
-# SrS Logics Website
+# S9S Logics Website
 
-Static multi-page website for SrS Logics, a Nagpur-based custom software company serving businesses and institutions across India and the UAE.
+Static multi-page website for S9S Logics, a Nagpur-based custom software company serving businesses and institutions across India and the UAE.
 
 ## Positioning
 
-SrS Logics designs internal business systems around real operating requirements, including:
+S9S Logics designs internal business systems around real operating requirements, including:
 
 - Workflow and approval platforms
 - Finance and operations systems

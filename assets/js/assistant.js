@@ -23,7 +23,7 @@
     item.className = "assistant-message" + (user ? " is-user" : "");
     const author = document.createElement("span");
     author.className = "message-author";
-    author.textContent = user ? "You" : live ? "SrS Logics / AI assistant" : "SrS Logics / Project guide";
+    author.textContent = user ? "You" : live ? "S9S Logics / AI assistant" : "S9S Logics / Project guide";
     const body = document.createElement("p");
     // Treat all visitor and model content as text, never executable HTML or links.
     body.textContent = text;
@@ -136,7 +136,7 @@
     event.preventDefault();
     const fields = [["Goal", "brief-goal"], ["People using it", "brief-users"], ["Current approach", "brief-current"], ["First-version priorities", "brief-priority"]];
     if (!$("brief-goal").value.trim()) { $("brief-goal").focus(); return; }
-    $("brief-output").value = "Project enquiry for SrS Logics\n\n" + fields.map(([label, id]) => `${label}:\n${$(id).value.trim() || "To discuss"}`).join("\n\n");
+    $("brief-output").value = "Project enquiry for S9S Logics\n\n" + fields.map(([label, id]) => `${label}:\n${$(id).value.trim() || "To discuss"}`).join("\n\n");
     $("brief-form").hidden = true;
     $("brief-review").hidden = false;
     $("review-heading").focus();
@@ -186,8 +186,8 @@
       $("assistant-mode").textContent = "AI assistant / not a live team member";
       $("chat-form").hidden = false;
       $("assistant-status").textContent = "AI replies use approved public company information. Agree below before sending a message.";
-      initial.querySelector(".message-author").textContent = "SrS Logics / AI assistant";
-      initial.querySelector("p").textContent = "Tell me what you want to build, or describe a task that is difficult today. I can help map the workflow, suggest a first release, and explain relevant SrS Logics projects. A rough idea is enough to begin.";
+      initial.querySelector(".message-author").textContent = "S9S Logics / AI assistant";
+      initial.querySelector("p").textContent = "Tell me what you want to build, or describe a task that is difficult today. I can help map the workflow, suggest a first release, and explain relevant S9S Logics projects. A rough idea is enough to begin.";
       if (log.children.length === 1) log.replaceChildren(initial.cloneNode(true));
       else message("Live AI is now available. Agree below to send a message; the curated answers above were not AI-generated.");
     } catch { /* The local project guide remains usable when the AI service is offline. */ }
