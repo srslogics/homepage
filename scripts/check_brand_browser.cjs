@@ -31,7 +31,8 @@ async function main() {
     await page.route('**/*', route => route.request().url().startsWith(origin) ? route.continue() : route.abort());
     let errors = [];
     page.on('pageerror', error => errors.push(error.message));
-    for (const width of [320, 390, 768, 1024, 1280, 1440]) {
+    const widths = process.env.DESKTOP_ONLY ? [1101, 1280, 1366, 1440, 1920] : [320, 390, 768, 1024, 1280, 1440];
+    for (const width of process.env.UX_ONLY ? [] : widths) {
       await page.setViewportSize({ width, height: 1000 });
       for (const file of files) {
         errors = [];
@@ -48,6 +49,8 @@ async function main() {
           const rect = brand?.getBoundingClientRect();
           const toggle = document.querySelector('.nav-toggle');
           const toggleVisible = toggle && getComputedStyle(toggle).display !== 'none';
+          const nav = document.querySelector('.site-header .site-nav');
+          const desktopNavOverlap = !!(innerWidth > 1100 && rect && nav && nav.getBoundingClientRect().left < rect.right + 10);
           const brandText = brand?.querySelector('.brand-tag').getBoundingClientRect();
           const titleOverflow = [...document.querySelectorAll('h1,h2,h3')].filter(el => {
             if (!el.checkVisibility()) return false;
@@ -62,12 +65,14 @@ async function main() {
             brandOverlap: !!(toggleVisible && brandText && brandText.right > toggle.getBoundingClientRect().left - 3),
             logoMissing: !!(brand && !getComputedStyle(brand, '::before').backgroundImage.includes('ss49-wordmark.svg')),
             brandOutside: !!(rect && (rect.left < 0 || rect.right > innerWidth)),
+            desktopNavOverlap,
+            desktopNavHidden: innerWidth > 1100 && (!nav || getComputedStyle(nav).display === 'none'),
             titleOverflow,
             oldBrand: /S9S Logics|D1g1tech/i.test(document.body.innerText),
             themeMissing: !document.querySelector('link[href*="enterprise.css"]') || !document.fonts.check('500 16px Manrope')
           };
         });
-        if (state.overflow || state.broken.length || state.brandOverlap || state.logoMissing || state.brandOutside || state.titleOverflow.length || state.oldBrand || state.themeMissing || errors.length) {
+        if (state.overflow || state.broken.length || state.brandOverlap || state.logoMissing || state.brandOutside || state.desktopNavOverlap || state.desktopNavHidden || state.titleOverflow.length || state.oldBrand || state.themeMissing || errors.length) {
           failures.push({ file, width, ...state, errors });
         }
         results.push({ file, width, title: state.title });
@@ -76,7 +81,7 @@ async function main() {
         }
       }
       await page.goto(origin, { waitUntil: 'networkidle' });
-      if (width < 1281) {
+      if (await page.locator('.nav-toggle').isVisible()) {
         await page.locator('.nav-toggle').click();
         if (await page.locator('.nav-toggle').getAttribute('aria-expanded') !== 'true') failures.push({ width, menu: 'did not open' });
         if (!await page.locator('.site-nav').isVisible()) failures.push({ width, menu: 'not visible' });
@@ -118,12 +123,50 @@ async function main() {
       if (await page.locator('#brief-goal').inputValue() !== 'Connect our purchasing and approvals.') failures.push({ width, brief: 'notes not preserved' });
       console.log(`Checked all ${files.length} pages at ${width}px.`);
     }
-    await fs.writeFile(path.join(output, 'results.json'), JSON.stringify({ checked: results.length, failures, results }, null, 2));
+    await checkUxJourneys(browser, origin, failures);
+    await fs.writeFile(path.join(output, process.env.UX_ONLY ? 'ux-results.json' : process.env.DESKTOP_ONLY ? 'desktop-results.json' : 'results.json'), JSON.stringify({ checked: results.length, failures, results }, null, 2));
     console.log(JSON.stringify({ checked: results.length, failures }, null, 2));
     if (failures.length) process.exitCode = 1;
   } finally {
     await browser.close();
   }
+}
+
+async function checkUxJourneys(browser, origin, failures) {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+  await page.route('**/*', route => route.request().url().startsWith(origin) ? route.continue() : route.abort());
+  for (const route of ['', 'services/', 'projects/', 'assistant/']) {
+    await page.goto(`${origin}/${route}`, { waitUntil: 'networkidle' });
+    const smallTargets = await page.locator('footer a').evaluateAll(links => links.filter(link => link.checkVisibility() && link.getBoundingClientRect().height < 44).map(link => link.textContent));
+    if (smallTargets.length) failures.push({ route, smallFooterTargets: smallTargets });
+  }
+  await page.locator('a[href="#project-brief"]').click();
+  if (await page.locator('#project-brief').evaluate(el => el.getBoundingClientRect().top < 78)) failures.push({ brief: 'anchor hidden behind header' });
+  await page.goto(`${origin}/projects/`, { waitUntil: 'networkidle' });
+  await page.locator('.project-jump-links a[href="#education-institutions"]').click();
+  if (!await page.locator('#education-institutions').evaluate(el => el.open)) failures.push({ projects: 'region jump did not expand region' });
+
+  await page.setViewportSize({ width: 844, height: 390 });
+  await page.goto(`${origin}/projects/#knp-signature`, { waitUntil: 'networkidle' });
+  await page.locator('[data-gallery-title="KNP Signature"]').click();
+  const gallery = await page.locator('.lightbox-dialog').evaluate(el => ({ height: el.getBoundingClientRect().height, viewport: innerHeight, scroll: getComputedStyle(el).overflowY }));
+  if (gallery.height > gallery.viewport || gallery.scroll !== 'auto') failures.push({ landscapeGallery: gallery });
+  await page.locator('#lightbox-next').click();
+  if (await page.locator('#lightbox-counter').innerText() !== '2 / 8') failures.push({ landscapeGallery: 'next control inaccessible' });
+  await page.keyboard.press('Escape');
+  await page.locator('.nav-toggle').click();
+  await page.locator('.site-nav .nav-cta').scrollIntoViewIfNeeded();
+  if (await page.locator('.site-nav .nav-cta').evaluate(el => el.getBoundingClientRect().bottom > innerHeight)) failures.push({ landscapeMenu: 'CTA inaccessible' });
+  await page.close();
+
+  const noScript = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+  await noScript.goto(origin, { waitUntil: 'networkidle' });
+  if (!await noScript.locator('.site-nav').isVisible()) failures.push({ noScript: 'navigation hidden' });
+  if (await noScript.locator('.nav-toggle').isVisible()) failures.push({ noScript: 'inoperable menu toggle visible' });
+  await noScript.locator('.site-nav a[href="services/"]').click();
+  if (!noScript.url().includes('/services/')) failures.push({ noScript: 'service navigation failed' });
+  await noScript.close();
+  console.log('Checked touch targets, region and brief shortcuts, landscape gallery/menu, and navigation without JavaScript.');
 }
 
 main().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => server.close());

@@ -478,6 +478,118 @@ h1, h2, h3, h4 { line-height: 1.18; }
   .footer-trust-links { gap: 1.5rem; }
 }
 
+/* Readability and interaction refinements shared across the public pages. */
+.site-nav a, .button, .button-secondary, .text-link, .inline-link { font-size: .875rem; }
+.text-link, .inline-link { min-height: 44px; }
+.card p, .story-card p, .delivery-steps p, .capability-register p,
+.enterprise-project p, .featured-system-copy p, .faq-list details p { font-size: .95rem; }
+.eyebrow, .case-label, .work-category, .region-kicker { font-size: .75rem; }
+.project-caption, .project-status, .project-client, .intro-footnote,
+.enterprise-markets span, .enterprise-markets p, .enterprise-founder span,
+.featured-system-footer, .screen-caption { font-size: .8rem; }
+.hero-index, .masthead-location, .enterprise-clients-header .text-link { font-size: .8rem; }
+.hero-index a { align-items: center; min-height: 44px; }
+.hero-index { padding-block: .65rem; }
+.enterprise-clients-header { flex-wrap: wrap; }
+.client-detail { font-size: .8rem; }
+.pill, .status-pill, .engagement-shot figcaption { font-size: .75rem; }
+.status-pill { width: fit-content; }
+.status-pill::before { box-shadow: none; }
+.footer-card p, .footer-links { font-size: .875rem; }
+.footer-card h3, .footer-bottom, .footer-trust-links { font-size: .75rem; }
+.footer-links { gap: .15rem; }
+.footer-links a, .footer-bottom a, .footer-trust-links a { display: inline-flex; align-items: center; min-height: 44px; }
+.footer-card .brand { min-height: 44px; }
+.footer-bottom a, .footer-trust-links a { font-size: .8125rem; }
+.footer-trust-links { gap: 1.5rem; }
+.project-jump-links { display: flex; flex-wrap: wrap; gap: .75rem; margin: 0 0 2rem; }
+.project-jump-links a { display: inline-flex; align-items: center; min-height: 44px; padding: .6rem 1rem; border: 1px solid var(--surface-line-strong); border-radius: 3px; font-size: .875rem; text-decoration: none; }
+.project-jump-links a:hover { background: var(--accent-soft); border-color: var(--accent); }
+.page-projects .hero-panel .mini-stack > div > span { display: block; margin-top: .25rem; }
+.assistant-entry-actions { display: flex; flex-direction: column; align-items: start; gap: .5rem; flex-shrink: 0; }
+.assistant-entry-actions .button-secondary { text-decoration: none; }
+.assistant-brief label, .assistant-field-label, .assistant-consent { font-size: .875rem; }
+.assistant-main textarea, .assistant-brief input { font-size: 1rem; }
+.assistant-note { font-size: .8125rem; }
+.assistant-starters button, .assistant-text-button { min-height: 44px; font-size: .875rem; }
+.assistant-identity span { font-size: .75rem; }
+.lightbox-dialog { max-height: calc(100dvh - 2rem); margin: 1rem auto; overflow-y: auto; overscroll-behavior: contain; }
+.lightbox-figure img { max-height: 60dvh; }
+.lightbox-figure figcaption { font-size: .875rem; letter-spacing: 0; text-transform: none; }
+.lightbox-close { min-height: 44px; border-radius: 3px; background: var(--bg); }
+.lightbox-nav { min-width: 44px; min-height: 44px; border-radius: 3px; }
+.featured-system :focus-visible, .enterprise-contact :focus-visible, .cta-panel :focus-visible { outline-color: #cfdf8b; }
+.site-header:not([data-nav-ready]) .nav-toggle { display: none; }
+
+@media (max-width: 1280px) {
+  .site-header { max-height: 100dvh; overflow-y: auto; overscroll-behavior: contain; }
+  .site-header:not([data-nav-ready]) { position: static; }
+  .site-header:not([data-nav-ready]) .site-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+  .site-nav a { font-size: .875rem; }
+}
+
+@media (max-width: 900px) {
+  .assistant-entry-actions { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .footer-grid .footer-card:nth-child(2) .footer-links { gap: .15rem 1rem; }
+  .enterprise-markets > a { padding: 1.5rem 1rem 3.2rem; }
+  .hero-index { gap: .25rem .75rem; }
+  .hero-index > span:first-child { display: none; }
+  .enterprise-clients-header { gap: .25rem 1rem; }
+  .enterprise-clients-header .text-link { font-size: .8rem; }
+  .assistant-topbar { flex-wrap: wrap; gap: .25rem; }
+  .lightbox-header { align-items: start; }
+  .lightbox-stage { grid-template-columns: 1fr 1fr; gap: .75rem; }
+  .lightbox-figure { grid-column: 1 / -1; grid-row: 1; padding: .5rem; }
+  .lightbox-nav { width: 100%; }
+  .lightbox-figure img { max-height: 50dvh; }
+}
+
+/* Desktop density: preserve reading space without pushing evidence below the fold. */
+@media (min-width: 1101px) {
+  .site-header { max-height: none; overflow: visible; }
+  .site-header .container { display: flex; min-height: 80px; padding-block: 0; gap: 1.5rem; }
+  .nav-toggle { display: none; }
+  .site-header .site-nav, .site-header .site-nav:not(.is-open), .site-header:not([data-nav-ready]) .site-nav { display: flex; gap: 1.1rem; padding: 0; margin: 0; border: 0; }
+  .site-nav a { padding: .7rem 0; background: transparent; }
+  .site-nav a[aria-current="page"] { background: transparent; box-shadow: inset 0 -2px var(--accent); }
+  .site-nav .nav-cta { margin-left: .25rem; padding: .75rem 1.1rem; background: var(--text-primary); }
+  main > .section-frame { padding-block: 4.5rem; }
+  .page-hero { padding-block: 3.5rem; }
+  .hero-copy h1, .page-hero .hero-copy h1, .hero-copy h1.hero-title-compact { font-size: clamp(2.75rem, 3.7vw, 3.6rem); max-width: 22ch; }
+  .hero-panel { padding: 1.5rem 1.75rem; }
+  .hero-panel .signal-card { padding: 1.15rem; }
+  .hero-panel .signal-card strong { font-size: clamp(1.2rem, 1.7vw, 1.6rem); line-height: 1.35; }
+  .hero-grid { gap: 3rem; }
+  .mini-stack > div { padding-block: .85rem; }
+  .enterprise-hero { padding-top: 1.5rem; }
+  .enterprise-intro { padding-block: 3rem; gap: 3.5rem; grid-template-columns: minmax(0, 1.8fr) minmax(300px, .85fr); }
+  .enterprise-intro h1 { font-size: clamp(3.4rem, 5.7vw, 5.2rem); }
+  .enterprise-intro-copy .lead { font-size: 1rem; }
+  .intro-footnote { margin-top: 1rem; }
+  .section-heading-row { margin-bottom: 2rem; }
+  .section-header { display: block; margin-bottom: 2rem; }
+  .section-header .headline-lg { max-width: 26ch; margin-top: .65rem; }
+  .section-header .section-copy, .section-header .section-lead { max-width: 65ch; }
+  .headline-lg { font-size: clamp(2.25rem, 3vw, 2.8rem); }
+  .enterprise-project-grid { margin-top: 2.5rem; }
+  .enterprise-clients { margin-top: 3rem; }
+  .engagement-copy { max-width: 70ch; }
+  .article-body p { max-width: 70ch; }
+  .assistant-main { padding-block: 3rem 4rem; }
+  .assistant-intro { margin-bottom: 2rem; }
+  .assistant-log { height: clamp(320px, 43vh, 440px); }
+  .site-footer { padding-top: 3rem; }
+}
+
+@media (min-width: 1600px) {
+  .container, .footer-trust-links { --container: 1400px; }
+  .hero-grid { gap: 4rem; }
+  .enterprise-intro { gap: 5rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

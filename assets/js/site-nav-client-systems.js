@@ -29,6 +29,8 @@
 
     if (!button || !nav) return;
 
+    header.dataset.navReady = "true";
+
     const currentPath = new URL(window.location.href).pathname.replace(/\/index\.html$/, "/");
     const navLinks = navItems.map(([label, path]) => {
       const link = document.createElement("a");
@@ -92,7 +94,7 @@
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 1280) {
+      if (window.innerWidth > 1100) {
         closeMenu();
       }
     });

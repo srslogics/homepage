@@ -14,7 +14,7 @@
   <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=20261006-ss49">
   <link rel="stylesheet" href="../assets/css/main.css?v=20261006-enterprise">
   <link rel="stylesheet" href="../assets/css/assistant.css?v=20261006-enterprise">
-  <link rel="stylesheet" href="../assets/css/enterprise.css?v=20261006-enterprise">
+  <link rel="stylesheet" href="../assets/css/enterprise.css?v=20261006-desktop">
 </head>
 <body class="page-assistant">
   <div class="site-shell">
@@ -22,7 +22,7 @@
     <main id="main-content" class="assistant-main container">
       <div class="assistant-intro">
         <div><span class="eyebrow">SS49 D1T1TECH / Project assistant</span><h1>Start with what <span class="accent-text">you need.</span></h1><p>No technical brief? No problem. Explore what is possible, then tell us what matters to you.</p></div>
-        <a class="inline-link" href="https://calendly.com/shubhamsinghvr/strategy-call" target="_blank" rel="noopener">Prefer a conversation with Shubham?</a>
+        <div class="assistant-entry-actions"><a class="button-secondary" href="#project-brief">Write a project brief</a><a class="inline-link" href="https://calendly.com/shubhamsinghvr/strategy-call" target="_blank" rel="noopener">Speak with Shubham</a></div>
       </div>
       <div class="assistant-workspace">
         <section class="assistant-conversation" aria-labelledby="conversation-heading">
@@ -48,18 +48,18 @@
             </form>
           </div>
         </section>
-        <aside class="assistant-brief" aria-labelledby="brief-heading">
+        <aside class="assistant-brief" id="project-brief" aria-labelledby="brief-heading">
           <span class="eyebrow">Your next step</span><h2 id="brief-heading">An idea, made clearer.</h2><p>Use these notes to prepare your brief, or ask the assistant for a project outline and copy its reply. This form contains only what you enter here.</p>
           <form id="brief-form">
-            <label for="brief-goal">What do you want to build or improve?</label><textarea id="brief-goal" name="goal" rows="3" maxlength="1000" placeholder="The outcome you want, in your own words" required></textarea>
-            <label for="brief-users">Who will use it?</label><input id="brief-users" name="users" maxlength="300" placeholder="Your team, customers, students, or others">
-            <label for="brief-current">How does this work today?</label><textarea id="brief-current" name="current" rows="2" maxlength="700" placeholder="Current tools, steps, or frustrations"></textarea>
-            <label for="brief-priority">What matters most for the first version?</label><textarea id="brief-priority" name="priority" rows="2" maxlength="700" placeholder="Must-have features or a preferred timeframe"></textarea>
+            <label for="brief-goal">What do you want to build or improve? (required)</label><textarea id="brief-goal" name="goal" rows="3" maxlength="1000" placeholder="The outcome you want, in your own words" required></textarea>
+            <label for="brief-users">Who will use it? (optional)</label><input id="brief-users" name="users" maxlength="300" placeholder="Your team, customers, students, or others">
+            <label for="brief-current">How does this work today? (optional)</label><textarea id="brief-current" name="current" rows="2" maxlength="700" placeholder="Current tools, steps, or frustrations"></textarea>
+            <label for="brief-priority">What matters most for the first version? (optional)</label><textarea id="brief-priority" name="priority" rows="2" maxlength="700" placeholder="Must-have features or a preferred timeframe"></textarea>
             <button class="button" type="submit">Review my brief <span aria-hidden="true">&rarr;</span></button>
           </form>
           <section id="brief-review" class="brief-review" aria-labelledby="review-heading" hidden>
             <h3 id="review-heading" tabindex="-1">Your project brief</h3><textarea id="brief-output" aria-label="Editable project brief" rows="10" maxlength="4000"></textarea>
-            <div class="brief-actions"><button id="copy-brief" type="button" class="button">Copy brief</button><button id="email-brief" class="button secondary" type="button">Open email draft</button><button id="edit-brief" class="assistant-text-button" type="button">Back to notes</button></div>
+            <div class="brief-actions"><button id="copy-brief" type="button" class="button">Copy brief</button><button id="email-brief" class="button-secondary" type="button">Open email draft</button><button id="edit-brief" class="assistant-text-button" type="button">Back to notes</button></div>
             <p id="brief-status" class="assistant-note" role="status">Nothing has been sent. Review your brief before sharing.</p>
           </section>
           <p class="assistant-note">Your notes stay in this page until you choose to share them. Reloading clears them. Do not include private records.</p>
@@ -70,7 +70,7 @@
     </main>
     <footer class="site-footer"><div class="container footer-bottom"><span>&copy; 2026 SS49 D1T1TECH (OPC) PRIVATE LIMITED. Custom software from Nagpur, India.</span><a href="../privacy/">Privacy</a></div></footer>
   </div>
-  <script src="../assets/js/site-nav-client-systems.js?v=20261006-enterprise"></script>
+  <script src="../assets/js/site-nav-client-systems.js?v=20261006-desktop"></script>
   <script src="../assets/js/assistant-config.js?v=20260907-1"></script>
   <script src="../assets/js/assistant.js?v=20261006-8lm"></script>
 </body>
