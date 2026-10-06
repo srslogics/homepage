@@ -95,11 +95,13 @@ h1, h2, h3, h4 { line-height: 1.18; }
 .enterprise-intro { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, .8fr); align-items: end; gap: 5rem; padding: 4.5rem 0 5rem; }
 .enterprise-intro h1 { margin: 0; font-size: clamp(3.5rem, 6.25vw, 6.1rem); line-height: 1.08; font-weight: 520; letter-spacing: -.058em; }
 .enterprise-intro h1 span { color: var(--accent); }
-.enterprise-intro-copy { padding-bottom: .45rem; }
-.enterprise-intro-copy .lead { font-size: 1rem; margin: 0 0 1.75rem; }
-.enterprise-intro-copy .button { display: flex; justify-content: space-between; width: 100%; }
-.enterprise-intro-copy > .text-link { margin-top: .8rem; }
-.intro-footnote { font-size: .7rem; color: var(--text-muted); line-height: 1.7; margin: 1.8rem 0 0; }
+.enterprise-intro-copy { padding: 1.4rem 0 .45rem; border-top: 1px solid var(--surface-line-strong); }
+.enterprise-intro-copy .lead { font-size: 1rem; line-height: 1.7; margin: 0 0 1.5rem; max-width: 38ch; }
+.hero-action-row { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.25rem; }
+.enterprise-intro-copy .button { display: inline-flex; width: fit-content; min-height: 48px; padding: .75rem 1rem; gap: 1rem; background: var(--text-primary); border-color: var(--text-primary); white-space: nowrap; }
+.enterprise-intro-copy .button:hover { background: var(--accent); border-color: var(--accent); }
+.hero-action-row .text-link { border: 0; padding-block: .75rem; gap: .6rem; white-space: nowrap; }
+.hero-action-row .text-link:hover { text-decoration: underline; text-underline-offset: 5px; }
 .hero-index { border-top: 1px solid var(--surface-line-strong); padding: 1.25rem 0; display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.5rem; font-size: .68rem; }
 .hero-index a { text-decoration: none; display: flex; gap: 2rem; }
 .hero-index-number { text-align: right; color: var(--text-muted); font-variant-numeric: tabular-nums; }
@@ -350,7 +352,6 @@ h1, h2, h3, h4 { line-height: 1.18; }
   .enterprise-intro { grid-template-columns: 1.45fr 1fr; gap: 2rem; padding-block: 3.5rem; }
   .enterprise-intro h1 { font-size: clamp(3rem, 6.4vw, 4.5rem); }
   .enterprise-intro-copy .lead { font-size: .9rem; }
-  .intro-footnote { display: none; }
   .hero-index { grid-template-columns: 1fr auto; }
   .hero-index-number { display: none; }
   .featured-system { grid-template-columns: 1fr 1.3fr; }
@@ -398,8 +399,6 @@ h1, h2, h3, h4 { line-height: 1.18; }
   .enterprise-intro h1 { font-size: clamp(2.65rem, 10.5vw, 3.9rem); letter-spacing: -.057em; line-height: 1.13; }
   .enterprise-intro-copy { margin-top: 2rem; }
   .enterprise-intro-copy .lead { font-size: .92rem; max-width: 40ch; margin-bottom: 1.35rem; }
-  .enterprise-intro-copy .button { width: fit-content; min-width: 210px; }
-  .enterprise-intro-copy > .text-link { display: flex; margin-top: 1rem; }
   .hero-index { display: flex; flex-wrap: wrap; justify-content: space-between; font-size: .59rem; gap: .7rem; padding: 1rem 0; }
   .hero-index a { gap: .5rem; }
   .section-heading-row { display: block; margin-bottom: 2rem; }
@@ -484,7 +483,7 @@ h1, h2, h3, h4 { line-height: 1.18; }
 .card p, .story-card p, .delivery-steps p, .capability-register p,
 .enterprise-project p, .featured-system-copy p, .faq-list details p { font-size: .95rem; }
 .eyebrow, .case-label, .work-category, .region-kicker { font-size: .75rem; }
-.project-caption, .project-status, .project-client, .intro-footnote,
+.project-caption, .project-status, .project-client,
 .enterprise-markets span, .enterprise-markets p, .enterprise-founder span,
 .featured-system-footer, .screen-caption { font-size: .8rem; }
 .hero-index, .masthead-location, .enterprise-clients-header .text-link { font-size: .8rem; }
@@ -568,7 +567,6 @@ h1, h2, h3, h4 { line-height: 1.18; }
   .enterprise-intro { padding-block: 3rem; gap: 3.5rem; grid-template-columns: minmax(0, 1.8fr) minmax(300px, .85fr); }
   .enterprise-intro h1 { font-size: clamp(3.4rem, 5.7vw, 5.2rem); }
   .enterprise-intro-copy .lead { font-size: 1rem; }
-  .intro-footnote { margin-top: 1rem; }
   .section-heading-row { margin-bottom: 2rem; }
   .section-header { display: block; margin-bottom: 2rem; }
   .section-header .headline-lg { max-width: 26ch; margin-top: .65rem; }
