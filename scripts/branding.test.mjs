@@ -10,6 +10,31 @@ const legal = 'SS49 D1T1TECH (OPC) PRIVATE LIMITED';
 const files = execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', '*.html'], { cwd: root, encoding: 'utf8' }).trim().split('\n');
 const read = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 
+test('social previews use the reachable new-domain logo with matching dimensions', async () => {
+  const image = 'https://ss49d1t1tech.in/assets/brand/ss49-mark.png?v=20261007-share';
+  const png = await readFile(new URL('../assets/brand/ss49-mark.png', import.meta.url));
+  assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+  assert.equal(png.readUInt32BE(16), 512);
+  assert.equal(png.readUInt32BE(20), 512);
+  assert.ok(png.length < 300000);
+  let checked = 0;
+  for (const file of files) {
+    const html = await read(file);
+    if (!html.includes('<meta property="og:image"')) continue;
+    for (const property of ['og:image', 'og:image:secure_url']) {
+      assert.ok(html.includes(`<meta property="${property}" content="${image}">`), file);
+    }
+    assert.ok(html.includes(`<meta name="twitter:image" content="${image}">`), file);
+    assert.ok(html.includes('<meta property="og:image:type" content="image/png">'), file);
+    for (const dimension of ['width', 'height']) {
+      assert.ok(html.includes(`<meta property="og:image:${dimension}" content="512">`), file);
+    }
+    assert.ok(html.includes('<meta name="twitter:card" content="summary">'), file);
+    checked++;
+  }
+  assert.equal(checked, 25, 'all existing social previews should retain their logo metadata');
+});
+
 test('8L Marketing is consistently listed as contracted work, not deployed proof', async () => {
   for (const file of ['index.html', 'us/index.html', 'projects/index.html', 'regions/index.html', 'assets/js/assistant.js', 'llms.txt', 'llms-full.txt']) {
     assert.ok((await read(file)).includes('8L Marketing'), file);
