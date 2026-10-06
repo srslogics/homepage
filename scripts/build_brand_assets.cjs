@@ -63,8 +63,7 @@ async function main() {
     </g>
     <g fill="#40566f" font-family="Avenir Next, sans-serif">
       <text x="72" y="465" font-size="22">Custom software development</text>
-      <text x="72" y="562" font-size="24">srslogics.com</text>
-      <text x="1128" y="562" font-size="20" text-anchor="end">Formerly SrS Logics</text>
+      <text x="72" y="562" font-size="24">ss49d1t1tech.in</text>
     </g>`);
   await fs.writeFile(path.join(brand, 'ss49-share.svg'), share);
   await sharp(Buffer.from(share)).png().toFile(path.join(root, 'assets/images/og-image.png'));

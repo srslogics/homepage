@@ -3,7 +3,7 @@ import { scopeInstructions } from "./assistant-scope.mjs";
 // Manually curated public facts only. Never crawl the repository or client apps.
 export const knowledge = {
   reviewed: "2026-10-07",
-  company: "SS49 D1T1TECH (OPC) PRIVATE LIMITED, formerly SrS Logics, is a custom software company based in Nagpur, India. Founder: Shubham Singh. Work starts with each client's requirements and is not limited to a particular industry. The existing website srslogics.com and email founder@ss49d1t1tech.in remain the current contact details. Use SS49 D1T1TECH as the public brand and SS49 as the short name. The exact official company name is SS49 D1T1TECH (OPC) PRIVATE LIMITED. D1T1TECH contains two digit 1s; do not use the earlier D1g1tech spelling. Explain the former name when asked.",
+  company: "SS49 D1T1TECH (OPC) PRIVATE LIMITED is a custom software company based in Nagpur, India. Founder: Shubham Singh. Work starts with each client's requirements and is not limited to a particular industry. The primary website is https://ss49d1t1tech.in/ and the public contact email is founder@ss49d1t1tech.in. Use SS49 D1T1TECH as the public brand and SS49 as the short name. The exact official company name is SS49 D1T1TECH (OPC) PRIVATE LIMITED. D1T1TECH contains two digit 1s.",
   story: "The founding purpose was to close the gap between having software and people being able to use it confidently. Understanding the work, implementation support, training, and adoption matter alongside the code.",
   approach: "Discuss goals, users, current processes, constraints, and priorities. Agree scope before making commitments. Project-specific prices, schedules, and technical feasibility must be confirmed by Shubham.",
   services: "Custom applications, connected business systems, workflow automation, role-specific portals, integrations, reporting, and data analysis. Work can replace spreadsheet processes, connect existing tools, or support a new software requirement. Portfolio industries are examples, not eligibility criteria.",
@@ -11,42 +11,42 @@ export const knowledge = {
     stages: ["Discovery: understand the work, people, current tools, and priorities", "Scope and design: agree workflows, records, responsibilities, and release boundaries", "Build and milestone reviews: review working user flows with the client", "QA, acceptance, and handover: validate agreed workflows, document deployment, and transfer access"],
     guidance: "The public process page says a focused system may reach production review in 4 to 6 weeks. This is indicative, not a delivery commitment for a visitor's project. Larger or integration-heavy platforms use agreed stages.",
     adoption: "Implementation support and training help people use the software in their daily work. Proposals can include 6 months of post-launch maintenance; coverage, response expectations, and exclusions are defined in the agreement.",
-    source: "https://srslogics.com/process/"
+    source: "https://ss49d1t1tech.in/process/"
   },
   commercial: {
     guidance: "The public pricing page gives an indicative India range of INR 30,000 to INR 500,000. This is general guidance, not a package, ceiling, or quote for any proposed system. Do not convert it into an international price.",
     international: "Projects are available for India, UAE, UK, and US clients. International work is quoted in GBP, USD, or AED after scope, risk, infrastructure, and delivery responsibilities are understood. This does not establish overseas offices or completed overseas projects.",
     drivers: "Workflow depth, roles and approvals, data migration and integrations, performance, hosting, and release responsibilities affect the quote.",
     payments: "Public payment stages are contract signing, an agreed delivery milestone, and final handover. Amounts and terms are project-specific.",
-    source: "https://srslogics.com/pricing/"
+    source: "https://ss49d1t1tech.in/pricing/"
   },
   projects: [
-    { client: "8L Marketing (8LM)", system: "Custom ads management system", status: "Contracted development", market: "United States", engagement: "Nine-month development contract", details: "Deployment, specific integrations, features, results, and contract start/end dates are not publicly confirmed. Do not describe this engagement as deployed or completed.", source: "https://srslogics.com/projects/#8l-marketing" },
+    { client: "8L Marketing (8LM)", system: "Custom ads management system", status: "Contracted development", market: "United States", engagement: "Nine-month development contract", details: "Deployment, specific integrations, features, results, and contract start/end dates are not publicly confirmed. Do not describe this engagement as deployed or completed.", source: "https://ss49d1t1tech.in/projects/#8l-marketing" },
     {
       client: "KNP Enterprises", system: "KNP Signature", status: "Deployed",
       requirement: "Connect billing, stock movements, payments, and party balances for daily business review.",
       workflow: "Staff handle retail bills and daily purchase, sales, payment, and stock entries. Party ledgers show transaction histories; reports bring sales, purchases, receivables, and payables together.",
       details: "Invoice previews, payment handling, Excel/PDF exports, trends, and payment breakdowns.",
-      source: "https://srslogics.com/case-studies/knp-enterprise-finance/"
+      source: "https://ss49d1t1tech.in/case-studies/knp-enterprise-finance/"
     },
     {
       client: "Royal Celebrations", system: "Royal Celebration Console", status: "Deployed",
       requirement: "Keep enquiries, confirmed dates, guest needs, rooms, vendors, and collections connected.",
       workflow: "Enquiries and bookings share a workspace with the event calendar, hotel stays, vendors, clients, payment tracking, and analytics.",
-      source: "https://srslogics.com/case-studies/riyansh-venue-management/"
+      source: "https://ss49d1t1tech.in/case-studies/riyansh-venue-management/"
     },
     {
       client: "Lakshya Institute", system: "Connected education operations with management, student, parent, faculty, and attendance applications", status: "Deployed",
       requirement: "Bring admissions, fees, academics, attendance, and communication together while preserving historical records and separate user permissions.",
       workflow: "Management handles institutional records and finance; students, parents, faculty, and attendance staff have focused workspaces. Admissions, fee ledgers, timetables, examinations, inventory, notices, and audit history connect through shared records.",
       details: "Migration preserved source references and flagged missing information for review. Operating rules account for student status and batch structure.",
-      source: "https://srslogics.com/case-studies/lakshya-education-operations/"
+      source: "https://ss49d1t1tech.in/case-studies/lakshya-education-operations/"
     },
     {
       client: "Utsav Feed Industries", system: "Poultry Integration System", status: "On-site",
       requirement: "Connect daily farm reporting with business review while separating farmer and owner responsibilities.",
       workflow: "Farmers submit daily entries, feed and health updates, requests, and uploads. The owner reviews farm activity, feed stock, documents, finance entries, and reports.",
-      source: "https://srslogics.com/case-studies/utsav-feeds-poultry/"
+      source: "https://ss49d1t1tech.in/case-studies/utsav-feeds-poultry/"
     },
     { client: "OctoMinds Preschool", system: "Multi-centre ERP across seven centres: admissions, fees and collections, child progress, centre operations, parent communication, and inventory", status: "In development" },
     { client: "Shirt Factory and Co.", system: "Business analysis system", status: "In development" },
@@ -58,8 +58,8 @@ export const knowledge = {
     { client: "Industrial community (identity withheld)", system: "Member onboarding, participation, and monetization workflows", status: "Discovery and architecture" },
     { client: "Food processing company (identity withheld)", system: "Production records, stock movements, purchases, sales, and reporting", status: "Discovery and architecture" }
   ],
-  sources: ["https://srslogics.com/about/", "https://srslogics.com/services/", "https://srslogics.com/process/", "https://srslogics.com/projects/", "https://srslogics.com/pricing/"],
-  contact: { email: "founder@ss49d1t1tech.in", booking: "https://calendly.com/shubhamsinghvr/strategy-call" }
+  sources: ["https://ss49d1t1tech.in/about/", "https://ss49d1t1tech.in/services/", "https://ss49d1t1tech.in/process/", "https://ss49d1t1tech.in/projects/", "https://ss49d1t1tech.in/pricing/"],
+  contact: { email: "founder@ss49d1t1tech.in", booking: "https://calendly.com/shubhamsinghvr/strategy-call", instagram: "https://www.instagram.com/ss49tech/" }
 };
 
 export const instructions = `You are the SS49 D1T1TECH AI project-enquiry assistant, not Shubham and not a live human.

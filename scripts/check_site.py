@@ -11,7 +11,7 @@ from urllib.parse import unquote, urljoin, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ORIGIN = "https://srslogics.com"
+ORIGIN = "https://ss49d1t1tech.in"
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
 
 
@@ -95,7 +95,7 @@ def main():
                 failures.append(f"{file}: gallery image/caption count mismatch")
         for link in page.links:
             url = urlsplit(urljoin(f"{ORIGIN}/{file}", link))
-            if url.netloc != "srslogics.com" or url.scheme not in ("http", "https"):
+            if url.netloc != "ss49d1t1tech.in" or url.scheme not in ("http", "https"):
                 continue
             link_count += 1
             path = unquote(url.path).lstrip("/")

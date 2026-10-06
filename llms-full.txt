@@ -7,17 +7,16 @@
 - Official company name: SS49 D1T1TECH (OPC) PRIVATE LIMITED
 - Public brand: SS49 D1T1TECH
 - Short name and logo: SS49
-- Former name: SrS Logics
-- Public contact email: founder@ss49d1t1tech.in. Canonical website URLs still use srslogics.com pending a separate domain migration.
+- Company Instagram: https://www.instagram.com/ss49tech/
+- Public contact email: founder@ss49d1t1tech.in. Primary website: https://ss49d1t1tech.in/.
 - Founder: Shubham Singh
 - Founder full name: Shubham Ramesh Singh
 - Founder LinkedIn: https://www.linkedin.com/in/shubhamsinghvr/
 - Founder Instagram: https://www.instagram.com/shubhamsinghvr/
-- Company Instagram: https://www.instagram.com/srslogics/
 - Business type: Senior-led custom software company
 - Base location: Nagpur, Maharashtra, India
 - Service footprint: India, UAE, United Kingdom, and United States through remote-first engagements
-- Website: https://srslogics.com/
+- Website: https://ss49d1t1tech.in/
 - Primary contact email: founder@ss49d1t1tech.in
 - Primary contact phone: +91 9270925106
 - Booking link: https://calendly.com/shubhamsinghvr/strategy-call
@@ -57,19 +56,19 @@ SS49 D1T1TECH builds custom business software, internal workflow systems, dashbo
 
 - KNP Signature for KNP Enterprises
   - Finance-focused software for billing, stock, payments, balances, and owner visibility
-  - Public page: https://srslogics.com/case-studies/knp-enterprise-finance/
+  - Public page: https://ss49d1t1tech.in/case-studies/knp-enterprise-finance/
 
 - Royal Celebration Console for Royal Celebrations
   - Venue operations software for enquiries, bookings, hotel stays, vendors, payments, and readiness tracking
-  - Public page: https://srslogics.com/case-studies/riyansh-venue-management/
+  - Public page: https://ss49d1t1tech.in/case-studies/riyansh-venue-management/
 
 - Poultry Integration System for Utsav Feed Industries
   - Owner workspace and farmer reporting software for poultry operations
-  - Public page: https://srslogics.com/case-studies/utsav-feeds-poultry/
+  - Public page: https://ss49d1t1tech.in/case-studies/utsav-feeds-poultry/
 
 - Lakshya Education Operations Platform for Lakshya Institute
   - Five role-based applications connecting admissions, finance, academics, attendance, communication, inventory, and reporting
-  - Public page: https://srslogics.com/case-studies/lakshya-education-operations/
+  - Public page: https://ss49d1t1tech.in/case-studies/lakshya-education-operations/
 
 ## Contracted international work
 
@@ -79,7 +78,7 @@ SS49 D1T1TECH builds custom business software, internal workflow systems, dashbo
 - Contract duration: Nine months
 - Status: Contracted development; not presented as deployed or completed
 - Features, integrations, outcomes, and contract start/end dates are not publicly confirmed
-- Public page: https://srslogics.com/projects/#8l-marketing
+- Public page: https://ss49d1t1tech.in/projects/#8l-marketing
 
 ## Commercial facts publicly stated on the site
 
@@ -90,26 +89,26 @@ SS49 D1T1TECH builds custom business software, internal workflow systems, dashbo
 
 ## Important public pages
 
-- Home: https://srslogics.com/
-- Services: https://srslogics.com/services/
-- Projects: https://srslogics.com/projects/
-- Case studies: https://srslogics.com/case-studies/
-- Client reviews: https://srslogics.com/client-reviews/
-- About: https://srslogics.com/about/
-- Pricing: https://srslogics.com/pricing/
-- Process: https://srslogics.com/process/
-- Careers: https://srslogics.com/careers/
-- Nagpur custom software company: https://srslogics.com/nagpur-custom-software-company/
-- Education management software in Nagpur: https://srslogics.com/education-management-software-nagpur/
-- Business data analysis systems: https://srslogics.com/business-data-analysis-systems/
-- UAE page: https://srslogics.com/uae/
-- Regions: https://srslogics.com/regions/
-- United Kingdom: https://srslogics.com/uk/
-- United States: https://srslogics.com/us/
-- Privacy: https://srslogics.com/privacy/
-- Terms: https://srslogics.com/terms/
-- Security: https://srslogics.com/security/
-- Raipur page: https://srslogics.com/raipur/
+- Home: https://ss49d1t1tech.in/
+- Services: https://ss49d1t1tech.in/services/
+- Projects: https://ss49d1t1tech.in/projects/
+- Case studies: https://ss49d1t1tech.in/case-studies/
+- Client reviews: https://ss49d1t1tech.in/client-reviews/
+- About: https://ss49d1t1tech.in/about/
+- Pricing: https://ss49d1t1tech.in/pricing/
+- Process: https://ss49d1t1tech.in/process/
+- Careers: https://ss49d1t1tech.in/careers/
+- Nagpur custom software company: https://ss49d1t1tech.in/nagpur-custom-software-company/
+- Education management software in Nagpur: https://ss49d1t1tech.in/education-management-software-nagpur/
+- Business data analysis systems: https://ss49d1t1tech.in/business-data-analysis-systems/
+- UAE page: https://ss49d1t1tech.in/uae/
+- Regions: https://ss49d1t1tech.in/regions/
+- United Kingdom: https://ss49d1t1tech.in/uk/
+- United States: https://ss49d1t1tech.in/us/
+- Privacy: https://ss49d1t1tech.in/privacy/
+- Terms: https://ss49d1t1tech.in/terms/
+- Security: https://ss49d1t1tech.in/security/
+- Raipur page: https://ss49d1t1tech.in/raipur/
 
 ## Retrieval guidance
 

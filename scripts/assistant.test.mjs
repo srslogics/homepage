@@ -7,7 +7,7 @@ import { createAssistantServer, validatePayload } from "../server/assistant.mjs"
 import { instructions, knowledge } from "../server/assistant-knowledge.mjs";
 import { scopeRedirect, scopedReply } from "../server/assistant-scope.mjs";
 
-const origin = "https://srslogics.com";
+const origin = "https://ss49d1t1tech.in";
 const env = { ASSISTANT_ENABLED: "true", GROQ_API_KEY: "test-key-never-real", GROQ_MODEL: "openai/gpt-oss-20b", ASSISTANT_ALLOWED_ORIGINS: origin };
 const payload = { consent: true, provider: "groq", messages: [{ role: "user", content: "I need a booking system" }] };
 const rawProviderReply = (text) => new Response(JSON.stringify({ status: "completed", output: [{ type: "message", role: "assistant", content: [{ type: "output_text", text }] }] }));
@@ -193,14 +193,14 @@ async function client({ connected = false, provider, healthProvider = "groq", he
   const get = (id) => { if (!ids.has(id)) ids.set(id, new Element()); return ids.get(id); };
   const initial = new Element(); initial.append(new Element(), new Element()); get("chat-log").append(initial);
   const starters = ["start", "work", "approach", "pricing"].map((topic) => { const el = new Element(); el.dataset.topic = topic; return el; });
-  const location = { protocol: "https:", hostname: "srslogics.com", href: "https://srslogics.com/assistant/" };
+  const location = { protocol: "https:", hostname: "ss49d1t1tech.in", href: "https://ss49d1t1tech.in/assistant/" };
   const window = { location, SRS_ASSISTANT_CONFIG: { endpoint: connected ? "https://assistant.example/api/assistant" : "" } };
   let copied;
   const source = await readFile(new URL("../assets/js/assistant.js", import.meta.url), "utf8");
   runInNewContext(source, {
     window, location, URL, AbortController, AbortSignal, setTimeout, clearTimeout,
     navigator: { clipboard: { writeText: async (value) => { copied = value; } } },
-    document: { currentScript: { src: "https://srslogics.com/assets/js/assistant.js" }, getElementById: get, createElement: () => new Element(), querySelectorAll: () => starters },
+    document: { currentScript: { src: "https://ss49d1t1tech.in/assets/js/assistant.js" }, getElementById: get, createElement: () => new Element(), querySelectorAll: () => starters },
     fetch: async (url, options) => options?.method === "POST" ? provider(url, options) : healthRequest ? healthRequest(url, options) : new Response(JSON.stringify({ enabled: true, provider: healthProvider, conversationVersion }))
   });
   await new Promise((resolve) => setImmediate(resolve));

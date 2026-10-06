@@ -68,7 +68,7 @@ async function main() {
             desktopNavOverlap,
             desktopNavHidden: innerWidth > 1100 && (!nav || getComputedStyle(nav).display === 'none'),
             titleOverflow,
-            oldBrand: /S9S Logics|D1g1tech/i.test(document.body.innerText),
+            oldBrand: /SrS[ -]?Logics|S9S Logics|D1g1tech/i.test(document.body.innerText),
             themeMissing: !document.querySelector('link[href*="enterprise.css"]') || !document.fonts.check('500 16px Manrope')
           };
         });

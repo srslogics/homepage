@@ -3,15 +3,15 @@
 > SS49 D1T1TECH is a senior-led custom software company based in Nagpur, India. It designs internal business software, workflow systems, dashboards, finance tools, reporting platforms, and institution-specific systems with project availability across India, UAE, UK, and USA.
 
 Last updated: 2026-10-07
-Canonical website: https://srslogics.com/
+Canonical website: https://ss49d1t1tech.in/
 
 ## Canonical identity
 
 - Official company name: SS49 D1T1TECH (OPC) PRIVATE LIMITED
 - Public brand: SS49 D1T1TECH
 - Short name and logo: SS49
-- Former name: SrS Logics
-- Public contact email: founder@ss49d1t1tech.in. Canonical website URLs still use srslogics.com pending a separate domain migration.
+- Company Instagram: https://www.instagram.com/ss49tech/
+- Public contact email: founder@ss49d1t1tech.in. Primary website: https://ss49d1t1tech.in/.
 - Founder: Shubham Singh
 - Operating base: Nagpur, Maharashtra, India
 - Markets served: India, UAE, United Kingdom, and United States through a remote delivery model
@@ -43,42 +43,42 @@ Core capabilities:
 
 ## Primary pages
 
-- [Home](https://srslogics.com/): Company overview, services, operating model, and common questions
-- [Services](https://srslogics.com/services/): Custom software, workflows, dashboards, finance systems, and data systems
-- [Process](https://srslogics.com/process/): Requirement review, planning, development, testing, handover, and support
-- [Pricing](https://srslogics.com/pricing/): Project scope, proposal currencies, and payment milestones
-- [Projects](https://srslogics.com/projects/): Deployed, active, and current client engagements
-- [Case studies](https://srslogics.com/case-studies/): Published examples of software in operational use
-- [Client reviews](https://srslogics.com/client-reviews/): Complete statements from named business owners using deployed SS49 D1T1TECH systems
-- [About SS49 D1T1TECH](https://srslogics.com/about/): Company identity, founder, operating base, and delivery approach
-- [Founder insights](https://srslogics.com/insights/): Articles on workflow fit and practical digital transformation
-- [Regions](https://srslogics.com/regions/): International delivery model and priority markets
-- [Privacy](https://srslogics.com/privacy/): Website, enquiry, and client privacy information
-- [Terms](https://srslogics.com/terms/): Website and project-engagement terms
-- [Security](https://srslogics.com/security/): Secure development and responsibility model
+- [Home](https://ss49d1t1tech.in/): Company overview, services, operating model, and common questions
+- [Services](https://ss49d1t1tech.in/services/): Custom software, workflows, dashboards, finance systems, and data systems
+- [Process](https://ss49d1t1tech.in/process/): Requirement review, planning, development, testing, handover, and support
+- [Pricing](https://ss49d1t1tech.in/pricing/): Project scope, proposal currencies, and payment milestones
+- [Projects](https://ss49d1t1tech.in/projects/): Deployed, active, and current client engagements
+- [Case studies](https://ss49d1t1tech.in/case-studies/): Published examples of software in operational use
+- [Client reviews](https://ss49d1t1tech.in/client-reviews/): Reviews and selected excerpts from named business owners using deployed SS49 D1T1TECH systems
+- [About SS49 D1T1TECH](https://ss49d1t1tech.in/about/): Company identity, founder, operating base, and delivery approach
+- [Founder insights](https://ss49d1t1tech.in/insights/): Articles on workflow fit and practical digital transformation
+- [Regions](https://ss49d1t1tech.in/regions/): International delivery model and priority markets
+- [Privacy](https://ss49d1t1tech.in/privacy/): Website, enquiry, and client privacy information
+- [Terms](https://ss49d1t1tech.in/terms/): Website and project-engagement terms
+- [Security](https://ss49d1t1tech.in/security/): Secure development and responsibility model
 
 ## Regional and sector pages
 
-- [Custom software company in Nagpur](https://srslogics.com/nagpur-custom-software-company/)
-- [Education management software in Nagpur](https://srslogics.com/education-management-software-nagpur/)
-- [Business data analysis systems](https://srslogics.com/business-data-analysis-systems/)
-- [Custom business software in the UAE](https://srslogics.com/uae/)
-- [Custom software delivery for UK businesses](https://srslogics.com/uk/)
-- [Custom software delivery for US businesses](https://srslogics.com/us/)
-- [Custom software development in Dubai](https://srslogics.com/custom-software-development-dubai/)
-- [Internal business software in the UAE](https://srslogics.com/internal-business-software-uae/)
-- [Workflow automation software in Dubai](https://srslogics.com/workflow-automation-software-dubai/)
-- [Custom software company in Raipur](https://srslogics.com/raipur/)
+- [Custom software company in Nagpur](https://ss49d1t1tech.in/nagpur-custom-software-company/)
+- [Education management software in Nagpur](https://ss49d1t1tech.in/education-management-software-nagpur/)
+- [Business data analysis systems](https://ss49d1t1tech.in/business-data-analysis-systems/)
+- [Custom business software in the UAE](https://ss49d1t1tech.in/uae/)
+- [Custom software delivery for UK businesses](https://ss49d1t1tech.in/uk/)
+- [Custom software delivery for US businesses](https://ss49d1t1tech.in/us/)
+- [Custom software development in Dubai](https://ss49d1t1tech.in/custom-software-development-dubai/)
+- [Internal business software in the UAE](https://ss49d1t1tech.in/internal-business-software-uae/)
+- [Workflow automation software in Dubai](https://ss49d1t1tech.in/workflow-automation-software-dubai/)
+- [Custom software company in Raipur](https://ss49d1t1tech.in/raipur/)
 
 ## Contracted international work
 
-- [8L Marketing (8LM)](https://srslogics.com/projects/#8l-marketing): United States engagement to develop a custom ads management system under a nine-month contract. Status: contracted development, not a deployed case study. No public delivery dates or results are confirmed.
+- [8L Marketing (8LM)](https://ss49d1t1tech.in/projects/#8l-marketing): United States engagement to develop a custom ads management system under a nine-month contract. Status: contracted development, not a deployed case study. No public delivery dates or results are confirmed.
 
 ## Deployed case studies
 
-- [KNP Signature](https://srslogics.com/case-studies/knp-enterprise-finance/): Finance operations system covering billing, stock, payments, balances, and management visibility
-- [Royal Celebration Console](https://srslogics.com/case-studies/riyansh-venue-management/): Venue operations system covering enquiries, bookings, hotel stays, vendors, payments, and readiness
-- [Utsav Poultry Integration System](https://srslogics.com/case-studies/utsav-feeds-poultry/): Poultry operations system covering owner monitoring, farmer reporting, feed, health, and records
+- [KNP Signature](https://ss49d1t1tech.in/case-studies/knp-enterprise-finance/): Finance operations system covering billing, stock, payments, balances, and management visibility
+- [Royal Celebration Console](https://ss49d1t1tech.in/case-studies/riyansh-venue-management/): Venue operations system covering enquiries, bookings, hotel stays, vendors, payments, and readiness
+- [Utsav Poultry Integration System](https://ss49d1t1tech.in/case-studies/utsav-feeds-poultry/): Poultry operations system covering owner monitoring, farmer reporting, feed, health, and records
 
 ## Citation guidance
 

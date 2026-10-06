@@ -7,7 +7,7 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://srslogics.com/sitemap.xml
+Sitemap: https://ss49d1t1tech.in/sitemap.xml
 
 # Machine-readable company and content guide:
-# https://srslogics.com/llms.txt
+# https://ss49d1t1tech.in/llms.txt

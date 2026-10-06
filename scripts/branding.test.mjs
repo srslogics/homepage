@@ -68,11 +68,11 @@ test('all public pages use the current identity, with the legal name in every fo
     }
     for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
       walk(JSON.parse(json), node => {
-        if (['Organization', 'ProfessionalService'].includes(node['@type']) && node['@id'] === 'https://srslogics.com/#organization') {
+        if (['Organization', 'ProfessionalService'].includes(node['@type']) && node['@id'] === 'https://ss49d1t1tech.in/#organization') {
           assert.equal(node.name, legal, file);
           assert.equal(node.legalName, legal, file);
-          assert.ok(node.alternateName.includes('SrS Logics'), file);
-          assert.equal(node.logo, 'https://srslogics.com/assets/brand/ss49-mark.png', file);
+          assert.deepEqual(node.alternateName, ['SS49', 'SS49 D1T1TECH'], file);
+          assert.equal(node.logo, 'https://ss49d1t1tech.in/assets/brand/ss49-mark.png', file);
         }
       });
     }
@@ -97,21 +97,56 @@ test('assistant and machine-readable briefs state the corrected official identit
   }
 });
 
-test('confirmed founder email is used while canonical URLs, historical reviews and endpoint are preserved', async () => {
+test('primary domain and email are current while reviews and the service endpoint stay valid', async () => {
   const home = await read('index.html');
-  assert.match(home, /rel="canonical" href="https:\/\/srslogics.com\/"/);
+  assert.ok(home.includes('rel="canonical" href="https://ss49d1t1tech.in/"'));
   assert.ok(home.includes('founder@ss49d1t1tech.in'));
   assert.equal(knowledge.contact.email, 'founder@ss49d1t1tech.in');
+  assert.equal(knowledge.contact.instagram, 'https://www.instagram.com/ss49tech/');
   for (const file of [...files, 'assets/js/assistant.js', 'llms.txt', 'llms-full.txt']) {
     assert.ok(!(await read(file)).includes('shubhamsingh@srslogics.com'), `${file}: stale contact email`);
   }
-  assert.ok(home.includes('https://www.instagram.com/srslogics/'));
-  const oldReviews = execFileSync('git', ['show', 'HEAD:client-reviews/index.html'], { cwd: root, encoding: 'utf8' });
+  assert.ok(!home.includes('https://www.instagram.com/srslogics/'));
+  assert.ok(home.includes('https://www.instagram.com/ss49tech/'));
+  const oldReviews = JSON.parse(await read('scripts/fixtures/client-review-quotes.json'));
   const reviews = await read('client-reviews/index.html');
   const quotations = html => [...html.matchAll(/<p>“[^]*?”<\/p>/g)].map(([text]) => text);
-  assert.ok(quotations(oldReviews).length > 0);
-  assert.deepEqual(quotations(reviews), quotations(oldReviews));
+  assert.ok(oldReviews.length > 0);
+  const expected = oldReviews.map(quote => quote.replace('SRS Logics developed both our website and poultry operations application with a clear understanding of our business. ', ''));
+  assert.deepEqual(quotations(reviews), expected);
+  assert.ok(reviews.includes("Excerpt from the client's review."));
   assert.ok((await read('assets/js/assistant-config.js')).includes('https://srs-logics-assistant.onrender.com/api/assistant'));
+});
+
+test('published identity and discovery files contain no superseded brand or domain', async () => {
+  for (const file of [...files, 'llms.txt', 'llms-full.txt', 'robots.txt', 'sitemap.xml', 'server/assistant-knowledge.mjs', 'assets/brand/ss49-share.svg']) {
+    assert.doesNotMatch(await read(file), /srs[ -]?logics|s9s[ -]?logics/i, file);
+  }
+  for (const file of files) {
+    const html = await read(file);
+    const canonical = html.match(/rel="canonical" href="([^"]+)"/)[1];
+    if (html.includes('class="site-footer"')) {
+      const footer = html.match(/<footer class="site-footer"[\s\S]*?<\/footer>/)[0];
+      if (footer.includes('href="tel:+919270925106"')) {
+        assert.ok(footer.includes('https://www.instagram.com/ss49tech/'), file);
+      }
+    }
+    assert.equal(new URL(canonical).origin, 'https://ss49d1t1tech.in', file);
+    const og = html.match(/property="og:url" content="([^"]+)"/);
+    if (og) assert.equal(og[1], canonical, file);
+    for (const [, url] of html.matchAll(/hreflang="[^"]+" href="([^"]+)"/g)) {
+      assert.equal(new URL(url).origin, 'https://ss49d1t1tech.in', file);
+    }
+  }
+  const sitemap = await read('sitemap.xml');
+  for (const [, url] of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+    assert.equal(new URL(url).origin, 'https://ss49d1t1tech.in');
+    const file = `${new URL(url).pathname.slice(1)}index.html`;
+    assert.ok(files.includes(file), `sitemap route exists: ${file}`);
+    assert.ok((await read(file)).includes(`rel="canonical" href="${url}"`), file);
+  }
+  assert.ok((await read('robots.txt')).includes('Sitemap: https://ss49d1t1tech.in/sitemap.xml'));
+  assert.ok((await read('server/.env.example')).includes('ASSISTANT_ALLOWED_ORIGINS=https://ss49d1t1tech.in,https://www.ss49d1t1tech.in'));
 });
 
 test('current logo wrappers and rebuild paths cannot regenerate the old mark', async () => {

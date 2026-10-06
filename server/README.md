@@ -47,6 +47,13 @@ advertised in health so a newer page still works against an older service.
 
 ## Local verification
 
+For the approved domain migration, set `ASSISTANT_ALLOWED_ORIGINS` on the existing
+hosted service to `https://ss49d1t1tech.in,https://www.ss49d1t1tech.in` and redeploy
+the service with the updated company knowledge. Editing `.env.example` alone does
+not change Render's environment. The new origin returned HTTP 403 in the
+7 October 2026 check. Keep the existing API endpoint until a replacement is
+provisioned and tested; its hostname is infrastructure, not the public brand.
+
 Run `node --test scripts/assistant.test.mjs`. These tests use a fake provider and
 never incur AI charges. For an intentional live local test, configure the secrets
 in a local ignored `server/.env`, allow only the exact local preview origin, and run
