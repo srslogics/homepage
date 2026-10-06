@@ -222,7 +222,7 @@ test("offline guide and editable brief work without provider calls", async () =>
   await ui.get("copy-brief").fire("click");
   assert.equal(ui.copied(), "My reviewed brief");
   await ui.get("email-brief").fire("click");
-  assert.match(ui.window.location.href, /^mailto:shubhamsingh@srslogics.com\?/);
+  assert.match(ui.window.location.href, /^mailto:founder@ss49d1t1tech.in\?/);
   assert.match(ui.window.location.href, /My%20reviewed%20brief/);
   const lastUrl = ui.window.location.href;
   ui.get("brief-output").value = "x".repeat(4000);

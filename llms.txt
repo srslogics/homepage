@@ -2,7 +2,7 @@
 
 > SS49 D1T1TECH is a senior-led custom software company based in Nagpur, India. It designs internal business software, workflow systems, dashboards, finance tools, reporting platforms, and institution-specific systems with project availability across India, UAE, UK, and USA.
 
-Last updated: 2026-10-06
+Last updated: 2026-10-07
 Canonical website: https://srslogics.com/
 
 ## Canonical identity
@@ -11,11 +11,11 @@ Canonical website: https://srslogics.com/
 - Public brand: SS49 D1T1TECH
 - Short name and logo: SS49
 - Former name: SrS Logics
-- The existing srslogics.com domain and email addresses remain in use.
+- Public contact email: founder@ss49d1t1tech.in. Canonical website URLs still use srslogics.com pending a separate domain migration.
 - Founder: Shubham Singh
 - Operating base: Nagpur, Maharashtra, India
 - Markets served: India, UAE, United Kingdom, and United States through a remote delivery model
-- Email: shubhamsingh@srslogics.com
+- Email: founder@ss49d1t1tech.in
 - Telephone: +91 9270925106
 
 ## What SS49 D1T1TECH does

@@ -158,9 +158,9 @@
   });
   $("email-brief").addEventListener("click", () => {
     const body = $("brief-output").value;
-    const url = "mailto:shubhamsingh@srslogics.com?subject=Custom%20software%20project%20enquiry&body=" + encodeURIComponent(body);
+    const url = "mailto:founder@ss49d1t1tech.in?subject=Custom%20software%20project%20enquiry&body=" + encodeURIComponent(body);
     if (url.length > 1800) {
-      $("brief-status").textContent = "This brief is too long for a reliable email link. Copy it and email shubhamsingh@srslogics.com.";
+      $("brief-status").textContent = "This brief is too long for a reliable email link. Copy it and email founder@ss49d1t1tech.in.";
       return;
     }
     window.location.href = url;

@@ -8,7 +8,7 @@
 - Public brand: SS49 D1T1TECH
 - Short name and logo: SS49
 - Former name: SrS Logics
-- The existing srslogics.com domain and email addresses remain in use.
+- Public contact email: founder@ss49d1t1tech.in. Canonical website URLs still use srslogics.com pending a separate domain migration.
 - Founder: Shubham Singh
 - Founder full name: Shubham Ramesh Singh
 - Founder LinkedIn: https://www.linkedin.com/in/shubhamsinghvr/
@@ -18,7 +18,7 @@
 - Base location: Nagpur, Maharashtra, India
 - Service footprint: India, UAE, United Kingdom, and United States through remote-first engagements
 - Website: https://srslogics.com/
-- Primary contact email: shubhamsingh@srslogics.com
+- Primary contact email: founder@ss49d1t1tech.in
 - Primary contact phone: +91 9270925106
 - Booking link: https://calendly.com/shubhamsinghvr/strategy-call
 

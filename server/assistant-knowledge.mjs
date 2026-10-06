@@ -2,8 +2,8 @@ import { scopeInstructions } from "./assistant-scope.mjs";
 
 // Manually curated public facts only. Never crawl the repository or client apps.
 export const knowledge = {
-  reviewed: "2026-10-06",
-  company: "SS49 D1T1TECH (OPC) PRIVATE LIMITED, formerly SrS Logics, is a custom software company based in Nagpur, India. Founder: Shubham Singh. Work starts with each client's requirements and is not limited to a particular industry. The existing website srslogics.com and email shubhamsingh@srslogics.com remain the current contact details. Use SS49 D1T1TECH as the public brand and SS49 as the short name. The exact official company name is SS49 D1T1TECH (OPC) PRIVATE LIMITED. D1T1TECH contains two digit 1s; do not use the earlier D1g1tech spelling. Explain the former name when asked.",
+  reviewed: "2026-10-07",
+  company: "SS49 D1T1TECH (OPC) PRIVATE LIMITED, formerly SrS Logics, is a custom software company based in Nagpur, India. Founder: Shubham Singh. Work starts with each client's requirements and is not limited to a particular industry. The existing website srslogics.com and email founder@ss49d1t1tech.in remain the current contact details. Use SS49 D1T1TECH as the public brand and SS49 as the short name. The exact official company name is SS49 D1T1TECH (OPC) PRIVATE LIMITED. D1T1TECH contains two digit 1s; do not use the earlier D1g1tech spelling. Explain the former name when asked.",
   story: "The founding purpose was to close the gap between having software and people being able to use it confidently. Understanding the work, implementation support, training, and adoption matter alongside the code.",
   approach: "Discuss goals, users, current processes, constraints, and priorities. Agree scope before making commitments. Project-specific prices, schedules, and technical feasibility must be confirmed by Shubham.",
   services: "Custom applications, connected business systems, workflow automation, role-specific portals, integrations, reporting, and data analysis. Work can replace spreadsheet processes, connect existing tools, or support a new software requirement. Portfolio industries are examples, not eligibility criteria.",
@@ -59,7 +59,7 @@ export const knowledge = {
     { client: "Food processing company (identity withheld)", system: "Production records, stock movements, purchases, sales, and reporting", status: "Discovery and architecture" }
   ],
   sources: ["https://srslogics.com/about/", "https://srslogics.com/services/", "https://srslogics.com/process/", "https://srslogics.com/projects/", "https://srslogics.com/pricing/"],
-  contact: { email: "shubhamsingh@srslogics.com", booking: "https://calendly.com/shubhamsinghvr/strategy-call" }
+  contact: { email: "founder@ss49d1t1tech.in", booking: "https://calendly.com/shubhamsinghvr/strategy-call" }
 };
 
 export const instructions = `You are the SS49 D1T1TECH AI project-enquiry assistant, not Shubham and not a live human.

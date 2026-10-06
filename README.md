@@ -2,7 +2,7 @@
 
 Static multi-page website for SS49 D1T1TECH, a Nagpur-based custom software company serving businesses and institutions across India and the UAE.
 
-Official company name: **SS49 D1T1TECH (OPC) PRIVATE LIMITED**. Short brand and logo: **SS49**. Formerly **SrS Logics**. The existing domain, email, social account URLs, and assistant endpoint remain unchanged.
+Official company name: **SS49 D1T1TECH (OPC) PRIVATE LIMITED**. Short brand and logo: **SS49**. Formerly **SrS Logics**. Public contact email: **founder@ss49d1t1tech.in**, confirmed 7 October 2026. Canonical website URLs, social account URLs, and the assistant endpoint are unchanged; primary-domain migration is separate.
 
 ## Brand Assets
 

@@ -72,10 +72,14 @@ test('assistant and machine-readable briefs state the corrected official identit
   }
 });
 
-test('contacts, canonical URLs, historical reviews and public endpoint are preserved', async () => {
+test('confirmed founder email is used while canonical URLs, historical reviews and endpoint are preserved', async () => {
   const home = await read('index.html');
   assert.match(home, /rel="canonical" href="https:\/\/srslogics.com\/"/);
-  assert.ok(home.includes('shubhamsingh@srslogics.com'));
+  assert.ok(home.includes('founder@ss49d1t1tech.in'));
+  assert.equal(knowledge.contact.email, 'founder@ss49d1t1tech.in');
+  for (const file of [...files, 'assets/js/assistant.js', 'llms.txt', 'llms-full.txt']) {
+    assert.ok(!(await read(file)).includes('shubhamsingh@srslogics.com'), `${file}: stale contact email`);
+  }
   assert.ok(home.includes('https://www.instagram.com/srslogics/'));
   const oldReviews = execFileSync('git', ['show', 'HEAD:client-reviews/index.html'], { cwd: root, encoding: 'utf8' });
   const reviews = await read('client-reviews/index.html');
