@@ -1,5 +1,8 @@
 @import "./tokens.css";
 
+/* Existing page layouts remain a fallback; enterprise.css owns the visual system. */
+@layer legacy {
+
 *,
 *::before,
 *::after {
@@ -150,16 +153,15 @@ img {
   align-items: center;
   gap: 0.7rem;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .brand::before {
-  width: 2.25rem;
-  height: 2.25rem;
-  flex: 0 0 2.25rem;
-  border: 1px solid rgba(29, 100, 200, 0.22);
-  border-radius: 0.58rem;
-  background: url("../../favicon.svg?v=20260922-s9s") center / cover no-repeat;
-  box-shadow: 0 8px 22px rgba(31, 74, 122, 0.12);
+  width: 5.5rem;
+  height: 2rem;
+  flex: 0 0 5.5rem;
+  background: url("../brand/ss49-wordmark.svg?v=20261006-ss49") center / contain no-repeat;
+  mix-blend-mode: multiply;
   content: "";
 }
 
@@ -173,14 +175,19 @@ img {
   font-size: 1.02rem;
   font-weight: 700;
   letter-spacing: 0.045em;
-  text-shadow: 0 0 18px rgba(29, 100, 200, 0.1);
+  white-space: nowrap;
 }
 
 .brand-tag {
   color: var(--text-muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  font-size: 0.59rem;
+  letter-spacing: 0.055em;
   text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.page-careers .cta-panel a[href^="mailto:"] {
+  overflow-wrap: anywhere;
 }
 
 .nav-toggle {
@@ -2321,8 +2328,8 @@ summary:focus-visible {
   }
 
   .brand-tag {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
+    font-size: 0.56rem;
+    letter-spacing: 0.035em;
   }
 
   .quote-panel p {
@@ -3766,7 +3773,7 @@ body:not(.page-home) [id="frequently-asked-questions"] .card h3 {
   }
 }
 
-/* Product-led layouts share the existing S9S palette and typography. */
+/* Product-led layouts share the existing SS49 palette and typography. */
 .home-hero {
   padding: clamp(3rem, 6vw, 5.5rem) 0 0;
 }
@@ -4263,4 +4270,6 @@ summary:focus-visible,
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
 }

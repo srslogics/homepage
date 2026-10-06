@@ -112,10 +112,13 @@ def main():
     projects = pages["projects/index.html"]
     homepage = (ROOT / "index.html").read_text()
     utsav_client = "<strong>Utsav Feed Industries</strong>"
-    client_strip = homepage.split('<div class="client-line"', 1)[1].split("</div>", 1)[0]
+    client_strip = homepage.split('<div data-client-names>', 1)[1].split("</div>", 1)[0]
     assert utsav_client in client_strip, "Utsav must appear in the client-name strip"
     assert "<small>" not in client_strip, "Client strip must show names only, without project statuses"
-    assert len(re.findall(r"<strong>", client_strip)) == 8, "Client strip must retain all eight names"
+    assert len(re.findall(r"<strong>", client_strip)) == 11, "Client strip must retain all eleven names"
+    assert "<strong>8L Marketing</strong>" in client_strip, "8L Marketing must appear in the client strip"
+    assert "<strong>MS Parte Enterprise</strong>" in client_strip, "MS Parte Enterprise must appear in the client strip"
+    assert "Maharana Group" in client_strip and "Maharana &amp; Bose Associates" in client_strip, "Maharana Group must include its associate name"
     assert not re.search(r"utsav|poultry", homepage.replace(utsav_client, "", 1), re.I), "Only Utsav's client-name entry belongs on the homepage, not its app showcase"
     utsav = next(g for g in projects.galleries if g["data-gallery-title"] == "Poultry Integration System")
     assert len(utsav["data-images"].split("|")) == 3, "Utsav gallery must retain all three views"

@@ -3,12 +3,9 @@
   const siteRoot = script ? new URL("../../", script.src) : new URL("/", window.location.href);
   const main = document.querySelector("main");
   const navItems = [
-    ["Home", ""],
     ["Services", "services/"],
-    ["Institutional", "education-management-software-nagpur/"],
-    ["Client Systems", "projects/"],
-    ["Case Studies", "case-studies/"],
-    ["Regions", "regions/"],
+    ["Client systems", "projects/"],
+    ["Our approach", "process/"],
     ["Insights", "insights/"],
     ["Company", "about/"]
   ];
@@ -37,24 +34,18 @@
       const link = document.createElement("a");
       const url = new URL(path, siteRoot);
       const targetPath = url.pathname.replace(/\/index\.html$/, "/");
-      const isCaseStudy = label === "Case Studies" && (
+      const isCaseStudy = label === "Client systems" && (
         currentPath.includes("/case-studies/") || currentPath.includes("/client-reviews/")
       );
       const isInsight = label === "Insights" && currentPath.includes("/insights/");
-      const isRegionPage = label === "Regions" && [
-        "/regions/",
-        "/uk/",
-        "/us/",
-        "/uae/",
-        "/custom-software-development-dubai/",
-        "/internal-business-software-uae/",
-        "/workflow-automation-software-dubai/"
-      ].some((route) => currentPath.endsWith(route));
+      const isService = label === "Services" && /\/(?:education-management-software-nagpur|business-data-analysis-systems|custom-software-development-dubai|internal-business-software-uae|workflow-automation-software-dubai)\/$/.test(currentPath);
+      const isApproach = label === "Our approach" && /\/(?:pricing|security)\/$/.test(currentPath);
+      const isCompany = label === "Company" && /\/(?:careers|regions|uk|us|uae|raipur|nagpur-custom-software-company)\/$/.test(currentPath);
 
       link.href = url.href;
       link.textContent = label;
 
-      if (currentPath === targetPath || isCaseStudy || isInsight || isRegionPage) {
+      if (currentPath === targetPath || isCaseStudy || isInsight || isService || isApproach || isCompany) {
         link.setAttribute("aria-current", "page");
       }
 
@@ -90,7 +81,10 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeMenu();
+      if (event.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
+        closeMenu();
+        button.focus();
+      }
     });
 
     document.addEventListener("click", (event) => {

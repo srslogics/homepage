@@ -1,3 +1,4 @@
+@layer legacy {
 .assistant-main { padding-block: 3rem 5rem; }
 .assistant-intro { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
 .assistant-intro h1 { font-size: clamp(2.4rem, 4vw, 4rem); margin: .5rem 0; max-width: 19ch; }
@@ -7,6 +8,7 @@
 .assistant-conversation, .assistant-brief { border: 1px solid var(--surface-line); border-radius: var(--radius-lg); background: var(--bg-panel); box-shadow: var(--shadow-md); min-width: 0; overflow: hidden; }
 .assistant-topbar { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: 1.25rem; border-bottom: 1px solid var(--surface-line); }
 .assistant-identity { display: flex; gap: .75rem; align-items: center; }
+.assistant-identity img { width: 60px; height: auto; flex-shrink: 0; mix-blend-mode: multiply; }
 .assistant-identity h2 { font: 700 1rem var(--font-sans); margin: 0; }
 .assistant-identity span { color: var(--text-muted); font-size: .75rem; }
 .assistant-text-button { background: none; border: 0; padding: .65rem .4rem; color: var(--accent-strong); font: 600 .8rem var(--font-sans); cursor: pointer; }
@@ -45,8 +47,9 @@
 }
 @media (max-width: 480px) {
   .assistant-topbar, .assistant-compose, .assistant-brief, .assistant-log { padding: 1rem; }
-  .assistant-identity img { width: 32px; height: 32px; }
+  .assistant-identity img { width: 48px; height: auto; }
   .assistant-identity h2 { font-size: .9rem; }
   .assistant-input-row { flex-direction: column; align-items: stretch; }
   .assistant-main textarea, .assistant-brief input { font-size: 16px; }
+}
 }

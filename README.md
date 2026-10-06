@@ -1,10 +1,21 @@
-# S9S Logics Website
+# SS49 D1T1TECH Website
 
-Static multi-page website for S9S Logics, a Nagpur-based custom software company serving businesses and institutions across India and the UAE.
+Static multi-page website for SS49 D1T1TECH, a Nagpur-based custom software company serving businesses and institutions across India and the UAE.
+
+Official company name: **SS49 D1T1TECH (OPC) PRIVATE LIMITED**. Short brand and logo: **SS49**. Formerly **SrS Logics**. The existing domain, email, social account URLs, and assistant endpoint remain unchanged.
+
+## Brand Assets
+
+- `assets/brand/ss49-wordmark-source.png` and `ss49-avatar-source.png` are the approved, non-interlocking logo masters.
+- `node scripts/build_brand_assets.cjs` exports the website artwork, favicons, and social-share image. It requires `sharp`.
+- The SVG files wrap the approved raster artwork; they are not vector-traced logo masters.
+- Older `s9s-logics-*.svg` files are retained for historical reference only and are not used by current pages.
+- Run `node --test scripts/branding.test.mjs scripts/assistant.test.mjs` and `python3 scripts/check_site.py` before release.
+- `node scripts/check_brand_browser.cjs` checks all public pages at six phone, tablet, and desktop widths, plus menus, galleries, FAQs, and the offline project brief; it requires `playwright` and Chrome. Screenshots and results go in ignored `tmp/ss49-review/`. External requests are blocked, so this does not test the deployed AI service.
 
 ## Positioning
 
-S9S Logics designs internal business systems around real operating requirements, including:
+SS49 D1T1TECH designs internal business systems around real operating requirements, including:
 
 - Workflow and approval platforms
 - Finance and operations systems
@@ -26,11 +37,13 @@ S9S Logics designs internal business systems around real operating requirements,
 - `assistant/` - public project guide, optional AI conversation, and local brief builder
 - `server/` - separate optional AI service; see `server/README.md` before enabling
 - `assets/css/` - shared design system
-- `assets/js/site-nav.js` - global navigation behavior
+- `assets/js/site-nav-client-systems.js` - global navigation behavior
 - `assets/images/` - brand and project media
 
 ## Technical Notes
 
+- `assets/css/enterprise.css` is the current visual system. Existing layout and behavior styles are isolated in a lower-priority `legacy` cascade layer.
+- Manrope is self-hosted in `assets/fonts/` under the included SIL Open Font License; no third-party font request is needed.
 - Framework-free HTML, CSS, and JavaScript
 - Shared responsive design system
 - Canonical URLs, Open Graph metadata, and JSON-LD structured data
