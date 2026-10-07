@@ -32,7 +32,7 @@ test('social previews use the reachable new-domain logo with matching dimensions
     assert.ok(html.includes('<meta name="twitter:card" content="summary">'), file);
     checked++;
   }
-  assert.equal(checked, 25, 'all existing social previews should retain their logo metadata');
+  assert.equal(checked, 30, 'all non-redirect pages should have social preview metadata');
 });
 
 test('8L Marketing is consistently listed as contracted work, not deployed proof', async () => {

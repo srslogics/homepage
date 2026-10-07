@@ -1,6 +1,6 @@
 # SS49 D1T1TECH
 
-> SS49 D1T1TECH is a senior-led custom software company based in Nagpur, India. It designs internal business software, workflow systems, dashboards, finance tools, reporting platforms, and institution-specific systems with project availability across India, UAE, UK, and USA.
+> SS49 D1T1TECH is a founder-led custom software company based in Nagpur, India. It builds custom applications, connected business systems, and digital products around client requirements across industries, with project availability in India, UAE, UK, and USA.
 
 Last updated: 2026-10-07
 Canonical website: https://ss49d1t1tech.in/
@@ -20,7 +20,7 @@ Canonical website: https://ss49d1t1tech.in/
 
 ## What SS49 D1T1TECH does
 
-SS49 D1T1TECH builds custom software when a business or institution has outgrown spreadsheets, disconnected tools, or generic SaaS products. Systems are structured around the client's real workflow, roles, approvals, reporting requirements, data flow, and management visibility.
+SS49 D1T1TECH develops new applications and improves existing business workflows. Projects start with the client's goals, users, and requirements, rather than a fixed industry or product template. Replacing spreadsheets or disconnected tools is one use case, not the limit of the company's work.
 
 Core capabilities:
 
@@ -75,6 +75,8 @@ Core capabilities:
 - [8L Marketing (8LM)](https://ss49d1t1tech.in/projects/#8l-marketing): United States engagement to develop a custom ads management system under a nine-month contract. Status: contracted development, not a deployed case study. No public delivery dates or results are confirmed.
 
 ## Deployed case studies
+
+- [Lakshya Institute](https://ss49d1t1tech.in/case-studies/lakshya-education-operations/): Deployed education platform connecting management, students, parents, faculty, and attendance workflows
 
 - [KNP Signature](https://ss49d1t1tech.in/case-studies/knp-enterprise-finance/): Finance operations system covering billing, stock, payments, balances, and management visibility
 - [Royal Celebration Console](https://ss49d1t1tech.in/case-studies/riyansh-venue-management/): Venue operations system covering enquiries, bookings, hotel stays, vendors, payments, and readiness

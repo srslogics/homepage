@@ -42,6 +42,12 @@ SS49 D1T1TECH designs internal business systems around real operating requiremen
 
 ## Technical Notes
 
+- After changing page copy, run `python3 scripts/sync_search_metadata.py` and
+  `python3 scripts/check_search.py`. FAQ metadata is derived from visible answers;
+  this keeps stale or invisible FAQ claims out of the published markup.
+- Search and AI visibility work, checks, and outstanding account-level steps are
+  documented in `docs/search-visibility-2026-10-07.md`. No ranking is guaranteed.
+
 - `assets/css/enterprise.css` is the current visual system. Existing layout and behavior styles are isolated in a lower-priority `legacy` cascade layer.
 - Manrope is self-hosted in `assets/fonts/` under the included SIL Open Font License; no third-party font request is needed.
 - Framework-free HTML, CSS, and JavaScript
