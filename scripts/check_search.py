@@ -90,6 +90,19 @@ def main():
         descriptions.append(description[0])
     assert all(n == 1 for n in Counter(titles).values()), "Duplicate titles"
     assert all(n == 1 for n in Counter(descriptions).values()), "Duplicate descriptions"
+    # Independently protect the public company identity, not just generator parity.
+    identity = company()
+    assert set(identity["sameAs"]) == {
+        "https://www.linkedin.com/company/ss49d1t1tech/",
+        "https://www.instagram.com/ss49tech/",
+    }, "Company profiles must not be confused with founder profiles"
+    about = (ROOT / "about/index.html").read_text()
+    visible_about = about.split("<main>", 1)[1].split("</main>", 1)[0]
+    assert identity["description"] in visible_about, "Company description must be visible"
+    assert identity["legalName"] in visible_about, "Legal identity must be visible"
+    assert len(pages[ORIGIN + "/about/"].faq) >= 5, "Company answers missing"
+    for profile in identity["sameAs"]:
+        assert f'href="{profile}"' in visible_about, "Official profile must be visible"
     for path in REGIONS.values():
         actual = {x["hreflang"]: x["href"] for x in pages[ORIGIN + path].links if "hreflang" in x}
         assert actual == {k: ORIGIN + v for k, v in REGIONS.items()}, f"{path}: reciprocal hreflang"

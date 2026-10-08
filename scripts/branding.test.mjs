@@ -129,6 +129,7 @@ test('published identity and discovery files contain no superseded brand or doma
       const footer = html.match(/<footer class="site-footer"[\s\S]*?<\/footer>/)[0];
       if (footer.includes('href="tel:+919270925106"')) {
         assert.ok(footer.includes('https://www.instagram.com/ss49tech/'), file);
+        assert.ok(footer.includes('https://www.linkedin.com/company/ss49d1t1tech/'), file);
       }
     }
     assert.equal(new URL(canonical).origin, 'https://ss49d1t1tech.in', file);

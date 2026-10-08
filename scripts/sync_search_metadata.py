@@ -35,8 +35,10 @@ def company():
     return {"@context": "https://schema.org", "@type": "Organization",
             "@id": ORIGIN + "/#organization", "name": LEGAL, "legalName": LEGAL,
             "alternateName": ["SS49", BRAND], "url": ORIGIN + "/",
+            "description": "SS49 D1T1TECH is a custom software development company based in Nagpur, Maharashtra, India. We build applications, connected business systems, and digital products across industries.",
             "logo": ORIGIN + "/assets/brand/ss49-mark.png",
-            "sameAs": ["https://www.instagram.com/ss49tech/"],
+            "sameAs": ["https://www.instagram.com/ss49tech/",
+                       "https://www.linkedin.com/company/ss49d1t1tech/"],
             "email": "founder@ss49d1t1tech.in", "telephone": "+91-9270925106",
             "founder": {"@id": ORIGIN + "/about/#founder"},
             "address": {"@type": "PostalAddress", "addressLocality": "Nagpur",
@@ -47,6 +49,16 @@ def company():
 def sync(source):
     if re.search(r'http-equiv="refresh"', source, re.I):
         return source
+    # Keep the verified company profile visible alongside its structured identity.
+    def social_footer(match):
+        footer = match.group(0)
+        if 'https://www.linkedin.com/company/ss49d1t1tech/' not in footer:
+            footer = re.sub(
+                r'(<li><a href="https://www.instagram.com/ss49tech/"[^>]*>.*?</a></li>)',
+                r'\1\n            <li><a href="https://www.linkedin.com/company/ss49d1t1tech/" target="_blank" rel="noopener">LinkedIn</a></li>',
+                footer)
+        return footer
+    source = re.sub(r'<footer\b[\s\S]*?</footer>', social_footer, source)
     if '<meta name="robots"' not in source:
         source = source.replace('</head>', '  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">\n</head>')
     title = plain(re.search(r"<title>(.*?)</title>", source).group(1))
