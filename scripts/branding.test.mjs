@@ -118,9 +118,16 @@ test('primary domain and email are current while reviews and the service endpoin
   assert.ok((await read('assets/js/assistant-config.js')).includes('https://srs-logics-assistant.onrender.com/api/assistant'));
 });
 
-test('published identity and discovery files contain no superseded brand or domain', async () => {
+test('former brand appears only in approved rebrand explanations, never as current identity', async () => {
   for (const file of [...files, 'llms.txt', 'llms-full.txt', 'robots.txt', 'sitemap.xml', 'server/assistant-knowledge.mjs', 'assets/brand/ss49-share.svg']) {
-    assert.doesNotMatch(await read(file), /srs[ -]?logics|s9s[ -]?logics/i, file);
+    const source = await read(file);
+    assert.doesNotMatch(source, /s9s[ -]?logics|srslogics\.com/i, file);
+    if (['index.html', 'about/index.html'].includes(file)) {
+      assert.match(source, /formerly SrS Logics/i, file);
+      assert.doesNotMatch(source.match(/<title>(.*?)<\/title>/)[1], /SrS Logics/i, file);
+    } else {
+      assert.doesNotMatch(source, /srs[ -]?logics/i, file);
+    }
   }
   for (const file of files) {
     const html = await read(file);
@@ -148,6 +155,14 @@ test('published identity and discovery files contain no superseded brand or doma
   }
   assert.ok((await read('robots.txt')).includes('Sitemap: https://ss49d1t1tech.in/sitemap.xml'));
   assert.ok((await read('server/.env.example')).includes('ASSISTANT_ALLOWED_ORIGINS=https://ss49d1t1tech.in,https://www.ss49d1t1tech.in'));
+});
+
+test('the former brand has a visible explanation with an accessible homepage link', async () => {
+  const about = (await read('about/index.html')).split('<main>')[1].split('</main>')[0];
+  assert.ok(about.includes('id="rebrand"'));
+  assert.ok(about.includes('What happened to SrS Logics?'));
+  assert.ok(about.includes('SrS Logics is now known as SS49 D1T1TECH.'));
+  assert.ok((await read('index.html')).includes('href="about/#rebrand"'));
 });
 
 test('current logo wrappers and rebuild paths cannot regenerate the old mark', async () => {
