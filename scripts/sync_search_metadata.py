@@ -38,7 +38,8 @@ def company():
             "description": "SS49 D1T1TECH is a custom software development company based in Nagpur, Maharashtra, India. We build applications, connected business systems, and digital products across industries.",
             "logo": ORIGIN + "/assets/brand/ss49-mark.png",
             "sameAs": ["https://www.instagram.com/ss49tech/",
-                       "https://www.linkedin.com/company/ss49d1t1tech/"],
+                       "https://www.linkedin.com/company/ss49d1t1tech/",
+                       "https://share.google/ye9MjSSmT0RUikH2d"],
             "email": "founder@ss49d1t1tech.in", "telephone": "+91-9270925106",
             "founder": {"@id": ORIGIN + "/about/#founder"},
             "address": {"@type": "PostalAddress", "addressLocality": "Nagpur",
@@ -49,13 +50,18 @@ def company():
 def sync(source):
     if re.search(r'http-equiv="refresh"', source, re.I):
         return source
-    # Keep the verified company profile visible alongside its structured identity.
+    # Keep verified company profiles visible alongside their structured identity.
     def social_footer(match):
         footer = match.group(0)
         if 'https://www.linkedin.com/company/ss49d1t1tech/' not in footer:
             footer = re.sub(
                 r'(<li><a href="https://www.instagram.com/ss49tech/"[^>]*>.*?</a></li>)',
                 r'\1\n            <li><a href="https://www.linkedin.com/company/ss49d1t1tech/" target="_blank" rel="noopener">LinkedIn</a></li>',
+                footer)
+        if 'https://share.google/ye9MjSSmT0RUikH2d' not in footer:
+            footer = re.sub(
+                r'(<li><a href="https://www.linkedin.com/company/ss49d1t1tech/"[^>]*>.*?</a></li>)',
+                r'\1\n            <li><a href="https://share.google/ye9MjSSmT0RUikH2d" target="_blank" rel="noopener">Google Business Profile</a></li>',
                 footer)
         return footer
     source = re.sub(r'<footer\b[\s\S]*?</footer>', social_footer, source)

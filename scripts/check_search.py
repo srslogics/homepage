@@ -95,6 +95,7 @@ def main():
     assert set(identity["sameAs"]) == {
         "https://www.linkedin.com/company/ss49d1t1tech/",
         "https://www.instagram.com/ss49tech/",
+        "https://share.google/ye9MjSSmT0RUikH2d",
     }, "Company profiles must not be confused with founder profiles"
     about = (ROOT / "about/index.html").read_text()
     visible_about = about.split("<main>", 1)[1].split("</main>", 1)[0]
