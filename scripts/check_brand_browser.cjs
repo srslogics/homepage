@@ -6,7 +6,7 @@ const { execFileSync } = require('node:child_process');
 
 const root = path.resolve(__dirname, '..');
 const output = path.join(root, 'tmp/ss49-review');
-const types = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.json': 'application/json' };
+const types = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.json': 'application/json', '.woff2': 'font/woff2' };
 const files = execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', '*.html'], { cwd: root, encoding: 'utf8' }).trim().split('\n');
 const server = http.createServer(async (req, res) => {
   const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
@@ -44,7 +44,7 @@ async function main() {
             try { await img.decode(); } catch {}
           }));
         });
-        const state = await page.evaluate(() => {
+        const state = await page.evaluate((allowFormerBrand) => {
           const brand = document.querySelector('.site-header .brand');
           const rect = brand?.getBoundingClientRect();
           const toggle = document.querySelector('.nav-toggle');
@@ -68,11 +68,12 @@ async function main() {
             desktopNavOverlap,
             desktopNavHidden: innerWidth > 1100 && (!nav || getComputedStyle(nav).display === 'none'),
             titleOverflow,
-            oldBrand: /SrS[ -]?Logics|S9S Logics|D1g1tech/i.test(document.body.innerText),
-            themeMissing: !document.querySelector('link[href*="enterprise.css"]') || !document.fonts.check('500 16px Manrope')
+            oldBrand: /S9S Logics|D1g1tech/i.test(document.body.innerText) || (!allowFormerBrand && /SrS[ -]?Logics/i.test(document.body.innerText)),
+            themeMissing: !document.querySelector('link[href*="enterprise.css"]') || ![...document.fonts].some(font => font.family === 'Manrope' && font.status === 'loaded'),
+            wrongFontRequest: !performance.getEntriesByType('resource').some(r => r.name.endsWith('/manrope-variable.woff2')) || performance.getEntriesByType('resource').some(r => r.name.endsWith('/manrope-variable.ttf'))
           };
-        });
-        if (state.overflow || state.broken.length || state.brandOverlap || state.logoMissing || state.brandOutside || state.desktopNavOverlap || state.desktopNavHidden || state.titleOverflow.length || state.oldBrand || state.themeMissing || errors.length) {
+        }, ['index.html', 'about/index.html'].includes(file));
+        if (state.overflow || state.broken.length || state.brandOverlap || state.logoMissing || state.brandOutside || state.desktopNavOverlap || state.desktopNavHidden || state.titleOverflow.length || state.oldBrand || state.themeMissing || state.wrongFontRequest || errors.length) {
           failures.push({ file, width, ...state, errors });
         }
         results.push({ file, width, title: state.title });

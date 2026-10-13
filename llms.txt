@@ -2,7 +2,7 @@
 
 > SS49 D1T1TECH is a founder-led custom software company based in Nagpur, India. It builds custom applications, connected business systems, and digital products around client requirements across industries, with project availability in India, UAE, UK, and USA.
 
-Last updated: 2026-10-07
+Last updated: 2026-10-13
 Canonical website: https://ss49d1t1tech.in/
 
 ## Canonical identity
@@ -10,7 +10,10 @@ Canonical website: https://ss49d1t1tech.in/
 - Official company name: SS49 D1T1TECH (OPC) PRIVATE LIMITED
 - Public brand: SS49 D1T1TECH
 - Short name and logo: SS49
+- Short brand alias: SS49 Tech
 - Company Instagram: https://www.instagram.com/ss49tech/
+- Company LinkedIn: https://www.linkedin.com/company/ss49d1t1tech/
+- Google Business Profile: https://share.google/ye9MjSSmT0RUikH2d
 - Public contact email: founder@ss49d1t1tech.in. Primary website: https://ss49d1t1tech.in/.
 - Founder: Shubham Singh
 - Operating base: Nagpur, Maharashtra, India
@@ -24,18 +27,17 @@ SS49 D1T1TECH develops new applications and improves existing business workflows
 
 Core capabilities:
 
-- Custom business software development
-- Internal workflow and approval systems
-- Finance, billing, stock, and payment platforms
-- Management dashboards and reporting systems
-- Business data analysis systems
-- Education management and institutional ERP systems
-- Workflow automation for operational teams
+- Custom applications and digital products
+- Business systems and workflow automation
+- Integrations and data systems
+- Client, staff, and partner platforms
+
+Source: [Services](https://ss49d1t1tech.in/services/). Published case studies below illustrate these capabilities; they do not limit the company to those industries.
 
 ## Delivery and commercial facts
 
-- Typical focused software delivery: approximately 4 to 6 weeks; larger or integration-heavy platforms use staged timelines
-- Typical post-launch support: 6 months unless revised in the engagement terms
+- A focused system may reach production review in 4 to 6 weeks; this is not a guaranteed launch date. Larger or integration-heavy platforms use staged timelines.
+- Proposals can include 6 months of post-launch maintenance. Coverage, exclusions, and response routes are defined in the project agreement.
 - Typical India project range: Rs.30,000 to Rs.5 Lakhs, depending on scope and engineering requirements
 - Institutional software range: Rs.6 Lakhs to Rs.15 Lakhs with a typical 16 to 18 week delivery horizon
 - Typical UAE project range: AED 15,000 to AED 200,000, depending on complexity and system depth
@@ -44,7 +46,7 @@ Core capabilities:
 ## Primary pages
 
 - [Home](https://ss49d1t1tech.in/): Company overview, services, operating model, and common questions
-- [Services](https://ss49d1t1tech.in/services/): Custom software, workflows, dashboards, finance systems, and data systems
+- [Services](https://ss49d1t1tech.in/services/): Custom applications, digital products, business systems, integrations, and user platforms
 - [Process](https://ss49d1t1tech.in/process/): Requirement review, planning, development, testing, handover, and support
 - [Pricing](https://ss49d1t1tech.in/pricing/): Project scope, proposal currencies, and payment milestones
 - [Projects](https://ss49d1t1tech.in/projects/): Deployed, active, and current client engagements

@@ -8,12 +8,14 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from search_content import Content
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://ss49d1t1tech.in"
 BRAND = "SS49 D1T1TECH"
 LEGAL = "SS49 D1T1TECH (OPC) PRIVATE LIMITED"
 IMAGE = ORIGIN + "/assets/brand/ss49-mark.png?v=20261007-share"
+FONT = "/assets/fonts/manrope-variable.woff2"
 SCHEMA = re.compile(r'<script type="application/ld\+json">([\s\S]*?)</script>')
 REGIONS = {"en-US": "/us/", "en-GB": "/uk/", "en-AE": "/uae/", "x-default": "/regions/"}
 
@@ -24,11 +26,20 @@ def plain(value):
 
 
 def questions(source):
-    # Region selectors and other non-question disclosure widgets are excluded.
-    return [{"@type": "Question", "name": plain(q),
-             "acceptedAnswer": {"@type": "Answer", "text": plain(a)}}
-            for q, a in re.findall(
-                r"<details(?:\s[^>]*)?>\s*<summary>([\s\S]*?)</summary>\s*<p>([\s\S]*?)</p>\s*</details>", source)]
+    return [{"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": a}}
+            for q, a in Content(source).questions()]
+
+
+def company_references(value):
+    # One complete company definition per page; nested uses refer to that entity.
+    if isinstance(value, dict):
+        if value.get("@id") == ORIGIN + "/#organization":
+            return {"@id": value["@id"]}
+        return {key: company_references(child) for key, child in value.items()}
+    if isinstance(value, list):
+        return [company_references(child) for child in value]
+    return value
 
 
 def company():
@@ -71,11 +82,22 @@ def sync(source):
     description = html.unescape(re.search(r'<meta name="description" content="([^"]+)"', source).group(1))
     canonical = re.search(r'rel="canonical" href="([^"]+)"', source).group(1)
     language = re.search(r'<html lang="([^"]+)"', source).group(1)
+    content = Content(source)
+    services = content.services(canonical)
+    preview = content.preview(canonical)
     nodes = [json.loads(m.group(1)) for m in SCHEMA.finditer(source)]
     output = []
     for node in nodes:
         if node.get("@type") == "FAQPage" or node.get("@id") == ORIGIN + "/#organization":
             continue
+        node = company_references(node)
+        if node.get("@type") == "OfferCatalog" and services:
+            node["itemListElement"] = [
+                {"@type": "Offer", "itemOffered": {**service, "provider": {"@id": ORIGIN + "/#organization"}}}
+                for service in services]
+        if node.get("@type") == "Article":
+            node.update(headline=content.find("h1")[0].text(), description=description,
+                        image=preview["url"] if preview else IMAGE)
         if node.get("@type") == "WebSite":
             node.update(name=BRAND, alternateName=["SS49", "SS49 Tech"], publisher={"@id": ORIGIN + "/#organization"})
         if node.get("@type") in ("WebPage", "AboutPage", "CollectionPage"):
@@ -96,14 +118,17 @@ def sync(source):
     source = SCHEMA.sub("", source)
     source = re.sub(r'  <meta (?:property="(?:og:|article:)[^"]+"|name="twitter:[^"]+")[^>]*>\n', "", source)
     article = next((n for n in output if n.get("@type") == "Article"), None)
+    image = preview if article and preview else {"url": IMAGE, "width": "512", "height": "512", "alt": BRAND + " company logo"}
+    image_type = "image/jpeg" if image["url"].endswith((".jpg", ".jpeg")) else "image/png"
     meta = {"og:locale": language.replace("-", "_") if "-" in language else "en_IN",
             "og:title": title, "og:description": description,
             "og:type": "article" if article else "website", "og:url": canonical,
-            "og:image": IMAGE, "og:image:secure_url": IMAGE, "og:image:type": "image/png",
-            "og:image:width": "512", "og:image:height": "512",
-            "og:image:alt": BRAND + " company logo", "og:site_name": LEGAL,
-            "twitter:card": "summary", "twitter:title": title, "twitter:description": description,
-            "twitter:image": IMAGE, "twitter:image:alt": BRAND + " company logo"}
+            "og:image": image["url"], "og:image:secure_url": image["url"], "og:image:type": image_type,
+            "og:image:width": image["width"], "og:image:height": image["height"],
+            "og:image:alt": image["alt"], "og:site_name": LEGAL,
+            "twitter:card": "summary_large_image" if article and preview else "summary",
+            "twitter:title": title, "twitter:description": description,
+            "twitter:image": image["url"], "twitter:image:alt": image["alt"]}
     if article:
         for key, field in [("article:published_time", "datePublished"), ("article:modified_time", "dateModified")]:
             if article.get(field):
@@ -112,6 +137,9 @@ def sync(source):
     for key, value in meta.items():
         attr = "name" if key.startswith("twitter:") else "property"
         tags.append(f'  <meta {attr}="{key}" content="{html.escape(value, quote=True)}">')
+    source = re.sub(r'  <link rel="preload" href="/assets/fonts/[^"]+"[^>]*>\n', "", source)
+    tags.insert(0, f'  <link rel="preload" href="{FONT}" as="font" type="font/woff2" crossorigin>')
+    source = re.sub(r'(assets/css/enterprise\.css)(?:\?[^"\s]+)?', r'\1?v=20261013-search', source)
     if canonical.removeprefix(ORIGIN) in REGIONS.values():
         source = re.sub(r'  <link rel="alternate" hreflang="[^"]+" href="[^"]+">\n', "", source)
         tags += [f'  <link rel="alternate" hreflang="{lang}" href="{ORIGIN}{path}">' for lang, path in REGIONS.items()]

@@ -10,7 +10,7 @@ const legal = 'SS49 D1T1TECH (OPC) PRIVATE LIMITED';
 const files = execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', '*.html'], { cwd: root, encoding: 'utf8' }).trim().split('\n');
 const read = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 
-test('social previews use the reachable new-domain logo with matching dimensions', async () => {
+test('social previews use the company logo or a visible case-study image with matching dimensions', async () => {
   const image = 'https://ss49d1t1tech.in/assets/brand/ss49-mark.png?v=20261007-share';
   const png = await readFile(new URL('../assets/brand/ss49-mark.png', import.meta.url));
   assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
@@ -21,18 +21,40 @@ test('social previews use the reachable new-domain logo with matching dimensions
   for (const file of files) {
     const html = await read(file);
     if (!html.includes('<meta property="og:image"')) continue;
+    const evidence = html.match(/<img data-search-image\s[^>]+>/)?.[0];
+    const attribute = name => evidence?.match(new RegExp(`${name}="([^"]+)"`))?.[1];
+    const canonical = html.match(/rel="canonical" href="([^"]+)"/)[1];
+    const expectedImage = evidence ? new URL(attribute('src'), canonical).href : image;
+    const expectedAlt = evidence ? attribute('alt') : 'SS49 D1T1TECH company logo';
+    assert.ok((await readFile(new URL(`..${new URL(expectedImage).pathname}`, import.meta.url))).length > 0, file);
     for (const property of ['og:image', 'og:image:secure_url']) {
-      assert.ok(html.includes(`<meta property="${property}" content="${image}">`), file);
+      assert.ok(html.includes(`<meta property="${property}" content="${expectedImage}">`), file);
     }
-    assert.ok(html.includes(`<meta name="twitter:image" content="${image}">`), file);
-    assert.ok(html.includes('<meta property="og:image:type" content="image/png">'), file);
+    assert.ok(html.includes(`<meta name="twitter:image" content="${expectedImage}">`), file);
+    assert.ok(html.includes(`<meta property="og:image:type" content="${evidence ? 'image/jpeg' : 'image/png'}">`), file);
+    assert.ok(html.includes(`<meta property="og:image:alt" content="${expectedAlt}">`), file);
+    assert.ok(html.includes(`<meta name="twitter:image:alt" content="${expectedAlt}">`), file);
     for (const dimension of ['width', 'height']) {
-      assert.ok(html.includes(`<meta property="og:image:${dimension}" content="512">`), file);
+      assert.ok(html.includes(`<meta property="og:image:${dimension}" content="${evidence ? attribute(dimension) : '512'}">`), file);
     }
-    assert.ok(html.includes('<meta name="twitter:card" content="summary">'), file);
+    assert.ok(html.includes(`<meta name="twitter:card" content="${evidence ? 'summary_large_image' : 'summary'}">`), file);
     checked++;
   }
   assert.equal(checked, 30, 'all non-redirect pages should have social preview metadata');
+});
+
+test('company identity links are not confused with the founder and fonts are compact', async () => {
+  for (const file of ['index.html', 'about/index.html']) {
+    const html = await read(file);
+    assert.ok(html.includes('rel="me" href="https://www.linkedin.com/company/ss49d1t1tech/"'));
+    assert.ok(html.includes('rel="me" href="https://www.instagram.com/ss49tech/"'));
+    assert.doesNotMatch(html, /rel="me" href="https:\/\/www\.(linkedin|instagram)\.com\/(in\/)?shubhamsinghvr\//);
+  }
+  const font = await readFile(new URL('../assets/fonts/manrope-variable.woff2', import.meta.url));
+  const original = await readFile(new URL('../assets/fonts/manrope-variable.ttf', import.meta.url));
+  assert.equal(font.subarray(0, 4).toString(), 'wOF2');
+  assert.ok(font.length < original.length / 2, 'font download reduced by more than half');
+  assert.ok((await read('assets/css/enterprise.css')).includes('manrope-variable.woff2'));
 });
 
 test('8L Marketing is consistently listed as contracted work, not deployed proof', async () => {

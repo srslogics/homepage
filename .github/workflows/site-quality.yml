@@ -1,0 +1,31 @@
+name: Site quality
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-and-regression-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test visible-content extraction
+        run: python3 scripts/test_search_metadata.py
+      - name: Check generated metadata is current
+        run: python3 scripts/sync_search_metadata.py --check
+      - name: Check crawl paths and search consistency
+        run: python3 scripts/check_search.py
+      - name: Check markup, assets, and links
+        run: python3 scripts/check_site.py
+      - name: Check branding and assistant behavior
+        run: node --test scripts/branding.test.mjs scripts/assistant.test.mjs

@@ -1,6 +1,6 @@
 # SS49 D1T1TECH Website
 
-Static multi-page website for SS49 D1T1TECH, a Nagpur-based custom software company serving businesses and institutions across India and the UAE.
+Static multi-page website for SS49 D1T1TECH, a Nagpur-based custom software company offering remote delivery across India, the UAE, the UK, and the USA.
 
 Official company name: **SS49 D1T1TECH (OPC) PRIVATE LIMITED**. Short brand and logo: **SS49**. Primary website: **https://ss49d1t1tech.in/**. Public contact email: **founder@ss49d1t1tech.in**. Domain migration approved 7 October 2026; see `docs/domain-migration-2026-10-07.md` for hosting and Search Console steps still required after deployment.
 
@@ -15,14 +15,12 @@ Official company name: **SS49 D1T1TECH (OPC) PRIVATE LIMITED**. Short brand and 
 
 ## Positioning
 
-SS49 D1T1TECH designs internal business systems around real operating requirements, including:
+SS49 D1T1TECH builds software across industries around each client's users and requirements:
 
-- Workflow and approval platforms
-- Finance and operations systems
-- Management dashboards and reporting
-- Business data analysis systems
-- Education management software
-- Custom software for India and UAE clients
+- Custom applications and digital products
+- Business systems and workflow automation
+- Integrations and data systems
+- Client, staff, and partner platforms
 
 ## Structure
 
@@ -43,13 +41,19 @@ SS49 D1T1TECH designs internal business systems around real operating requiremen
 ## Technical Notes
 
 - After changing page copy, run `python3 scripts/sync_search_metadata.py` and
-  `python3 scripts/check_search.py`. FAQ metadata is derived from visible answers;
-  this keeps stale or invisible FAQ claims out of the published markup.
+  `python3 scripts/check_search.py`. FAQ answers, marked service cards, and article
+  headlines are derived from the visible HTML. Keep `data-service` on service
+  cards and use `data-search-image` only for a privacy-reviewed article image.
+- `python3 scripts/test_search_metadata.py` covers content extraction and
+  repeatable metadata generation. `.github/workflows/site-quality.yml` runs the
+  static and regression checks on pushes and pull requests; it does not deploy.
 - Search and AI visibility work, checks, and outstanding account-level steps are
-  documented in `docs/search-visibility-2026-10-07.md`. No ranking is guaranteed.
+  documented in `docs/search-quality-2026-10-13.md`. No ranking is guaranteed.
 
 - `assets/css/enterprise.css` is the current visual system. Existing layout and behavior styles are isolated in a lower-priority `legacy` cascade layer.
-- Manrope is self-hosted in `assets/fonts/` under the included SIL Open Font License; no third-party font request is needed.
+- Manrope is self-hosted as a preloaded WOFF2 in `assets/fonts/` under the included
+  SIL Open Font License. `python3 scripts/build_web_font.py` rebuilds it from the
+  retained TTF using `fonttools[woff]`, preserving characters and variable weights.
 - Framework-free HTML, CSS, and JavaScript
 - Shared responsive design system
 - Canonical URLs, Open Graph metadata, and JSON-LD structured data
