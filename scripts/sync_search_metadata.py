@@ -34,7 +34,7 @@ def questions(source):
 def company():
     return {"@context": "https://schema.org", "@type": "Organization",
             "@id": ORIGIN + "/#organization", "name": LEGAL, "legalName": LEGAL,
-            "alternateName": ["SS49", BRAND], "url": ORIGIN + "/",
+            "alternateName": ["SS49", BRAND, "SS49 Tech"], "url": ORIGIN + "/",
             "description": "SS49 D1T1TECH is a custom software development company based in Nagpur, Maharashtra, India. We build applications, connected business systems, and digital products across industries.",
             "logo": ORIGIN + "/assets/brand/ss49-mark.png",
             "sameAs": ["https://www.instagram.com/ss49tech/",
@@ -77,7 +77,7 @@ def sync(source):
         if node.get("@type") == "FAQPage" or node.get("@id") == ORIGIN + "/#organization":
             continue
         if node.get("@type") == "WebSite":
-            node.update(name=BRAND, alternateName="SS49", publisher={"@id": ORIGIN + "/#organization"})
+            node.update(name=BRAND, alternateName=["SS49", "SS49 Tech"], publisher={"@id": ORIGIN + "/#organization"})
         if node.get("@type") in ("WebPage", "AboutPage", "CollectionPage"):
             node.update(name=title, description=description, inLanguage=language,
                         isPartOf={"@id": ORIGIN + "/#website"}, about={"@id": ORIGIN + "/#organization"})

@@ -71,12 +71,24 @@ test('all public pages use the current identity, with the legal name in every fo
         if (['Organization', 'ProfessionalService'].includes(node['@type']) && node['@id'] === 'https://ss49d1t1tech.in/#organization') {
           assert.equal(node.name, legal, file);
           assert.equal(node.legalName, legal, file);
-          assert.deepEqual(node.alternateName, ['SS49', 'SS49 D1T1TECH'], file);
+          assert.deepEqual(node.alternateName, ['SS49', 'SS49 D1T1TECH', 'SS49 Tech'], file);
           assert.equal(node.logo, 'https://ss49d1t1tech.in/assets/brand/ss49-mark.png', file);
         }
       });
     }
   }
+});
+
+test('homepage declares short website names without changing the primary brand', async () => {
+  const html = await read('index.html');
+  const nodes = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map(([, json]) => JSON.parse(json));
+  const websites = nodes.filter(node => node['@type'] === 'WebSite');
+  assert.equal(websites.length, 1);
+  assert.equal(websites[0].name, 'SS49 D1T1TECH');
+  assert.deepEqual(websites[0].alternateName, ['SS49', 'SS49 Tech']);
+  assert.equal(websites[0].url, 'https://ss49d1t1tech.in/');
+  assert.equal(websites[0].publisher['@id'], 'https://ss49d1t1tech.in/#organization');
 });
 
 test('manifests agree on the legal company name and short app name', async () => {
