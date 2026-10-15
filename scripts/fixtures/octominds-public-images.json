@@ -1,0 +1,65 @@
+[
+  {
+    "file": "projects-octominds-overview-20261015-redacted.png",
+    "caption": "Inventory overview and setup checklist",
+    "width": 2880,
+    "height": 1580,
+    "sha256": "b6f1748fa0e04667869ae4c7e47fb6163b53c536589df297e270279c9789c5fb"
+  },
+  {
+    "file": "projects-octominds-sign-in-20261015-redacted.png",
+    "caption": "Staff sign-in with mobile number and PIN",
+    "width": 2880,
+    "height": 1580,
+    "sha256": "96889d269d213c9dbcec7751b0d2433710d1645f9f8f4dd258681c40827a0a09"
+  },
+  {
+    "file": "projects-octominds-guided-setup-20261015-redacted.png",
+    "caption": "Guided setup: create a preschool centre",
+    "width": 2880,
+    "height": 1580,
+    "sha256": "4f536caf1af42cb38dc29aeb2984f7068a1aeaeba61a9bec105d40874894ce4b"
+  },
+  {
+    "file": "projects-octominds-items-20261015-redacted.png",
+    "caption": "Item catalogue, search, and stock filters",
+    "width": 2880,
+    "height": 1580,
+    "sha256": "582de6f9e8654eadab18d6aaa6c4dd27ec7b1c2a756dd2560d35746d94943f11"
+  },
+  {
+    "file": "projects-octominds-stock-movements-20261015-redacted.png",
+    "caption": "Stock receipts, issues, returns, and corrections",
+    "width": 2880,
+    "height": 1580,
+    "sha256": "506783b3254bd7de7779d4d6c6cff6ac94588535091ab19c9faa8d0db06868aa"
+  },
+  {
+    "file": "projects-octominds-transfers-20261015-redacted.png",
+    "caption": "Transfers between storage locations within a centre",
+    "width": 2880,
+    "height": 1580,
+    "sha256": "a4dd2d75bce49d346eb52987cfe9f33200ae69d318656e4ccc12a7444ebd175f"
+  },
+  {
+    "file": "projects-octominds-centers-storage-20261015-redacted.png",
+    "caption": "Centres, categories, and storage locations",
+    "width": 2880,
+    "height": 1580,
+    "sha256": "0642ecbb369afa237d56f6440da7104a845c7a9fa02a9ba971c52566ebd4fb97"
+  },
+  {
+    "file": "projects-octominds-reports-20261015-redacted.png",
+    "caption": "Stock balance export and stock-status filters",
+    "width": 2880,
+    "height": 1580,
+    "sha256": "ec5dd63edd276f3056acf0641cdc8ee195596b3400898104a102f30ef97f0649"
+  },
+  {
+    "file": "projects-octominds-account-20261015-redacted.png",
+    "caption": "Account role and centre access",
+    "width": 2880,
+    "height": 1580,
+    "sha256": "f0706d439b082c5a4ded1c95bd87552a04c33d6833b1fe00e29e00e46f517b27"
+  }
+]

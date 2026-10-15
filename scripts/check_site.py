@@ -139,6 +139,19 @@ def main():
         asset = ROOT / "assets/images" / item["file"]
         # Any image replacement needs a fresh privacy review before its hash changes.
         assert hashlib.sha256(asset.read_bytes()).hexdigest() == item["sha256"], f"Privacy-reviewed asset changed: {asset.name}"
+    octominds = next(g for g in projects.galleries if g["data-gallery-title"] == "OctoMinds Preschool Inventory")
+    octominds_approved = json.loads((ROOT / "scripts/fixtures/octominds-public-images.json").read_text())
+    assert len(octominds_approved) == 9, "OctoMinds must retain all nine privacy-reviewed screens"
+    assert octominds["data-images"].split("|") == ["../assets/images/" + item["file"] for item in octominds_approved]
+    assert octominds["data-captions"].split("|") == [item["caption"] + " (private details obscured)" for item in octominds_approved]
+    assert {asset.name for asset in ROOT.glob("assets/images/projects-octominds-*")} == {item["file"] for item in octominds_approved}, "Remove unreviewed OctoMinds assets, including original screenshots, from the public tree"
+    for item in octominds_approved:
+        asset = ROOT / "assets/images" / item["file"]
+        data = asset.read_bytes()
+        assert hashlib.sha256(data).hexdigest() == item["sha256"], f"Privacy-reviewed asset changed: {asset.name}"
+        assert data[:8] == b"\x89PNG\r\n\x1a\n"
+        assert int.from_bytes(data[16:20], "big") == item["width"]
+        assert int.from_bytes(data[20:24], "big") == item["height"]
     for file in ROOT.glob("assets/js/*.js"):
         result = subprocess.run(["node", "--check", str(file)], text=True, capture_output=True)
         if result.returncode:

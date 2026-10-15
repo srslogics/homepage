@@ -13,6 +13,12 @@ Official company name: **SS49 D1T1TECH (OPC) PRIVATE LIMITED**. Short brand and 
 - Run `node --test scripts/branding.test.mjs scripts/assistant.test.mjs` and `python3 scripts/check_site.py` before release.
 - `node scripts/check_brand_browser.cjs` checks all public pages at six phone, tablet, and desktop widths, plus menus, galleries, FAQs, and the offline project brief; it requires `playwright` and Chrome. Screenshots and results go in ignored `tmp/ss49-review/`. External requests are blocked, so this does not test the deployed AI service.
 
+## Screenshot Privacy
+
+Review client screenshots before adding them to the public website. Remove browser tabs, internal addresses, staff identities, account access details, and screenshot overlays. Redactions must be opaque pixels baked into the exported image, not CSS masks or reversible layers. Strip embedded metadata and keep original screenshots outside the published tree.
+
+The nine OctoMinds images use permanent redactions and cropped browser chrome. `node scripts/redact_octominds_images.cjs /path/to/originals` rebuilds them locally with `sharp`, verifies every masked pixel and metadata removal, and preserves the source originals. Inspect every exported image before manually updating `scripts/fixtures/octominds-public-images.json`; `python3 scripts/check_site.py` rejects altered reviewed files or extra OctoMinds images. Never update hashes automatically to bypass a failed privacy check.
+
 ## Positioning
 
 SS49 D1T1TECH builds software across industries around each client's users and requirements:

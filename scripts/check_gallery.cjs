@@ -37,6 +37,8 @@ function setup(hash = "") {
   education.closest = () => education;
   const lakshyaTarget = element("lakshya-institute");
   lakshyaTarget.closest = () => education;
+  const octomindsTarget = element("octominds-preschool");
+  octomindsTarget.closest = () => education;
   for (const id of ["project-lightbox", "lightbox-title", "lightbox-counter", "lightbox-image", "lightbox-caption", "lightbox-prev", "lightbox-next", "close"]) element(id);
   const modal = elements.get("project-lightbox");
   modal.querySelector = () => elements.get("close");
@@ -52,7 +54,7 @@ function setup(hash = "") {
   document.querySelectorAll = () => launchers;
   const window = { location: { hash }, addEventListener: (name, fn) => windowEvents.set(name, fn) };
   vm.runInNewContext(script, { document, window });
-  return { elements, launchers, document, documentEvents, window, windowEvents, region, target, education, lakshyaTarget, modal, bodyClasses };
+  return { elements, launchers, document, documentEvents, window, windowEvents, region, target, education, lakshyaTarget, octomindsTarget, modal, bodyClasses };
 }
 
 for (const hash of ["", "#missing", "#%E0%A4%A", "#[invalid-selector"]) {
@@ -66,6 +68,12 @@ for (const hash of ["#lakshya-institute", "#lakshya%2Dinstitute"]) {
   const app = setup(hash);
   assert.equal(app.education.open, true);
   assert.equal(app.lakshyaTarget.scrolled, true);
+  assert.equal(app.region.open, false);
+}
+for (const hash of ["#octominds-preschool", "#octominds%2Dpreschool"]) {
+  const app = setup(hash);
+  assert.equal(app.education.open, true);
+  assert.equal(app.octomindsTarget.scrolled, true);
   assert.equal(app.region.open, false);
 }
 const app = setup();
@@ -145,4 +153,28 @@ assert.equal(counter(), "1 / 26");
 key("Escape");
 assert.equal(app.modal.hidden, true);
 assert.equal(app.document.activeElement, lakshya);
-console.log("PASS: project anchors, all galleries, 8 KNP views, 11 Royal views, 26 Lakshya views, wraparound, keyboard controls, and focus restoration.");
+const octominds = app.launchers.find((node) => node.dataset.galleryTitle === "OctoMinds Preschool Inventory");
+const octomindsImages = octominds.dataset.images.split("|");
+const octomindsCaptions = octominds.dataset.captions.split("|");
+const octomindsScreens = ["overview", "sign-in", "guided-setup", "items", "stock-movements", "transfers", "centers-storage", "reports", "account"];
+assert.deepEqual(octomindsImages, octomindsScreens.map((screen) => `../assets/images/projects-octominds-${screen}-20261015-redacted.png`));
+assert.equal(octomindsCaptions.length, 9);
+click(octominds);
+for (let index = 0; index < 9; index++) {
+  assert.ok(fs.existsSync(path.resolve(__dirname, "../projects", octomindsImages[index])));
+  assert.equal(counter(), (index + 1) + " / 9");
+  assert.equal(img.src, octomindsImages[index]);
+  assert.equal(app.elements.get("lightbox-caption").textContent, octomindsCaptions[index]);
+  assert.equal(img.alt, "OctoMinds Preschool Inventory - " + octomindsCaptions[index]);
+  assert.match(img.alt, /private details obscured/);
+  click(app.elements.get("lightbox-next"));
+}
+assert.equal(counter(), "1 / 9");
+key("ArrowLeft");
+assert.equal(counter(), "9 / 9");
+key("ArrowRight");
+assert.equal(counter(), "1 / 9");
+key("Escape");
+assert.equal(app.modal.hidden, true);
+assert.equal(app.document.activeElement, octominds);
+console.log("PASS: project anchors, all galleries, 8 KNP views, 11 Royal views, 26 Lakshya views, 9 OctoMinds views, wraparound, keyboard controls, and focus restoration.");

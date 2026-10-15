@@ -147,6 +147,29 @@ async function checkUxJourneys(browser, origin, failures) {
   await page.locator('.project-jump-links a[href="#education-institutions"]').click();
   if (!await page.locator('#education-institutions').evaluate(el => el.open)) failures.push({ projects: 'region jump did not expand region' });
 
+  for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 1000 }, { width: 844, height: 390 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto(`${origin}/projects/#octominds-preschool`, { waitUntil: 'networkidle' });
+    const launcher = page.locator('[data-gallery-title="OctoMinds Preschool Inventory"]');
+    if (!await page.locator('#education-institutions').evaluate(el => el.open)) failures.push({ viewport, octominds: 'project anchor did not expand education section' });
+    await launcher.locator('img').evaluate(img => img.decode());
+    await launcher.locator('figure').screenshot({ path: path.join(output, `octominds-preview-${viewport.width}.png`) });
+    await launcher.click();
+    for (let index = 1; index <= 9; index++) {
+      await page.locator('#lightbox-image').evaluate(img => img.decode());
+      if (await page.locator('#lightbox-counter').innerText() !== `${index} / 9`) failures.push({ viewport, octominds: `incorrect counter at screen ${index}` });
+      const image = await page.locator('#lightbox-image').evaluate(img => ({ width: img.naturalWidth, height: img.naturalHeight, alt: img.alt }));
+      if (image.width !== 2880 || image.height !== 1580 || !image.alt.startsWith('OctoMinds Preschool Inventory - ') || !image.alt.includes('private details obscured')) failures.push({ viewport, octominds: 'invalid screenshot or alternative text', image });
+      if (index === 1) await page.screenshot({ path: path.join(output, `octominds-gallery-${viewport.width}.png`) });
+      await page.locator('#lightbox-next').click();
+    }
+    if (await page.locator('#lightbox-counter').innerText() !== '1 / 9') failures.push({ viewport, octominds: 'gallery did not wrap' });
+    const layout = await page.locator('.lightbox-dialog').evaluate(el => ({ height: el.getBoundingClientRect().height, viewport: innerHeight, overflow: document.documentElement.scrollWidth > innerWidth }));
+    if (layout.height > layout.viewport || layout.overflow) failures.push({ viewport, octominds: 'gallery overflow', layout });
+    await page.keyboard.press('Escape');
+    if (await page.locator('#project-lightbox').isVisible() || !await launcher.evaluate(el => el === document.activeElement)) failures.push({ viewport, octominds: 'close or focus restoration failed' });
+  }
+
   await page.setViewportSize({ width: 844, height: 390 });
   await page.goto(`${origin}/projects/#knp-signature`, { waitUntil: 'networkidle' });
   await page.locator('[data-gallery-title="KNP Signature"]').click();
@@ -167,7 +190,7 @@ async function checkUxJourneys(browser, origin, failures) {
   await noScript.locator('.site-nav a[href="services/"]').click();
   if (!noScript.url().includes('/services/')) failures.push({ noScript: 'service navigation failed' });
   await noScript.close();
-  console.log('Checked touch targets, region and brief shortcuts, landscape gallery/menu, and navigation without JavaScript.');
+  console.log('Checked touch targets, region and brief shortcuts, all nine OctoMinds screens on desktop/mobile/landscape, landscape gallery/menu, and navigation without JavaScript.');
 }
 
 main().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => server.close());
