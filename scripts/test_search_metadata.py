@@ -37,6 +37,20 @@ class SearchMetadataTest(unittest.TestCase):
         value = {"provider": {"@id": ORIGIN + "/#organization", "@type": "ProfessionalService", "name": "Stale name"}, "mentions": [other]}
         self.assertEqual(company_references(value), {"provider": {"@id": ORIGIN + "/#organization"}, "mentions": [other]})
 
+    def test_about_connects_short_names_to_visible_company_identity(self):
+        source = (ROOT / "about/index.html").read_text()
+        content = Content(source)
+        self.assertIn("SS49 is the short name for SS49 D1T1TECH.", content.find("main")[0].text())
+        answer = dict(content.questions())["What is SS49 D1T1TECH?"]
+        self.assertIn("SS49 and SS49 Tech refer to the same company.", answer)
+        self.assertIn("SS49 D1T1TECH (OPC) PRIVATE LIMITED", answer)
+        self.assertIn("based in Nagpur, India", answer)
+        faq = next(json.loads(m.group(1)) for m in SCHEMA.finditer(source)
+                   if json.loads(m.group(1)).get("@type") == "FAQPage")
+        schema_answer = next(q["acceptedAnswer"]["text"] for q in faq["mainEntity"]
+                             if q["name"] == "What is SS49 D1T1TECH?")
+        self.assertEqual(schema_answer, answer)
+
     def test_article_preview_is_opt_in_and_preserves_dates(self):
         source = (ROOT / "case-studies/knp-enterprise-finance/index.html").read_text()
         before = next(json.loads(m.group(1)) for m in SCHEMA.finditer(source) if json.loads(m.group(1)).get("@type") == "Article")
