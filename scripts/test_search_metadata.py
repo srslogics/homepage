@@ -68,6 +68,39 @@ class SearchMetadataTest(unittest.TestCase):
         redirect = '<html><head><meta http-equiv="refresh" content="0;url=/new/"></head></html>'
         self.assertEqual(sync(redirect), redirect)
 
+    def test_support_terms_stay_consistent_in_visible_content(self):
+        terms = ("Proposals can include 6 months of post-launch maintenance. "
+                 "The covered services, response route, and exclusions are stated in the project agreement.")
+        for file in ("index.html", "pricing/index.html", "process/index.html"):
+            with self.subTest(file=file):
+                content = Content((ROOT / file).read_text())
+                self.assertIn(terms, content.find("main")[0].text())
+                if file != "pricing/index.html":
+                    self.assertTrue(any(terms in answer for _, answer in content.questions()))
+
+    def test_buyer_guidance_and_cross_industry_positioning(self):
+        home = Content((ROOT / "index.html").read_text()).find("main")[0].text()
+        self.assertIn("around client requirements, across industries", home)
+        pricing = dict(Content((ROOT / "pricing/index.html").read_text()).questions())
+        for question in ("What costs should we consider beyond development?",
+                         "Can we begin with a smaller first release?",
+                         "What should we share to get an estimate?"):
+            self.assertIn(question, pricing)
+            self.assertGreater(len(pricing[question]), 80)
+        services = (ROOT / "services/index.html").read_text()
+        process = (ROOT / "process/index.html").read_text()
+        self.assertIn('id="custom-or-ready-made"', services)
+        self.assertIn('id="project-brief"', process)
+        self.assertIn('../services/#custom-or-ready-made', process)
+
+    def test_editorial_article_has_visible_author_and_qualified_estimate(self):
+        source = (ROOT / "insights/the-invisible-engine/index.html").read_text()
+        self.assertIn('../../about/#founder', source)
+        self.assertIn("not as a measured industry statistic", source)
+        article = next(json.loads(m.group(1)) for m in SCHEMA.finditer(source)
+                       if json.loads(m.group(1)).get("@type") == "Article")
+        self.assertIn('datetime="' + article["dateModified"] + '"', source)
+
 
 if __name__ == "__main__":
     unittest.main()
