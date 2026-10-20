@@ -138,7 +138,12 @@ def sync(source):
         attr = "name" if key.startswith("twitter:") else "property"
         tags.append(f'  <meta {attr}="{key}" content="{html.escape(value, quote=True)}">')
     source = re.sub(r'  <link rel="preload" href="/assets/fonts/[^"]+"[^>]*>\n', "", source)
-    tags.insert(0, f'  <link rel="preload" href="{FONT}" as="font" type="font/woff2" crossorigin>')
+    font_preload = f'  <link rel="preload" href="{FONT}" as="font" type="font/woff2" crossorigin>'
+    home_stylesheet = r'(  <link rel="stylesheet" href="assets/css/home\.css(?:\?[^"]*)?">)'
+    if re.search(home_stylesheet, source):
+        source = re.sub(home_stylesheet, lambda match: font_preload + "\n" + match[0], source, count=1)
+    else:
+        tags.insert(0, font_preload)
     source = re.sub(r'(assets/css/enterprise\.css)(?:\?[^"\s]+)?', r'\1?v=20261013-search', source)
     if canonical.removeprefix(ORIGIN) in REGIONS.values():
         source = re.sub(r'  <link rel="alternate" hreflang="[^"]+" href="[^"]+">\n', "", source)

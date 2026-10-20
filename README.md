@@ -57,9 +57,20 @@ SS49 D1T1TECH builds software across industries around each client's users and r
   documented in `docs/search-quality-2026-10-13.md`. No ranking is guaranteed.
 
 - `assets/css/enterprise.css` is the current visual system. Existing layout and behavior styles are isolated in a lower-priority `legacy` cascade layer.
+- After editing `tokens.css`, `main.css`, or `enterprise.css`, run
+  `python3 scripts/build_home_css.py`. The committed `home.css` bundle preserves
+  cascade order and relative asset paths, avoiding a chained CSS import on the
+  homepage. `python3 scripts/test_home_performance.py` checks bundle freshness
+  and homepage loading regressions in CI.
 - Manrope is self-hosted as a preloaded WOFF2 in `assets/fonts/` under the included
   SIL Open Font License. `python3 scripts/build_web_font.py` rebuilds it from the
   retained TTF using `fonttools[woff]`, preserving characters and variable weights.
+  `font-display: optional` prevents a late font swap: a slow first visit may use
+  the fallback font for that navigation rather than shifting already visible text.
+- Homepage ads are intentionally disabled. First-screen text has no entrance
+  animation, and below-hero screenshots reserve their dimensions and load lazily.
+  Retest mobile and desktop PageSpeed after deployment; static checks cannot
+  establish a Lighthouse score or identify every real-world layout shift.
 - Framework-free HTML, CSS, and JavaScript
 - Shared responsive design system
 - Canonical URLs, Open Graph metadata, and JSON-LD structured data

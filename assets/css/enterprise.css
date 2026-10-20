@@ -3,7 +3,7 @@
   src: url("../fonts/manrope-variable.woff2") format("woff2");
   font-style: normal;
   font-weight: 200 800;
-  font-display: swap;
+  font-display: optional;
 }
 
 :root {
@@ -320,10 +320,8 @@ h1, h2, h3, h4 { line-height: 1.18; }
 .footer-bottom p { margin: 0; }
 .footer-trust-links { justify-content: start; width: min(calc(100% - 6rem), var(--container)); margin: 1.2rem auto 0; font-size: .6rem; letter-spacing: .04em; }
 
-@keyframes enterprise-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-.enterprise-intro h1 { animation: enterprise-enter 650ms ease both; }
-.enterprise-intro-copy { animation: enterprise-enter 650ms 100ms ease both; }
-.hero-index { animation: enterprise-enter 650ms 180ms ease both; }
+/* First-screen content must not wait for entrance animations to become visible. */
+.enterprise-intro h1, .enterprise-intro-copy, .hero-index { animation: none; }
 .reveal-enabled .section-frame .container { opacity: 1; transform: none; transition: none; }
 
 @media (max-width: 1280px) {
