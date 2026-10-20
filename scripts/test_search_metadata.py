@@ -60,6 +60,33 @@ class SearchMetadataTest(unittest.TestCase):
         self.assertEqual(after["image"], ORIGIN + "/assets/images/projects-knp-dashboard.jpg")
         self.assertIsNone(Content('<img src="unrelated.png">').preview(ORIGIN))
 
+    def test_founder_is_collapsed_accessible_and_matches_metadata(self):
+        source = (ROOT / "about/index.html").read_text()
+        content = Content(source)
+        founders = [n for n in content.root.walk() if n.attrs.get("id") == "founder"]
+        self.assertEqual(len(founders), 1)
+        founder = founders[0]
+        self.assertEqual(founder.tag, "details")
+        self.assertNotIn("open", founder.attrs)
+        self.assertNotIn("hidden", founder.attrs)
+        self.assertNotIn("aria-hidden", founder.attrs)
+        self.assertEqual(next(n.text() for n in founder.walk() if n.tag == "summary"),
+                         "Who founded SS49 D1T1TECH?")
+        nodes = [json.loads(m.group(1)) for m in SCHEMA.finditer(source)]
+        person = next(n for n in nodes if n.get("@type") == "Person")
+        self.assertEqual(person["@id"], ORIGIN + "/about/#founder")
+        self.assertEqual(person["url"], person["@id"])
+        self.assertEqual(person["description"],
+                         next(n.text() for n in founder.walk() if n.tag == "p"))
+        links = {n.attrs.get("href") for n in founder.walk() if n.tag == "a"}
+        self.assertTrue(set(person["sameAs"]).issubset(links))
+        self.assertIn("Nagpur, Maharashtra, India", founder.text())
+        faq = next(n for n in nodes if n.get("@type") == "FAQPage")
+        answer = next(q["acceptedAnswer"]["text"] for q in faq["mainEntity"]
+                      if q["name"] == "Who founded SS49 D1T1TECH?")
+        self.assertEqual(answer, dict(content.questions())["Who founded SS49 D1T1TECH?"])
+        self.assertEqual(sync(source), source)
+
     def test_idempotence_and_redirect_preservation(self):
         for file in ("index.html", "services/index.html", "case-studies/knp-enterprise-finance/index.html"):
             with self.subTest(file=file):
