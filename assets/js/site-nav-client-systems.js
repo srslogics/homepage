@@ -10,6 +10,13 @@
     ["Company", "about/"]
   ];
   const headers = document.querySelectorAll(".site-header");
+  const subpages = {
+    Services: [["Education management", "education-management-software-nagpur/"], ["Business data analysis", "business-data-analysis-systems/"]],
+    "Client systems": [["Case studies", "case-studies/"], ["Client feedback", "client-reviews/"]],
+    "Our approach": [["Pricing", "pricing/"], ["Security", "security/"]],
+    Insights: [["The Invisible Engine", "insights/the-invisible-engine/"]],
+    Company: [["Careers", "careers/"], ["International delivery", "regions/"]]
+  };
 
   if (main) {
     main.id ||= "main-content";
@@ -63,7 +70,72 @@
 
     nav.replaceChildren(...navLinks, consultationLink);
 
+    const dropdowns = navLinks.map((link, index) => {
+      const label = navItems[index][0];
+      const group = document.createElement("div");
+      group.className = "nav-dropdown";
+      const trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "nav-dropdown-trigger";
+      trigger.textContent = label;
+      trigger.setAttribute("aria-expanded", "false");
+      if (link.hasAttribute("aria-current")) group.classList.add("is-current");
+      const panel = document.createElement("div");
+      panel.className = "nav-dropdown-panel";
+      panel.id = `${nav.id}-submenu-${index}`;
+      panel.hidden = true;
+      trigger.setAttribute("aria-controls", panel.id);
+      link.textContent = `${label} overview`;
+      if (new URL(link.href).pathname !== currentPath) link.removeAttribute("aria-current");
+      link.replaceWith(group);
+      panel.append(link);
+      subpages[label].forEach(([title, path]) => {
+        const child = document.createElement("a");
+        child.href = new URL(path, siteRoot).href;
+        child.textContent = title;
+        if (new URL(child.href).pathname === currentPath) child.setAttribute("aria-current", "page");
+        panel.append(child);
+      });
+      group.append(trigger, panel);
+      const setOpen = (open) => {
+        panel.hidden = !open;
+        trigger.setAttribute("aria-expanded", String(open));
+      };
+      trigger.addEventListener("click", () => {
+        const open = panel.hidden;
+        dropdowns.forEach((item) => item.setOpen(false));
+        setOpen(open);
+      });
+      group.addEventListener("pointerenter", (event) => {
+        if (event.pointerType !== "mouse" || window.innerWidth <= 1100) return;
+        dropdowns.forEach((item) => item.setOpen(false));
+        setOpen(true);
+      });
+      group.addEventListener("pointerleave", () => {
+        if (!group.contains(document.activeElement)) setOpen(false);
+      });
+      group.addEventListener("focusout", (event) => {
+        if (!group.contains(event.relatedTarget)) setOpen(false);
+      });
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          setOpen(true);
+          panel.querySelector("a").focus();
+        }
+      });
+      group.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !panel.hidden) {
+          event.stopPropagation();
+          setOpen(false);
+          trigger.focus();
+        }
+      });
+      return { setOpen };
+    });
+
     const closeMenu = () => {
+      dropdowns.forEach((item) => item.setOpen(false));
       button.setAttribute("aria-expanded", "false");
       button.setAttribute("aria-label", "Open navigation");
       nav.classList.remove("is-open");
