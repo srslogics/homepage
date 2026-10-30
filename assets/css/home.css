@@ -4893,6 +4893,16 @@ h1, h2, h3, h4 { line-height: 1.18; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 
+.project-enquiry { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid currentColor; }
+.project-enquiry > p { max-width: 65ch; }
+.enquiry-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0; }
+.enquiry-fields label { display: grid; gap: 0.5rem; font-weight: 600; }
+.enquiry-fields input, .enquiry-fields textarea { width: 100%; min-width: 0; padding: 0.85rem; border: 1px solid #73858a; border-radius: 4px; background: #fff; color: #152e39; font: inherit; }
+.enquiry-fields textarea { resize: vertical; }
+.enquiry-wide { grid-column: 1 / -1; }
+.enquiry-fields :is(input, textarea):focus-visible { outline: 3px solid #8db9ff; outline-offset: 2px; }
+@media (max-width: 600px) { .enquiry-fields { grid-template-columns: 1fr; } }
+
 .nav-dropdown { position: relative; }
 .nav-dropdown-trigger {
   font: inherit;
