@@ -120,10 +120,13 @@ class SearchMetadataTest(unittest.TestCase):
         self.assertIn('id="project-brief"', process)
         self.assertIn('../services/#custom-or-ready-made', process)
 
-    def test_editorial_article_has_visible_author_and_qualified_estimate(self):
+    def test_editorial_article_has_visible_author_and_project_evidence(self):
         source = (ROOT / "insights/the-invisible-engine/index.html").read_text()
         self.assertIn('../../about/#founder', source)
-        self.assertIn("not as a measured industry statistic", source)
+        self.assertNotIn("20%", source)
+        self.assertNotIn("80%", source)
+        self.assertIn('../../case-studies/lakshya-education-operations/', source)
+        self.assertIn("KNP Signature", source)
         article = next(json.loads(m.group(1)) for m in SCHEMA.finditer(source)
                        if json.loads(m.group(1)).get("@type") == "Article")
         self.assertIn('datetime="' + article["dateModified"] + '"', source)
