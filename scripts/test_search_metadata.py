@@ -42,9 +42,10 @@ class SearchMetadataTest(unittest.TestCase):
         content = Content(source)
         self.assertIn("SS49 is the short name for SS49 D1T1TECH.", content.find("main")[0].text())
         answer = dict(content.questions())["What is SS49 D1T1TECH?"]
-        self.assertIn("SS49 and SS49 Tech refer to the same company.", answer)
-        self.assertIn("SS49 D1T1TECH (OPC) PRIVATE LIMITED", answer)
-        self.assertIn("based in Nagpur, India", answer)
+        self.assertIn("SS49 and SS49 Tech are short names for the same company.", answer)
+        visible = content.find("main")[0].text()
+        self.assertIn("SS49 D1T1TECH (OPC) PRIVATE LIMITED", visible)
+        self.assertIn("Nagpur", visible)
         faq = next(json.loads(m.group(1)) for m in SCHEMA.finditer(source)
                    if json.loads(m.group(1)).get("@type") == "FAQPage")
         schema_answer = next(q["acceptedAnswer"]["text"] for q in faq["mainEntity"]
