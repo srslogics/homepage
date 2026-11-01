@@ -173,7 +173,7 @@ test("static client uses the public service endpoint and never persists or execu
 });
 
 // Small DOM harness for interaction logic. This is not visual/browser QA.
-async function client({ connected = false, provider, healthProvider = "groq", healthRequest, conversationVersion = 2 } = {}) {
+async function client({ connected = false, provider, healthProvider = "groq", healthRequest, conversationVersion = 2, connectOnStart = true } = {}) {
   class Element {
     constructor() { this.children = []; this.events = {}; this.value = ""; this.textContent = ""; this.hidden = false; this.disabled = false; this.checked = false; this.dataset = {}; this.scrollTop = 0; }
     append(...children) { children.forEach((child) => { child.parent = this; this.children.push(child); }); }
@@ -203,6 +203,7 @@ async function client({ connected = false, provider, healthProvider = "groq", he
     document: { currentScript: { src: "https://ss49d1t1tech.in/assets/js/assistant.js" }, getElementById: get, createElement: () => new Element(), querySelectorAll: () => starters },
     fetch: async (url, options) => options?.method === "POST" ? provider(url, options) : healthRequest ? healthRequest(url, options) : new Response(JSON.stringify({ enabled: true, provider: healthProvider, conversationVersion }))
   });
+  if (connected && connectOnStart) await get("retry-connection").fire("click");
   await new Promise((resolve) => setImmediate(resolve));
   return { get, starters, window, copied: () => copied };
 }
@@ -424,4 +425,20 @@ test("consent links to provider disclosure, with no committed key", async () => 
   assert.doesNotMatch(page + privacy + example, /OPENAI_API_KEY|messages to OpenAI|assistant service and OpenAI/);
   assert.match(example, /^GROQ_API_KEY=$/m);
   assert.match(example, /^ASSISTANT_ENABLED=false$/m);
+});
+
+
+test("planner makes no AI request until the visitor chooses optional chat", async () => {
+  let checks = 0;
+  const ui = await client({ connected: true, connectOnStart: false,
+    healthRequest: async () => { checks++; return new Response(JSON.stringify({ enabled: true, provider: "groq" })); }
+  });
+  assert.equal(checks, 0);
+  assert.equal(ui.get("retry-connection").hidden, false);
+  await ui.starters[1].fire("click");
+  assert.equal(checks, 0);
+  assert.match(ui.get("chat-log").children[2].children[1].textContent, /KNP Signature/);
+  await ui.get("retry-connection").fire("click");
+  assert.equal(checks, 1);
+  assert.match(ui.get("assistant-mode").textContent, /AI assistant/);
 });

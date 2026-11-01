@@ -646,3 +646,13 @@ h1, h2, h3, h4 { line-height: 1.18; }
   .site-nav .nav-dropdown-panel { position: static; width: 100%; box-shadow: none; }
   .site-nav.is-open { max-height: 75vh; overflow-y: auto; }
 }
+
+/* Compact delivery evidence and an email alternative share the existing type system. */
+.delivery-proof { display: block; margin: 0 0 1.5rem; max-width: 70ch; color: var(--text-secondary); font-size: .875rem; line-height: 1.7; }
+.delivery-proof strong { color: var(--text-primary); font-weight: 650; }
+.delivery-proof a { display: inline-flex; align-items: center; min-height: 44px; margin-left: .5rem; text-underline-offset: 4px; }
+.enquiry-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+@media (max-width: 640px) {
+  .delivery-proof a { margin-left: 0; }
+  .enquiry-actions > button { width: 100%; justify-content: center; }
+}

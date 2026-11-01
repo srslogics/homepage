@@ -76,7 +76,8 @@ SS49 D1T1TECH builds software across industries around each client's users and r
 - Canonical URLs, Open Graph metadata, and JSON-LD structured data
 - `sitemap.xml`, `robots.txt`, and machine-readable company briefs
 - Private invoice pages use `noindex,nofollow`
-- The assistant defaults to curated answers without an API connection. Live AI
+- The project planner starts with curated answers and a local brief builder. Visitors
+  choose the optional AI button before a connection is attempted. Live AI
   requires a separately hosted service with a server-only key, usage controls,
   and a configured public endpoint. The existing static hosting is unchanged.
 

@@ -108,7 +108,7 @@ class SearchMetadataTest(unittest.TestCase):
 
     def test_buyer_guidance_and_cross_industry_positioning(self):
         home = Content((ROOT / "index.html").read_text()).find("main")[0].text()
-        self.assertIn("around client requirements, across industries", home)
+        self.assertIn("Your project can be in a different industry", home)
         pricing = dict(Content((ROOT / "pricing/index.html").read_text()).questions())
         for question in ("What costs should we consider beyond development?",
                          "Can we begin with a smaller first release?",

@@ -3,20 +3,13 @@
   const siteRoot = script ? new URL("../../", script.src) : new URL("/", window.location.href);
   const main = document.querySelector("main");
   const navItems = [
+    ["Work", "projects/"],
     ["Services", "services/"],
-    ["Client systems", "projects/"],
-    ["Our approach", "process/"],
-    ["Insights", "insights/"],
-    ["Company", "about/"]
+    ["Pricing", "pricing/"],
+    ["About", "about/"],
+    ["Contact", "#project-enquiry"]
   ];
   const headers = document.querySelectorAll(".site-header");
-  const subpages = {
-    Services: [["Education management", "education-management-software-nagpur/"], ["Business data analysis", "business-data-analysis-systems/"]],
-    "Client systems": [["Case studies", "case-studies/"], ["Client feedback", "client-reviews/"]],
-    "Our approach": [["Pricing", "pricing/"], ["Security", "security/"]],
-    Insights: [["The Invisible Engine", "insights/the-invisible-engine/"]],
-    Company: [["Careers", "careers/"], ["International delivery", "regions/"]]
-  };
 
   if (main) {
     main.id ||= "main-content";
@@ -43,18 +36,16 @@
       const link = document.createElement("a");
       const url = new URL(path, siteRoot);
       const targetPath = url.pathname.replace(/\/index\.html$/, "/");
-      const isCaseStudy = label === "Client systems" && (
+      const isCaseStudy = label === "Work" && (
         currentPath.includes("/case-studies/") || currentPath.includes("/client-reviews/")
       );
-      const isInsight = label === "Insights" && currentPath.includes("/insights/");
       const isService = label === "Services" && /\/(?:education-management-software-nagpur|business-data-analysis-systems|custom-software-development-dubai|internal-business-software-uae|workflow-automation-software-dubai)\/$/.test(currentPath);
-      const isApproach = label === "Our approach" && /\/(?:pricing|security)\/$/.test(currentPath);
-      const isCompany = label === "Company" && /\/(?:careers|regions|uk|us|uae|raipur|nagpur-custom-software-company)\/$/.test(currentPath);
+      const isCompany = label === "About" && /\/(?:careers|regions|uk|us|uae|raipur|nagpur-custom-software-company)\/$/.test(currentPath);
 
       link.href = url.href;
       link.textContent = label;
 
-      if (currentPath === targetPath || isCaseStudy || isInsight || isService || isApproach || isCompany) {
+      if ((!url.hash && currentPath === targetPath) || isCaseStudy || isService || isCompany) {
         link.setAttribute("aria-current", "page");
       }
 
@@ -66,76 +57,11 @@
     consultationLink.href = "https://calendly.com/shubhamsinghvr/strategy-call";
     consultationLink.target = "_blank";
     consultationLink.rel = "noopener";
-    consultationLink.textContent = "Discuss a project";
+    consultationLink.textContent = "Discuss your project";
 
     nav.replaceChildren(...navLinks, consultationLink);
 
-    const dropdowns = navLinks.map((link, index) => {
-      const label = navItems[index][0];
-      const group = document.createElement("div");
-      group.className = "nav-dropdown";
-      const trigger = document.createElement("button");
-      trigger.type = "button";
-      trigger.className = "nav-dropdown-trigger";
-      trigger.textContent = label;
-      trigger.setAttribute("aria-expanded", "false");
-      if (link.hasAttribute("aria-current")) group.classList.add("is-current");
-      const panel = document.createElement("div");
-      panel.className = "nav-dropdown-panel";
-      panel.id = `${nav.id}-submenu-${index}`;
-      panel.hidden = true;
-      trigger.setAttribute("aria-controls", panel.id);
-      link.textContent = `${label} overview`;
-      if (new URL(link.href).pathname !== currentPath) link.removeAttribute("aria-current");
-      link.replaceWith(group);
-      panel.append(link);
-      subpages[label].forEach(([title, path]) => {
-        const child = document.createElement("a");
-        child.href = new URL(path, siteRoot).href;
-        child.textContent = title;
-        if (new URL(child.href).pathname === currentPath) child.setAttribute("aria-current", "page");
-        panel.append(child);
-      });
-      group.append(trigger, panel);
-      const setOpen = (open) => {
-        panel.hidden = !open;
-        trigger.setAttribute("aria-expanded", String(open));
-      };
-      trigger.addEventListener("click", () => {
-        const open = panel.hidden;
-        dropdowns.forEach((item) => item.setOpen(false));
-        setOpen(open);
-      });
-      group.addEventListener("pointerenter", (event) => {
-        if (event.pointerType !== "mouse" || window.innerWidth <= 1100) return;
-        dropdowns.forEach((item) => item.setOpen(false));
-        setOpen(true);
-      });
-      group.addEventListener("pointerleave", () => {
-        if (!group.contains(document.activeElement)) setOpen(false);
-      });
-      group.addEventListener("focusout", (event) => {
-        if (!group.contains(event.relatedTarget)) setOpen(false);
-      });
-      trigger.addEventListener("keydown", (event) => {
-        if (event.key === "ArrowDown") {
-          event.preventDefault();
-          setOpen(true);
-          panel.querySelector("a").focus();
-        }
-      });
-      group.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && !panel.hidden) {
-          event.stopPropagation();
-          setOpen(false);
-          trigger.focus();
-        }
-      });
-      return { setOpen };
-    });
-
     const closeMenu = () => {
-      dropdowns.forEach((item) => item.setOpen(false));
       button.setAttribute("aria-expanded", "false");
       button.setAttribute("aria-label", "Open navigation");
       nav.classList.remove("is-open");
@@ -178,10 +104,23 @@
       const assistantLink = document.createElement("a");
       assistantLink.href = new URL("assistant/", siteRoot).href;
       assistantLink.dataset.projectAssistant = "";
-      assistantLink.textContent = "Project assistant";
+      assistantLink.textContent = "Project planner";
       const assistantEntry = document.createElement("p");
       assistantEntry.append(assistantLink);
       footerBottom.append(assistantEntry);
+    }
+    const pageLinks = footer.querySelector(".footer-links");
+    if (pageLinks) {
+      [["Delivery process", "process/"], ["Insights", "insights/"], ["Careers", "careers/"]].forEach(([label, path]) => {
+        const url = new URL(path, siteRoot).href;
+        if ([...footer.querySelectorAll("a")].some(link => link.href === url)) return;
+        const entry = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = url;
+        link.textContent = label;
+        entry.append(link);
+        pageLinks.append(entry);
+      });
     }
     if (footer.querySelector(".footer-trust-links, [data-trust-links]")) return;
 
