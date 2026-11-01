@@ -4846,15 +4846,20 @@ h1, h2, h3, h4 { line-height: 1.18; }
   .lightbox-figure img { max-height: 50dvh; }
 }
 
+/* The desktop header has three balanced regions; mobile keeps its menu CTA. */
+.header-project-link { display: none; }
 /* Desktop density: preserve reading space without pushing evidence below the fold. */
 @media (min-width: 1101px) {
   .site-header { max-height: none; overflow: visible; }
-  .site-header .container { display: flex; min-height: 80px; padding-block: 0; gap: 1.5rem; }
+  .site-header .container { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); grid-template-areas: "brand nav action"; align-items: center; min-height: 96px; padding-block: 0; gap: 1.5rem; }
   .nav-toggle { display: none; }
-  .site-header .site-nav, .site-header .site-nav:not(.is-open), .site-header:not([data-nav-ready]) .site-nav { display: flex; gap: clamp(1.5rem, 2.3vw, 2.5rem); padding: 0; margin: 0; border: 0; }
-  .site-nav a { padding: .7rem 0; background: transparent; }
+  .site-header .site-nav, .site-header .site-nav:not(.is-open), .site-header:not([data-nav-ready]) .site-nav { display: flex; grid-area: nav; width: auto; gap: 1.75rem; justify-self: center; align-items: center; padding: 0; margin: 0; border: 0; }
+  .site-nav a { padding: .7rem 0; background: transparent; font-size: .9375rem; font-weight: 600; }
   .site-nav a[aria-current="page"] { background: transparent; box-shadow: inset 0 -2px var(--accent); }
-  .site-nav .nav-cta { margin-left: clamp(.75rem, 1.2vw, 1.25rem); padding: .6rem 1rem; min-height: 44px; background: var(--text-primary); }
+  .site-header[data-nav-ready] .site-nav .nav-cta { display: none; }
+  .site-header .brand { justify-self: start; }
+  .header-project-link { grid-area: action; justify-self: end; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .65rem 1.25rem; border: 1px solid var(--text-primary); border-radius: 3px; background: var(--text-primary); color: #fff; font-size: .9375rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .header-project-link:hover { background: var(--accent); border-color: var(--accent); }
   main > .section-frame { padding-block: 4.5rem; }
   .page-hero { padding-block: 3.5rem; }
   .hero-copy h1, .page-hero .hero-copy h1, .hero-copy h1.hero-title-compact { font-size: clamp(2.75rem, 3.7vw, 3.6rem); max-width: 22ch; }

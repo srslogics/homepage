@@ -146,7 +146,7 @@ def sync(source):
         source = re.sub(home_stylesheet, lambda match: font_preload + "\n" + match[0], source, count=1)
     else:
         tags.insert(0, font_preload)
-    source = re.sub(r'(assets/css/enterprise\.css)(?:\?[^"\s]+)?', r'\1?v=20261101-header', source)
+    source = re.sub(r'(assets/css/enterprise\.css)(?:\?[^"\s]+)?', r'\1?v=20261101-header-final', source)
     if canonical.removeprefix(ORIGIN) in REGIONS.values():
         source = re.sub(r'  <link rel="alternate" hreflang="[^"]+" href="[^"]+">\n', "", source)
         tags += [f'  <link rel="alternate" hreflang="{lang}" href="{ORIGIN}{path}">' for lang, path in REGIONS.items()]

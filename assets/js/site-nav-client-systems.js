@@ -60,6 +60,9 @@
     consultationLink.textContent = "Discuss your project";
 
     nav.replaceChildren(...navLinks, consultationLink);
+    const desktopConsultation = consultationLink.cloneNode(true);
+    desktopConsultation.className = "header-project-link";
+    nav.parentElement.append(desktopConsultation);
 
     const closeMenu = () => {
       button.setAttribute("aria-expanded", "false");
