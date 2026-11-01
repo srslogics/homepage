@@ -4408,8 +4408,10 @@ h1, h2, h3, h4 { line-height: 1.18; }
 .hero-index a { text-decoration: none; display: flex; gap: 2rem; }
 .hero-index-number { text-align: right; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .enterprise-work { border-top: 1px solid var(--surface-line); }
-.work-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3.5rem 1.75rem; }
-.work-card { min-width: 0; }
+.work-gallery { display: grid; grid-auto-flow: column; grid-auto-columns: 31%; gap: 1.75rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; padding: .35rem .35rem 1.5rem; scrollbar-color: var(--accent) var(--surface-line); }
+.work-gallery:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.work-scroll-hint { margin: 0 0 1rem; color: var(--text-secondary); font-size: .8rem; }
+.work-card { min-width: 0; scroll-snap-align: start; }
 .work-card-visual { position: relative; display: flex; align-items: center; aspect-ratio: 4 / 3; padding: 1.25rem; overflow: hidden; background: var(--surface-muted, #e9ede7); text-decoration: none; }
 .work-card-visual img { display: block; width: 100%; height: auto; max-height: 100%; object-fit: contain; box-shadow: 0 8px 24px #132f3c18; transition: transform 250ms ease; }
 .work-card-visual:hover img { transform: scale(1.025); }
@@ -4426,8 +4428,8 @@ h1, h2, h3, h4 { line-height: 1.18; }
 .work-brief-title { color: var(--text-primary); font-size: clamp(1.25rem, 2vw, 2rem); line-height: 1.2; max-width: 16ch; }
 .work-brief-note { font-size: .7rem; color: var(--text-secondary); }
 .work-card-visual:focus-visible, .work-card h3 a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
-@media (max-width: 1000px) { .work-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .work-gallery { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; } }
+@media (max-width: 1000px) { .work-gallery { grid-auto-columns: 46%; } }
+@media (max-width: 600px) { .work-gallery { grid-auto-columns: 86%; gap: 1rem; } }
 @media (prefers-reduced-motion: reduce) { .work-card-visual img { transition: none; } .work-card-visual:hover img { transform: none; } }
 .featured-system { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.55fr); align-items: center; background: #132f3c; color: #f9faf7; overflow: hidden; }
 .featured-system-copy { padding: clamp(2rem, 3.4vw, 3.5rem); }
