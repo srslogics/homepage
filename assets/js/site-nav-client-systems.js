@@ -142,7 +142,7 @@
       links.append(link);
     });
 
-    bottom.insertAdjacentElement("afterend", links);
+    bottom.append(links);
   });
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
