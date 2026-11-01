@@ -119,7 +119,16 @@ def main():
     assert "<strong>8L Marketing</strong>" in client_strip, "8L Marketing must appear in the client strip"
     assert "<strong>MS Parte Enterprise</strong>" in client_strip, "MS Parte Enterprise must appear in the client strip"
     assert "Maharana Group" in client_strip and "Maharana &amp; Bose Associates" in client_strip, "Maharana Group must include its associate name"
-    assert not re.search(r"utsav|poultry", homepage.replace(utsav_client, "", 1), re.I), "Only Utsav's client-name entry belongs on the homepage, not its app showcase"
+    cards = re.findall(r'<article class="work-card">(.*?)</article>', homepage, re.S)
+    assert len(cards) == 14, "Homepage must show all fourteen registered engagements"
+    assert sum("<img " in card for card in cards) == 5, "Only five projects have published application previews"
+    assert sum("Application preview not published" in card for card in cards) == 9
+    for status, count in [
+        ("Deployed", 3), ("On-site", 1), ("In development", 5),
+        ("Contracted development", 1), ("Discovery &amp; architecture", 4),
+    ]:
+        assert sum(f"<span>{status}</span>" in card for card in cards) == count, status
+    assert "case-studies/utsav-feeds-poultry/" in homepage
     utsav = next(g for g in projects.galleries if g["data-gallery-title"] == "Poultry Integration System")
     assert len(utsav["data-images"].split("|")) == 3, "Utsav gallery must retain all three views"
     assert (ROOT / "case-studies/utsav-feeds-poultry/index.html").is_file(), "Utsav case study must remain available"
