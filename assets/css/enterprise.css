@@ -520,7 +520,7 @@ h1, h2, h3, h4 { line-height: 1.18; }
 .footer-grid .footer-links { margin: 0; padding: 0; list-style: none; row-gap: .15rem; grid-auto-rows: minmax(44px, auto); align-content: start; }
 .footer-links li { margin: 0; min-width: 0; }
 .footer-links a, .footer-links li > span { display: flex; align-items: center; min-height: 44px; line-height: 1.5; }
-.footer-bottom .footer-trust-links { display: flex; flex-wrap: wrap; width: auto; margin: 0; gap: 1.25rem; }
+.footer-bottom .footer-trust-links { display: flex; flex-wrap: wrap; align-items: center; width: auto; margin: 0; padding: 0; gap: 1.25rem; }
 .footer-links a, .footer-bottom a, .footer-trust-links a { display: inline-flex; align-items: center; min-height: 44px; }
 .footer-card .brand { min-height: 44px; }
 .footer-bottom a, .footer-trust-links a { font-size: .8125rem; }
