@@ -120,8 +120,8 @@ def main():
     assert "<strong>MS Parte Enterprise</strong>" in client_strip, "MS Parte Enterprise must appear in the client strip"
     assert "Maharana Group" in client_strip and "Maharana &amp; Bose Associates" in client_strip, "Maharana Group must include its associate name"
     cards = re.findall(r'<article class="work-card">(.*?)</article>', homepage, re.S)
-    assert len(cards) == 14, "Homepage must show all fourteen registered engagements"
-    assert sum("<img " in card for card in cards) == 5, "Only five projects have published application previews"
+    assert len(cards) == 15, "Homepage must show all fifteen registered engagements"
+    assert sum("<img " in card for card in cards) == 6, "Six projects have published application previews"
     assert sum("Application preview not published" in card for card in cards) == 9
     for status, count in [
         ("Deployed", 3), ("On-site", 1), ("In development", 5),
