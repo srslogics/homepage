@@ -145,7 +145,7 @@ def main():
     register = (ROOT / "projects/index.html").read_text()
     for region, anchors in {
         "education-institutions": ("school-of-scholars-katol", "sonatai-pandav-polytechnic"),
-        "nagpur-projects": ("tuljai-petroleum", "gautam-petroleum", "triveni-wire"),
+        "nagpur-projects": ("amar-agrovat-enterprise", "tuljai-petroleum", "gautam-petroleum", "triveni-wire"),
     }.items():
         region_html = register.split(f'id="{region}"', 1)[1].split("</details>", 1)[0]
         for anchor in anchors:
