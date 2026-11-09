@@ -142,6 +142,14 @@ def main():
         assert f"<strong>{name}</strong>" in client_strip
         assert anchor in projects.ids
         assert any(name in card and f'href="projects/#{anchor}"' in card for card in cards)
+    register = (ROOT / "projects/index.html").read_text()
+    for region, anchors in {
+        "education-institutions": ("school-of-scholars-katol", "sonatai-pandav-polytechnic"),
+        "nagpur-projects": ("tuljai-petroleum", "gautam-petroleum", "triveni-wire"),
+    }.items():
+        region_html = register.split(f'id="{region}"', 1)[1].split("</details>", 1)[0]
+        for anchor in anchors:
+            assert f'id="{anchor}"' in region_html, f"{anchor} must appear under {region}"
     announcement = next(g for g in projects.galleries if g["data-gallery-title"] == "SS49 new project announcements")
     assert len(announcement["data-images"].split("|")) == 4, "All four announcement slides must be available"
     utsav = next(g for g in projects.galleries if g["data-gallery-title"] == "Poultry Integration System")
