@@ -144,17 +144,27 @@ async function checkUxJourneys(browser, origin, failures) {
   await page.locator('a[href="#project-brief"]').click();
   if (await page.locator('#project-brief').evaluate(el => el.getBoundingClientRect().top < 78)) failures.push({ brief: 'anchor hidden behind header' });
   await page.goto(`${origin}/projects/`, { waitUntil: 'networkidle' });
-  await page.locator('.project-jump-links a[href="#education-institutions"]').click();
-  if (!await page.locator('#education-institutions').evaluate(el => el.open)) failures.push({ projects: 'region jump did not expand region' });
+  const groups = page.locator('.region-projects');
+  if (await groups.count() !== 4 || await page.locator('.region-projects[open]').count() !== 0) failures.push({ projects: 'expected four collapsed groups on arrival' });
+  await page.locator('#nagpur-projects summary').click();
+  await page.locator('#education-institutions summary').click();
+  if (await page.locator('.region-projects[open]').count() !== 1 || !await page.locator('#education-institutions').evaluate(el => el.open)) failures.push({ projects: 'only the selected group should open' });
+  await page.locator('.hero-panel a[href="#knp-signature"]').click();
+  if (!await page.locator('#knp-signature').isVisible()) failures.push({ projects: 'featured link did not reveal the project' });
 
   for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 1000 }, { width: 844, height: 390 }]) {
     await page.setViewportSize(viewport);
+    await page.goto(`${origin}/projects/`, { waitUntil: 'networkidle' });
+    await groups.first().locator('summary').scrollIntoViewIfNeeded();
+    if (await page.locator('main').evaluate(() => document.documentElement.scrollWidth > innerWidth)) failures.push({ viewport, projects: 'register overflows viewport' });
+    await page.locator('.region-project-groups').screenshot({ path: path.join(output, `work-register-${viewport.width}.png`) });
     await page.goto(`${origin}/projects/#octominds-preschool`, { waitUntil: 'networkidle' });
     const launcher = page.locator('[data-gallery-title="OctoMinds Preschool Inventory"]');
     if (!await page.locator('#education-institutions').evaluate(el => el.open)) failures.push({ viewport, octominds: 'project anchor did not expand education section' });
-    await launcher.locator('img').evaluate(img => img.decode());
-    await launcher.locator('figure').screenshot({ path: path.join(output, `octominds-preview-${viewport.width}.png`) });
+    if (await page.locator('.region-project-body img').count()) failures.push({ viewport, projects: 'gallery images appeared in the register' });
     await launcher.click();
+    if (!await page.locator('#lightbox-note').isVisible()) failures.push({ viewport, octominds: 'gallery privacy note missing' });
+    await page.locator('.lightbox-dialog').screenshot({ path: path.join(output, `octominds-preview-${viewport.width}.png`) });
     for (let index = 1; index <= 9; index++) {
       await page.locator('#lightbox-image').evaluate(img => img.decode());
       if (await page.locator('#lightbox-counter').innerText() !== `${index} / 9`) failures.push({ viewport, octominds: `incorrect counter at screen ${index}` });
@@ -190,7 +200,7 @@ async function checkUxJourneys(browser, origin, failures) {
   await noScript.locator('.site-nav a[href="services/"]').click();
   if (!noScript.url().includes('/services/')) failures.push({ noScript: 'service navigation failed' });
   await noScript.close();
-  console.log('Checked touch targets, region and brief shortcuts, all nine OctoMinds screens on desktop/mobile/landscape, landscape gallery/menu, and navigation without JavaScript.');
+  console.log('Checked touch targets, project groups and featured links, brief shortcuts, all nine OctoMinds screens on desktop/mobile/landscape, landscape gallery/menu, and navigation without JavaScript.');
 }
 
 main().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => server.close());

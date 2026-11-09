@@ -1,0 +1,103 @@
+/* Keep the project register compact without changing the shared site styles. */
+.page-projects .region-project-groups {
+  gap: .75rem;
+}
+
+.page-projects .region-summary {
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: .75rem;
+  min-height: 0;
+  padding: 1rem clamp(1rem, 3vw, 2rem);
+}
+
+.page-projects .region-summary h3 {
+  margin: 0;
+}
+
+.page-projects .region-summary-meta {
+  grid-column: auto;
+}
+
+.page-projects .region-summary::after {
+  justify-self: end;
+  padding: .35rem 0;
+}
+
+.page-projects .region-project-body {
+  gap: 0;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.page-projects .engagement-group {
+  padding: 1rem 0;
+}
+
+.page-projects .engagement-group-header {
+  margin: 0;
+  padding-bottom: .5rem;
+  border: 0;
+}
+
+.page-projects .engagement-list {
+  gap: 0;
+}
+
+.page-projects .engagement-item {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .5rem 1rem;
+  padding: .85rem 0;
+}
+
+.page-projects .engagement-content {
+  gap: .2rem;
+}
+
+.page-projects .engagement-title {
+  font-size: 1.15rem;
+}
+
+.page-projects .engagement-copy,
+.page-projects .project-context {
+  margin: 0;
+}
+
+.page-projects .project-context,
+.page-projects .project-gallery-note {
+  color: var(--text-secondary);
+  font-size: .875rem;
+}
+
+.page-projects .project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1rem;
+  margin-top: .25rem;
+}
+
+.page-projects .engagement-launch {
+  width: auto;
+  border-bottom: 1px solid var(--surface-line-strong);
+}
+
+.page-projects .project-announcements {
+  margin-top: 1rem;
+}
+
+.page-projects .project-gallery-note {
+  margin: .5rem 0 0;
+}
+
+@media (max-width: 600px) {
+  .page-projects .region-summary {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .page-projects .region-summary > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .page-projects .engagement-item {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+  }
+}
