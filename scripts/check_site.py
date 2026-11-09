@@ -115,22 +115,35 @@ def main():
     client_strip = homepage.split('<div data-client-names>', 1)[1].split("</div>", 1)[0]
     assert utsav_client in client_strip, "Utsav must appear in the client-name strip"
     assert "<small>" not in client_strip, "Client strip must show names only, without project statuses"
-    assert len(re.findall(r"<strong>", client_strip)) == 12, "Client strip must retain all twelve names"
+    assert len(re.findall(r"<strong>", client_strip)) == 17, "Client strip must include all seventeen names"
     assert "<strong>Amar Agrovat Enterprise</strong>" in client_strip
     assert "<strong>8L Marketing</strong>" in client_strip, "8L Marketing must appear in the client strip"
     assert "<strong>MS Parte Enterprise</strong>" in client_strip, "MS Parte Enterprise must appear in the client strip"
     assert "Maharana Group" in client_strip and "Maharana &amp; Bose Associates" in client_strip, "Maharana Group must include its associate name"
     cards = re.findall(r'<article class="work-card">(.*?)</article>', homepage, re.S)
-    assert len(cards) == 15, "Homepage must show all fifteen registered engagements"
+    assert len(cards) == 20, "Homepage must show all twenty registered engagements"
     assert "Amar Agrovat Enterprise" in cards[4], "Amar must appear fifth in the homepage gallery"
     assert sum("<img " in card for card in cards) == 6, "Six projects have published application previews"
     assert sum("Application preview not published" in card for card in cards) == 9
     for status, count in [
         ("Deployed", 3), ("On-site", 1), ("In development", 5),
-        ("Contracted development", 1), ("Discovery &amp; architecture", 4),
+        ("Contracted development", 1), ("Discovery &amp; architecture", 4), ("New project", 5),
     ]:
         assert sum(f"<span>{status}</span>" in card for card in cards) == count, status
     assert "case-studies/utsav-feeds-poultry/" in homepage
+    new_clients = {
+        "school-of-scholars-katol": "School of Scholars",
+        "sonatai-pandav-polytechnic": "Sonatai Pandav Polytechnic",
+        "tuljai-petroleum": "Tuljai Petroleum",
+        "gautam-petroleum": "Gautam Petroleum",
+        "triveni-wire": "Triveni Wire Private Limited",
+    }
+    for anchor, name in new_clients.items():
+        assert f"<strong>{name}</strong>" in client_strip
+        assert anchor in projects.ids
+        assert any(name in card and f'href="projects/#{anchor}"' in card for card in cards)
+    announcement = next(g for g in projects.galleries if g["data-gallery-title"] == "SS49 new project announcements")
+    assert len(announcement["data-images"].split("|")) == 4, "All four announcement slides must be available"
     utsav = next(g for g in projects.galleries if g["data-gallery-title"] == "Poultry Integration System")
     assert len(utsav["data-images"].split("|")) == 3, "Utsav gallery must retain all three views"
     assert (ROOT / "case-studies/utsav-feeds-poultry/index.html").is_file(), "Utsav case study must remain available"
