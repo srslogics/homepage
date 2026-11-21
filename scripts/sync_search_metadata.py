@@ -69,9 +69,7 @@ def sync(source):
     def social_footer(match):
         footer = match.group(0)
         if f'CIN: {CIN}' not in footer:
-            footer = footer.replace(
-                f'{LEGAL}. Custom software from Nagpur, India.',
-                f'{LEGAL}. CIN: {CIN}. Custom software from Nagpur, India.')
+            footer = footer.replace(f'{LEGAL}.', f'{LEGAL}. CIN: {CIN}.')
         if 'https://www.linkedin.com/company/ss49d1t1tech/' not in footer:
             footer = re.sub(
                 r'(<li><a href="https://www.instagram.com/ss49tech/"[^>]*>.*?</a></li>)',
