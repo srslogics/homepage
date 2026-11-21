@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://ss49d1t1tech.in"
 BRAND = "SS49 D1T1TECH"
 LEGAL = "SS49 D1T1TECH (OPC) PRIVATE LIMITED"
+CIN = "U63119ME2026OPC477598"
 IMAGE = ORIGIN + "/assets/brand/ss49-mark.png?v=20261007-share"
 FONT = "/assets/fonts/manrope-variable.woff2"
 SCHEMA = re.compile(r'<script type="application/ld\+json">([\s\S]*?)</script>')
@@ -45,6 +46,7 @@ def company_references(value):
 def company():
     return {"@context": "https://schema.org", "@type": "Organization",
             "@id": ORIGIN + "/#organization", "name": LEGAL, "legalName": LEGAL,
+            "identifier": {"@type": "PropertyValue", "propertyID": "CIN", "value": CIN},
             "alternateName": ["SS49", BRAND, "SS49 Tech"], "url": ORIGIN + "/",
             "description": "SS49 D1T1TECH is a custom software development company based in Nagpur, Maharashtra, India. We build applications, connected business systems, and digital products across industries.",
             "logo": ORIGIN + "/assets/brand/ss49-mark.png",
@@ -66,6 +68,10 @@ def sync(source):
     # Keep verified company profiles visible alongside their structured identity.
     def social_footer(match):
         footer = match.group(0)
+        if f'CIN: {CIN}' not in footer:
+            footer = footer.replace(
+                f'{LEGAL}. Custom software from Nagpur, India.',
+                f'{LEGAL}. CIN: {CIN}. Custom software from Nagpur, India.')
         if 'https://www.linkedin.com/company/ss49d1t1tech/' not in footer:
             footer = re.sub(
                 r'(<li><a href="https://www.instagram.com/ss49tech/"[^>]*>.*?</a></li>)',
