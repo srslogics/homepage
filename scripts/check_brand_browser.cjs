@@ -152,32 +152,47 @@ async function checkUxJourneys(browser, origin, failures) {
   await page.locator('.hero-panel a[href="#knp-signature"]').click();
   if (!await page.locator('#knp-signature').isVisible()) failures.push({ projects: 'featured link did not reveal the project' });
 
+  const tuljai = require('./fixtures/tuljai-public-images.json');
   for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 1000 }, { width: 844, height: 390 }]) {
     await page.setViewportSize(viewport);
     await page.goto(`${origin}/projects/`, { waitUntil: 'networkidle' });
     await groups.first().locator('summary').scrollIntoViewIfNeeded();
     if (await page.locator('main').evaluate(() => document.documentElement.scrollWidth > innerWidth)) failures.push({ viewport, projects: 'register overflows viewport' });
     await page.locator('.region-project-groups').screenshot({ path: path.join(output, `work-register-${viewport.width}.png`) });
-    await page.goto(`${origin}/projects/#octominds-preschool`, { waitUntil: 'networkidle' });
-    const launcher = page.locator('[data-gallery-title="OctoMinds Preschool Inventory"]');
-    if (!await page.locator('#education-institutions').evaluate(el => el.open)) failures.push({ viewport, octominds: 'project anchor did not expand education section' });
-    if (await page.locator('.region-project-body img').count()) failures.push({ viewport, projects: 'gallery images appeared in the register' });
-    await launcher.click();
-    if (!await page.locator('#lightbox-note').isVisible()) failures.push({ viewport, octominds: 'gallery privacy note missing' });
-    await page.locator('.lightbox-dialog').screenshot({ path: path.join(output, `octominds-preview-${viewport.width}.png`) });
-    for (let index = 1; index <= 9; index++) {
-      await page.locator('#lightbox-image').evaluate(img => img.decode());
-      if (await page.locator('#lightbox-counter').innerText() !== `${index} / 9`) failures.push({ viewport, octominds: `incorrect counter at screen ${index}` });
-      const image = await page.locator('#lightbox-image').evaluate(img => ({ width: img.naturalWidth, height: img.naturalHeight, alt: img.alt }));
-      if (image.width !== 2880 || image.height !== 1580 || !image.alt.startsWith('OctoMinds Preschool Inventory - ') || !image.alt.includes('private details obscured')) failures.push({ viewport, octominds: 'invalid screenshot or alternative text', image });
-      if (index === 1) await page.screenshot({ path: path.join(output, `octominds-gallery-${viewport.width}.png`) });
-      await page.locator('#lightbox-next').click();
+    for (const [anchor, region, galleries] of [
+      ['octominds-preschool', 'education-institutions', [
+        ['OctoMinds Preschool Inventory', 'octominds-inventory', require('./fixtures/octominds-public-images.json')],
+        ['OctoMinds Preschool Family Portal', 'octominds-family', require('./fixtures/octominds-family-public-images.json')]
+      ]],
+      ['tuljai-petroleum', 'nagpur-projects', [
+        ['Tuljai Petroleum Owner App', 'tuljai-owner', tuljai.owner],
+        ['Tuljai Petroleum Station Manager App', 'tuljai-manager', tuljai.manager]
+      ]]
+    ]) {
+      await page.goto(`${origin}/projects/#${anchor}`, { waitUntil: 'networkidle' });
+      if (!await page.locator(`#${region}`).evaluate(el => el.open)) failures.push({ viewport, anchor, issue: 'project anchor did not expand its region' });
+      if (await page.locator('.region-project-body img').count()) failures.push({ viewport, anchor, issue: 'gallery images appeared in the register' });
+      for (const [title, label, screenshots] of galleries) {
+        const launcher = page.locator(`[data-gallery-title="${title}"]`);
+        await launcher.click();
+        if (!await page.locator('#lightbox-note').isVisible()) failures.push({ viewport, title, issue: 'privacy note missing' });
+        for (const [offset, shot] of screenshots.entries()) {
+          const image = await page.locator('#lightbox-image').evaluate(async img => {
+            await img.decode();
+            return { width: img.naturalWidth, height: img.naturalHeight, alt: img.alt };
+          });
+          if (await page.locator('#lightbox-counter').innerText() !== `${offset + 1} / ${screenshots.length}`) failures.push({ viewport, title, issue: `incorrect counter at screen ${offset + 1}` });
+          if (image.width !== shot.width || image.height !== shot.height || image.alt !== `${title} - ${shot.caption} (private details obscured)`) failures.push({ viewport, title, issue: 'invalid screenshot or alternative text', image });
+          if (!offset) await page.locator('.lightbox-dialog').screenshot({ path: path.join(output, `${label}-${viewport.width}.png`) });
+          await page.locator('#lightbox-next').click();
+        }
+        if (await page.locator('#lightbox-counter').innerText() !== `1 / ${screenshots.length}`) failures.push({ viewport, title, issue: 'gallery did not wrap' });
+        const layout = await page.locator('.lightbox-dialog').evaluate(el => ({ height: el.getBoundingClientRect().height, viewport: innerHeight, overflow: document.documentElement.scrollWidth > innerWidth }));
+        if (layout.height > layout.viewport || layout.overflow) failures.push({ viewport, title, issue: 'gallery overflow', layout });
+        await page.keyboard.press('Escape');
+        if (await page.locator('#project-lightbox').isVisible() || !await launcher.evaluate(el => el === document.activeElement)) failures.push({ viewport, title, issue: 'close or focus restoration failed' });
+      }
     }
-    if (await page.locator('#lightbox-counter').innerText() !== '1 / 9') failures.push({ viewport, octominds: 'gallery did not wrap' });
-    const layout = await page.locator('.lightbox-dialog').evaluate(el => ({ height: el.getBoundingClientRect().height, viewport: innerHeight, overflow: document.documentElement.scrollWidth > innerWidth }));
-    if (layout.height > layout.viewport || layout.overflow) failures.push({ viewport, octominds: 'gallery overflow', layout });
-    await page.keyboard.press('Escape');
-    if (await page.locator('#project-lightbox').isVisible() || !await launcher.evaluate(el => el === document.activeElement)) failures.push({ viewport, octominds: 'close or focus restoration failed' });
   }
 
   await page.setViewportSize({ width: 844, height: 390 });
@@ -200,7 +215,7 @@ async function checkUxJourneys(browser, origin, failures) {
   await noScript.locator('.site-nav a[href="services/"]').click();
   if (!noScript.url().includes('/services/')) failures.push({ noScript: 'service navigation failed' });
   await noScript.close();
-  console.log('Checked touch targets, project groups and featured links, brief shortcuts, all nine OctoMinds screens on desktop/mobile/landscape, landscape gallery/menu, and navigation without JavaScript.');
+  console.log('Checked touch targets, project groups and featured links, brief shortcuts, OctoMinds and Tuljai galleries on desktop/mobile/landscape, landscape gallery/menu, and navigation without JavaScript.');
 }
 
 main().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => server.close());

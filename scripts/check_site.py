@@ -123,7 +123,7 @@ def main():
     cards = re.findall(r'<article class="work-card">(.*?)</article>', homepage, re.S)
     assert len(cards) == 20, "Homepage must show all twenty registered engagements"
     assert "Amar Agrovat Enterprise" in cards[4], "Amar must appear fifth in the homepage gallery"
-    assert sum("<img " in card for card in cards) == 6, "Six projects have published application previews"
+    assert sum("<img " in card for card in cards) == 7, "Seven projects have application previews on the homepage"
     assert sum("Application preview not published" in card for card in cards) == 9
     for status, count in [
         ("Deployed", 3), ("On-site", 1), ("In development", 5),
@@ -171,19 +171,37 @@ def main():
         asset = ROOT / "assets/images" / item["file"]
         # Any image replacement needs a fresh privacy review before its hash changes.
         assert hashlib.sha256(asset.read_bytes()).hexdigest() == item["sha256"], f"Privacy-reviewed asset changed: {asset.name}"
-    octominds = next(g for g in projects.galleries if g["data-gallery-title"] == "OctoMinds Preschool Inventory")
-    octominds_approved = json.loads((ROOT / "scripts/fixtures/octominds-public-images.json").read_text())
-    assert len(octominds_approved) == 9, "OctoMinds must retain all nine privacy-reviewed screens"
-    assert octominds["data-images"].split("|") == ["../assets/images/" + item["file"] for item in octominds_approved]
-    assert octominds["data-captions"].split("|") == [item["caption"] + " (private details obscured)" for item in octominds_approved]
-    assert {asset.name for asset in ROOT.glob("assets/images/projects-octominds-*")} == {item["file"] for item in octominds_approved}, "Remove unreviewed OctoMinds assets, including original screenshots, from the public tree"
-    for item in octominds_approved:
-        asset = ROOT / "assets/images" / item["file"]
-        data = asset.read_bytes()
-        assert hashlib.sha256(data).hexdigest() == item["sha256"], f"Privacy-reviewed asset changed: {asset.name}"
-        assert data[:8] == b"\x89PNG\r\n\x1a\n"
-        assert int.from_bytes(data[16:20], "big") == item["width"]
-        assert int.from_bytes(data[20:24], "big") == item["height"]
+    fixtures = ROOT / "scripts/fixtures"
+    tuljai = json.loads((fixtures / "tuljai-public-images.json").read_text())
+    assert any(
+        'href="projects/#tuljai-petroleum"' in card and tuljai["owner"][0]["file"] in card
+        for card in cards
+    ), "Tuljai's homepage card must use the reviewed overview and link to the project"
+    for prefix, galleries in (
+        ("octominds", (
+            ("OctoMinds Preschool Inventory", json.loads((fixtures / "octominds-public-images.json").read_text()), 9),
+            ("OctoMinds Preschool Family Portal", json.loads((fixtures / "octominds-family-public-images.json").read_text()), 10),
+        )),
+        ("tuljai", (
+            ("Tuljai Petroleum Owner App", tuljai["owner"], 13),
+            ("Tuljai Petroleum Station Manager App", tuljai["manager"], 5),
+        )),
+    ):
+        approved_files = set()
+        for title, reviewed, size in galleries:
+            gallery = next(g for g in projects.galleries if g["data-gallery-title"] == title)
+            assert len(reviewed) == size, f"{title} must retain all {size} privacy-reviewed screens"
+            assert gallery["data-images"].split("|") == ["../assets/images/" + item["file"] for item in reviewed]
+            assert gallery["data-captions"].split("|") == [item["caption"] + " (private details obscured)" for item in reviewed]
+            for item in reviewed:
+                asset = ROOT / "assets/images" / item["file"]
+                approved_files.add(asset.name)
+                data = asset.read_bytes()
+                assert hashlib.sha256(data).hexdigest() == item["sha256"], f"Privacy-reviewed asset changed: {asset.name}"
+                assert data[:8] == b"\x89PNG\r\n\x1a\n"
+                assert int.from_bytes(data[16:20], "big") == item["width"]
+                assert int.from_bytes(data[20:24], "big") == item["height"]
+        assert {asset.name for asset in ROOT.glob(f"assets/images/projects-{prefix}-*")} == approved_files, f"Remove unreviewed {prefix} assets from the public tree"
     for file in ROOT.glob("assets/js/*.js"):
         result = subprocess.run(["node", "--check", str(file)], text=True, capture_output=True)
         if result.returncode:

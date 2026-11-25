@@ -39,11 +39,16 @@ function setup(hash = "") {
   lakshyaTarget.closest = () => education;
   const octomindsTarget = element("octominds-preschool");
   octomindsTarget.closest = () => education;
-  for (const id of ["project-lightbox", "lightbox-title", "lightbox-counter", "lightbox-image", "lightbox-caption", "lightbox-prev", "lightbox-next", "close"]) element(id);
+  for (const id of ["project-lightbox", "lightbox-title", "lightbox-counter", "lightbox-image", "lightbox-caption", "lightbox-note", "lightbox-prev", "lightbox-next", "close"]) element(id);
   const modal = elements.get("project-lightbox");
   modal.querySelector = () => elements.get("close");
   modal.querySelectorAll = () => [elements.get("close")];
-  const launchers = [...source.matchAll(/<button class="engagement-launch"[^>]+>/g)].map(([tag], index) => {
+  const noteAttributes = new Map();
+  elements.get("lightbox-note").parentElement = {
+    setAttribute: (name, value) => noteAttributes.set(name, value),
+    removeAttribute: (name) => noteAttributes.delete(name)
+  };
+  const launchers = [...source.matchAll(/<button class="engagement-launch(?: [^"]*)?"[^>]+>/g)].map(([tag], index) => {
     const button = element("launcher-" + index);
     for (const [, key, value] of tag.matchAll(/data-([a-z-]+)="([^"]*)"/g)) {
       const camel = key.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
@@ -153,28 +158,36 @@ assert.equal(counter(), "1 / 26");
 key("Escape");
 assert.equal(app.modal.hidden, true);
 assert.equal(app.document.activeElement, lakshya);
-const octominds = app.launchers.find((node) => node.dataset.galleryTitle === "OctoMinds Preschool Inventory");
-const octomindsImages = octominds.dataset.images.split("|");
-const octomindsCaptions = octominds.dataset.captions.split("|");
-const octomindsScreens = ["overview", "sign-in", "guided-setup", "items", "stock-movements", "transfers", "centers-storage", "reports", "account"];
-assert.deepEqual(octomindsImages, octomindsScreens.map((screen) => `../assets/images/projects-octominds-${screen}-20261015-redacted.png`));
-assert.equal(octomindsCaptions.length, 9);
-click(octominds);
-for (let index = 0; index < 9; index++) {
-  assert.ok(fs.existsSync(path.resolve(__dirname, "../projects", octomindsImages[index])));
-  assert.equal(counter(), (index + 1) + " / 9");
-  assert.equal(img.src, octomindsImages[index]);
-  assert.equal(app.elements.get("lightbox-caption").textContent, octomindsCaptions[index]);
-  assert.equal(img.alt, "OctoMinds Preschool Inventory - " + octomindsCaptions[index]);
-  assert.match(img.alt, /private details obscured/);
-  click(app.elements.get("lightbox-next"));
+const tuljai = require("./fixtures/tuljai-public-images.json");
+for (const [title, approved] of [
+  ["OctoMinds Preschool Inventory", require("./fixtures/octominds-public-images.json")],
+  ["OctoMinds Preschool Family Portal", require("./fixtures/octominds-family-public-images.json")],
+  ["Tuljai Petroleum Owner App", tuljai.owner],
+  ["Tuljai Petroleum Station Manager App", tuljai.manager]
+]) {
+  const launcher = app.launchers.find((node) => node.dataset.galleryTitle === title);
+  assert.ok(launcher, `Missing gallery: ${title}`);
+  const images = approved.map(({file}) => `../assets/images/${file}`);
+  const captions = approved.map(({caption}) => `${caption} (private details obscured)`);
+  const size = approved.length;
+  assert.deepEqual(launcher.dataset.images.split("|"), images);
+  assert.deepEqual(launcher.dataset.captions.split("|"), captions);
+  click(launcher);
+  for (let index = 0; index < size; index++) {
+    assert.ok(fs.existsSync(path.resolve(__dirname, "../projects", images[index])));
+    assert.equal(counter(), `${index + 1} / ${size}`);
+    assert.equal(img.src, images[index]);
+    assert.equal(app.elements.get("lightbox-caption").textContent, captions[index]);
+    assert.equal(img.alt, `${title} - ${captions[index]}`);
+    click(app.elements.get("lightbox-next"));
+  }
+  assert.equal(counter(), `1 / ${size}`);
+  key("ArrowLeft");
+  assert.equal(counter(), `${size} / ${size}`);
+  key("ArrowRight");
+  assert.equal(counter(), `1 / ${size}`);
+  key("Escape");
+  assert.equal(app.modal.hidden, true);
+  assert.equal(app.document.activeElement, launcher);
 }
-assert.equal(counter(), "1 / 9");
-key("ArrowLeft");
-assert.equal(counter(), "9 / 9");
-key("ArrowRight");
-assert.equal(counter(), "1 / 9");
-key("Escape");
-assert.equal(app.modal.hidden, true);
-assert.equal(app.document.activeElement, octominds);
-console.log("PASS: project anchors, all galleries, 8 KNP views, 11 Royal views, 26 Lakshya views, 9 OctoMinds views, wraparound, keyboard controls, and focus restoration.");
+console.log("PASS: project anchors, gallery images and captions, wraparound, keyboard controls, and focus restoration.");

@@ -1,0 +1,24 @@
+{
+  "owner": [
+    {"file":"projects-tuljai-owner-overview-20261126-redacted.png","caption":"Station overview: fuel sales, shifts and exceptions","width":3360,"height":1880,"sha256":"5d39566abeec95fb0f3e441446cf7efe12388a1a87e77f83b38e850265a6559f"},
+    {"file":"projects-tuljai-owner-daily-report-20261126-redacted.png","caption":"Daily report: payment reconciliation and fuel stock movements","width":3360,"height":1880,"sha256":"4a518ffb6db7f22c8cd53f09ebaeb1c9603f3467ad40669d4e1bada15cccf56b"},
+    {"file":"projects-tuljai-owner-money-20261126-redacted.png","caption":"Money: customer dues, bank receipts and cash deposits","width":3360,"height":1880,"sha256":"92db62e3cfafb9afc6d2fffae3691a8f7073271c69e53580201510a43385f812"},
+    {"file":"projects-tuljai-owner-payroll-20261126-redacted.png","caption":"Payroll: salaries, staff advances and payment history","width":3360,"height":1880,"sha256":"1935ee78f2a18d6dd5bea7a56d79ef297f4fa04f424132872418b9ef67559111"},
+    {"file":"projects-tuljai-owner-payables-20261126-redacted.png","caption":"Payables: supplier invoices and business bills","width":3360,"height":1880,"sha256":"b7a755a42f19115db6d1d420b0bd2a4f41409a1c72324bcf9dc7e460e91d53e9"},
+    {"file":"projects-tuljai-owner-operations-20261126-redacted.png","caption":"Operations: open shifts, tank capacities and low-stock thresholds","width":3360,"height":1880,"sha256":"f35e7fcdf5a44fbc8b233b91192f1b5b678961893ace09a7d3c2ef46739a4925"},
+    {"file":"projects-tuljai-owner-exceptions-20261126-redacted.png","caption":"Exception inbox: outstanding issues and follow-up notes","width":3360,"height":1880,"sha256":"779140ce472232bd723689a9d43ef8d02c3bc261351ff201d84b50aa46c040fb"},
+    {"file":"projects-tuljai-owner-automation-20261126-redacted.png","caption":"Automation: alerts, bank reconciliation and recurring drafts","width":3360,"height":1880,"sha256":"9e9bd92eef2cb07a13913eb376443901c2027314213b44048ea5f76ac2b4869e"},
+    {"file":"projects-tuljai-owner-station-settings-20261126-redacted.png","caption":"Station settings: selling rates and opening stock","width":3360,"height":1880,"sha256":"58498ed7e1bf124358c5a9d523554e34255ac22b79394e1c9a5c0c793b83bc74"},
+    {"file":"projects-tuljai-owner-team-20261126-redacted.png","caption":"Team: station access and manager accounts","width":3360,"height":1880,"sha256":"92b8d9668da77c4737852a19f71b8417ac0825720914362570d27a1d3bad2d63"},
+    {"file":"projects-tuljai-owner-account-security-20261126-redacted.png","caption":"Account security: verification and recovery settings","width":3360,"height":1880,"sha256":"1ca24789a5ba4170d150606203878fe024ab8f0acc92f623f9934ca93d9e60e6"},
+    {"file":"projects-tuljai-owner-sign-in-20261126-redacted.png","caption":"Owner sign-in screen","width":3360,"height":1880,"sha256":"23ac7488e9a4d75baddb6de8469a973f0dd264ec208799aad22f43020a5b1b51"},
+    {"file":"projects-tuljai-owner-verification-20261126-redacted.png","caption":"Owner sign-in verification screen","width":3360,"height":1880,"sha256":"1c22f99493a42e069383cb67f8a9feb8d0971369a6879787f80e3ce0c7c1d532"}
+  ],
+  "manager": [
+    {"file":"projects-tuljai-manager-meter-stock-20261126-redacted.png","caption":"Shift entry: meter readings and physical stock","width":3360,"height":1880,"sha256":"a72203b1d71e5ef2ba9708aa5fd9ae6c781418266d11f40a6abe76ca5d4c03fc"},
+    {"file":"projects-tuljai-manager-collections-20261126-redacted.png","caption":"Shift entry: collections and payment reconciliation","width":3360,"height":1880,"sha256":"300c33dccc25250863f75cd6a508cc22aa028bec23067bb986f631ef82515025"},
+    {"file":"projects-tuljai-manager-deliveries-20261126-redacted.png","caption":"Shift entry: fuel deliveries and stock movements","width":3360,"height":1880,"sha256":"a10ae7f8935ca73b69bd69aa06663330baafb64781843a338a55b2d631e3428b"},
+    {"file":"projects-tuljai-manager-expenses-20261126-redacted.png","caption":"Shift entry: station expenses and cash count","width":3360,"height":1880,"sha256":"29475dd8dead62eb5cf548d7b21ce80037889d4e7ff998302d014921bf90b207"},
+    {"file":"projects-tuljai-manager-owner-requests-20261126-redacted.png","caption":"Owner requests: shift corrections and follow-up","width":3360,"height":1880,"sha256":"a0a6d718636c865e2f62cf197884a1e66df44493c29f17ac5c167f08c078dc42"}
+  ]
+}
