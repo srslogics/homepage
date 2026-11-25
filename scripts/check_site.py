@@ -122,7 +122,10 @@ def main():
     assert "Maharana Group" in client_strip and "Maharana &amp; Bose Associates" in client_strip, "Maharana Group must include its associate name"
     cards = re.findall(r'<article class="work-card">(.*?)</article>', homepage, re.S)
     assert len(cards) == 20, "Homepage must show all twenty registered engagements"
-    assert "Amar Agrovat Enterprise" in cards[4], "Amar must appear fifth in the homepage gallery"
+    assert "Amar Agrovat Enterprise" in cards[5], "Amar must appear sixth in the homepage gallery"
+    assert re.findall(r'class="work-card-number" aria-hidden="true">(\d+)<', homepage) == [
+        f"{position:02}" for position in range(1, len(cards) + 1)
+    ], "Homepage project numbers must match the gallery order"
     assert sum("<img " in card for card in cards) == 7, "Seven projects have application previews on the homepage"
     assert sum("Application preview not published" in card for card in cards) == 9
     for status, count in [
@@ -173,14 +176,16 @@ def main():
         assert hashlib.sha256(asset.read_bytes()).hexdigest() == item["sha256"], f"Privacy-reviewed asset changed: {asset.name}"
     fixtures = ROOT / "scripts/fixtures"
     tuljai = json.loads((fixtures / "tuljai-public-images.json").read_text())
+    family = json.loads((fixtures / "octominds-family-public-images.json").read_text())
+    assert 'href="projects/#tuljai-petroleum"' in cards[0] and tuljai["owner"][0]["file"] in cards[0], "Tuljai's reviewed overview must lead the homepage gallery"
     assert any(
-        'href="projects/#tuljai-petroleum"' in card and tuljai["owner"][0]["file"] in card
+        'href="projects/#octominds-preschool"' in card and family[0]["file"] in card
         for card in cards
-    ), "Tuljai's homepage card must use the reviewed overview and link to the project"
+    ), "OctoMinds must use the reviewed Family Portal cover on the homepage"
     for prefix, galleries in (
         ("octominds", (
             ("OctoMinds Preschool Inventory", json.loads((fixtures / "octominds-public-images.json").read_text()), 9),
-            ("OctoMinds Preschool Family Portal", json.loads((fixtures / "octominds-family-public-images.json").read_text()), 10),
+            ("OctoMinds Preschool Family Portal", family, 10),
         )),
         ("tuljai", (
             ("Tuljai Petroleum Owner App", tuljai["owner"], 13),
